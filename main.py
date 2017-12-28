@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import os
 
 app = Flask(__name__)
-port = int(os.getenv("VCAP_APP_PORT"))
+port = int(os.getenv("PORT", 8000))
 
 @app.route("/")
 def index():
