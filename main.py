@@ -1,5 +1,5 @@
-from flask import Flask, render_template
 import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
 port = int(os.getenv("PORT", 8000))
@@ -7,6 +7,10 @@ port = int(os.getenv("PORT", 8000))
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/log")
+def log():
+    return render_template("log.html")
 
 
 if __name__ == "__main__":

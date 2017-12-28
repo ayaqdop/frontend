@@ -1,5 +1,6 @@
 ---
 applications:
- - name: GetStartedPython
+ - name: ayaqdop
    random-route: true
+   domain: ayaqdop.com
    memory: 128M
