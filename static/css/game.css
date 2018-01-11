@@ -1,0 +1,47 @@
+.unselectable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;  
+}
+
+.square {
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+.player {
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center;
+  color: yellow;
+  background: blue;
+  border-radius: 20px;
+  cursor: move;
+}
+
+.pitch-green-middle {
+  background: #477A12;
+}
+
+.pitch-green-dark {
+  background: #3F6E11;
+}
+
+.pitch-green-light {
+  background: #477A12;
+}
+
+
