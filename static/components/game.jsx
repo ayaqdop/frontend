@@ -1,7 +1,8 @@
+
 const socket = io.connect( 'http://' + document.domain + ':' + location.port );
 console.log("Start");
 
-socket.on("client", function(msg) {
+socket.on("client", (msg) => {
     console.log("client");
     document.getElementById("messages").innerHTML += msg + "<br>";
 });
@@ -83,24 +84,6 @@ class Board extends React.Component {
   render() {
     const rows = ' abcdefghijklmnop '.split('').map(a => <Row row={a} />);
     return <div>{rows}</div>;
-  }
-}
-
-class Player extends React.Component {
-  onDragStart(e) {
-    e.dataTransfer.setData("text/html", e.target.id);
-    e.dataTransfer.effectAllowed = "move";
-  }
-  render() {
-    return (
-      <div
-        id={this.props.number}
-        className="player"
-        draggable="true"
-        onDragStart={this.onDragStart} >
-          {this.props.number}
-      </div>
-      );
   }
 }
 
