@@ -1,3 +1,12 @@
+const socket = io.connect( 'http://' + document.domain + ':' + location.port );
+console.log("Start");
+
+socket.on("client", function(msg) {
+    console.log("client");
+    document.getElementById("messages").innerHTML += msg + "<br>";
+});
+
+
 class Square extends React.Component {
   allowDrop(e) {
     e.preventDefault();
@@ -8,6 +17,8 @@ class Square extends React.Component {
     console.log("Before: " + newContent.parentNode.id);
     e.target.appendChild(newContent);
     console.log("After: " + newContent.parentNode.id);
+
+    socket.emit("server", newContent.parentNode.id);
   }
   render() {
     return (

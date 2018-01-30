@@ -1,8 +1,10 @@
 import os
 from flask import Flask, render_template
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 port = int(os.getenv("PORT", 8000))
+socketio = SocketIO(app)
 
 @app.route("/")
 def index():
@@ -16,6 +18,10 @@ def log():
 def game():
     return render_template("game.html")
 
+@socketio.on("server")
+def receive_message(msg):
+    socketio.emit("client", msg)
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=port)
+    socketio.run(app, host="0.0.0.0", port=port)
