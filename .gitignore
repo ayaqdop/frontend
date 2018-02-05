@@ -62,3 +62,5 @@ target/
 *.DS_Store
 
 vcap-local.json
+
+node_modules/

@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Player from "./Player.jsx";
+//const io = require('socket.io')();
 
 const socket = io.connect( 'http://' + document.domain + ':' + location.port );
 console.log("Start");
@@ -8,7 +12,7 @@ socket.on("client", (msg) => {
 });
 
 
-class Square extends React.Component {
+class Square extends Component {
   allowDrop(e) {
     e.preventDefault();
   }
