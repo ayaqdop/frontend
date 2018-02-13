@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Square extends Component {
+export default class Square extends React.Component {
   render() {
     return (
       <div
         id={this.props.position}
-        className={"square unselectable " + this.props.color}
-        onDragOver={this.allowDrop}
-        onDrop={this.onDrop}>
+        className={"square unselectable " + this.props.color}>
           {this.props.initContent}
       </div>
     );

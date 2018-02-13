@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { DragSource } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 
@@ -16,7 +16,7 @@ function collect(connect, monitor) {
 	}
 }
 
-class Player extends Component {
+class Player extends React.Component {
   render() {
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(

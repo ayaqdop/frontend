@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Square from "./Square.jsx";
 
-export default class Row extends Component {
+export default class Row extends React.Component {
   isNumericColumn(column) {
     return column === 0 || column === 25;
   }
