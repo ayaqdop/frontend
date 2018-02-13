@@ -25,5 +25,5 @@ let team = [
 
 team.forEach(p =>
   ReactDOM.render(<Player number={p.number} />,
-    document.getElementById(p.position)
+  document.getElementById(p.position)
 ));
