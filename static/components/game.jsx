@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import Player from "./Player.jsx";
 import Field from "./Field.jsx";
 //const io = require('socket.io')();
 
-const socket = io.connect( 'http://' + document.domain + ':' + location.port );
+const socket = io.connect("http://" + document.domain + ":" + location.port);
 console.log("Start");
 
 socket.on("client", (msg) => {

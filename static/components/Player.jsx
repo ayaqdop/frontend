@@ -1,6 +1,6 @@
-import React from 'react';
-import { DragSource } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
+import React from "react";
+import { DragSource } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
 
 const playerSource = {
 	beginDrag() {
