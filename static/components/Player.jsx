@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from './ItemTypes';
 
-export default class Player extends Component {
-  onDragStart(e) {
-    e.dataTransfer.setData("text/html", e.target.id);
-    e.dataTransfer.effectAllowed = "move";
-  }
+const playerSource = {
+	beginDrag() {
+		return {};
+	},
+}
+
+function collect(connect, monitor) {
+	return {
+		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
+		isDragging: monitor.isDragging(),
+	}
+}
+
+class Player extends Component {
   render() {
-    return (
+    const { connectDragSource, isDragging } = this.props;
+    return connectDragSource(
       <div
         id={this.props.number}
-        className="player"
-        draggable="true"
-        onDragStart={this.onDragStart} >
+        className="player" >
           {this.props.number}
       </div>
       );
   }
 }
+
+export default DragSource(ItemTypes.PLAYER, playerSource, collect)(Player);

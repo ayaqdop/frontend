@@ -37,6 +37,7 @@ export default class Row extends Component {
     {
       return (
         <Square
+          key={row + column}
           position={this.calculatePosition(row, column)}
           color={this.calculateColor(row, column)}
           initContent={this.calculateDescription(row, column)} />
