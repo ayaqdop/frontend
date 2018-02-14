@@ -4,18 +4,13 @@ import { calculatePosition, calculateColor, calculateDescription } from "./Helpe
 
 export default class BoardSquare extends React.Component {
   render() {
-    const row = this.props.row;
-    const columns = Array.from(new Array(26), (e, i) => i).map(column =>
-    {
+      const { row, column } = this.props;
       return (
         <Square
           key={row + column}
           position={calculatePosition(row, column)}
           color={calculateColor(row, column)}
           initContent={calculateDescription(row, column)} />
-        );
-      }
-    );
-    return <div className="row">{columns}</div>;
+      );
   }
 }
