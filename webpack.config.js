@@ -4,7 +4,7 @@ var DIST_DIR = path.resolve(__dirname, "./static/dist");
 var SRC_DIR = path.resolve(__dirname, "./static/components");
 
 var config = {
-    entry: SRC_DIR + "/Game.jsx",
+    entry: SRC_DIR + "/index.js",
     output: {
         path: DIST_DIR,
         filename: "bundle.js",
