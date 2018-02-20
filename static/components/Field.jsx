@@ -7,18 +7,16 @@ import HTML5Backend from "react-dnd-html5-backend";
 class Field extends React.Component {
   renderPiece(x, y) {
     const shouldBeRendered = x == this.props.piecePosition[0] && y == this.props.piecePosition[1];
-    console.log("X: " + x + "  Y: " + y);
-    console.log("position: " + this.props.piecePosition);
-    console.log("Should be?: " + shouldBeRendered);
     return shouldBeRendered ? <Player number="14" /> : null;
   }
 
   renderRow(row, key) {
     const columns = Array.from(new Array(26), (e, i) => i).map(column =>
     {
+      let newRow = row.charCodeAt(0) - "a".charCodeAt(0);
       return (
-        <BoardSquare key={row + column} row={row} column={column}>
-          {this.renderPiece(column, row.charCodeAt(0) - "a".charCodeAt(0) )}
+        <BoardSquare key={row + column} row={newRow} column={column}>
+          {this.renderPiece(column, newRow)}
         </BoardSquare>
         );
       }

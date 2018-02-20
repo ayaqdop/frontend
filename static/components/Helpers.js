@@ -2,7 +2,7 @@ function isNumericColumn(column) {
   return column === 0 || column === 25;
 }
 function isAlphaRow(row) {
-  return row === " ";
+  return row  === 0 || row === 17;
 }
 
 export function calculatePosition(row, column) {
@@ -21,7 +21,7 @@ export function calculateColor(row, column) {
   let result = "pitch-green-dark";
 
   if (!isNumericColumn(column) && !isAlphaRow(row)) {
-    result = (column % 2 != row.charCodeAt(0) % 2)
+    result = (column % 2 != row % 2)
       ? "pitch-green-dark"
       : "pitch-green-middle";
   }
