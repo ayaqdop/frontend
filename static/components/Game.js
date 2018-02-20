@@ -23,13 +23,14 @@ export function canMovePiece(toX, toY) {
 	const dx = toX - x;
 	const dy = toY - y;
 
-	return (
-		(Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
-		(Math.abs(dx) === 1 && Math.abs(dy) === 2)
-	);
+	return true;
+	//  (
+	// 	(Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
+	// 	(Math.abs(dx) === 1 && Math.abs(dy) === 2)
+	// );
 }
 
 export function movePiece(toX, toY) {
 	piecePosition = [toX, toY];
 	emitChange();
-}
+};

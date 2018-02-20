@@ -23,7 +23,7 @@ function collect(connect, monitor) {
 
 class BoardSquare extends React.Component {
   render() {
-      const { row, column, connectDropTarget, isOver, children } = this.props;
+      const { column, row, connectDropTarget, isOver, children } = this.props;
       return connectDropTarget(
         <div>
           <Square
