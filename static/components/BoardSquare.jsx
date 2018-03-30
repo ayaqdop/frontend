@@ -1,7 +1,7 @@
 import React from "react";
 import Square from "./Square.jsx";
 import { ItemTypes } from "./ItemTypes";
-import { canMovePiece, movePiece } from './Game'
+import { canMovePiece, movePiece } from './Game';
 import { DropTarget } from 'react-dnd';
 import { calculatePosition, calculateColor, calculateDescription } from "./Helpers";
 
@@ -27,10 +27,9 @@ class BoardSquare extends React.Component {
       return connectDropTarget(
         <div>
           <Square
-            key={row + column}
-            position={calculatePosition(row, column)}
-            color={calculateColor(row, column)}
-            initContent={calculateDescription(row, column)} >
+            key={column + row}
+            color={calculateColor(column, row)}
+            initContent={calculateDescription(column, row)} >
             {children}
           </Square>
         </div>

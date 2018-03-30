@@ -52,7 +52,7 @@ class Field extends React.Component {
     const columns = Array.from(new Array(26), (e, i) => i).map(column =>
     {
       return (
-        <BoardSquare key={row + column} row={row} column={column}>
+        <BoardSquare key={column + row} column={column} row={row}>
           {this.renderPiece(column, row)}
         </BoardSquare>
         );

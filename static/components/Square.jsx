@@ -6,7 +6,6 @@ export default class Square extends React.Component {
     const show = children ? children : initContent;
     return (
       <div
-        id={this.props.position}
         className={"square unselectable " + this.props.color}>
           {show}
       </div>

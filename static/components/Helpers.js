@@ -10,11 +10,7 @@ function convertToLetter(number) {
   return rows.charAt(number);
 }
 
-
-export function calculatePosition(row, column) {
-  return row + column;
-};
-export function calculateDescription(row, column) {
+export function calculateDescription(column, row) {
   let result = "";
   if (!isNumericColumn(column) && isAlphaRow(row)){
       result = column;
@@ -23,7 +19,7 @@ export function calculateDescription(row, column) {
     }
   return result;
 };
-export function calculateColor(row, column) {
+export function calculateColor(column, row) {
   let result = "pitch-green-dark";
 
   if (!isNumericColumn(column) && !isAlphaRow(row)) {
