@@ -1,8 +1,14 @@
-let piecePosition = [1, 1];
+let players = [
+	{ squadNumber: 14, position: [5, 5] },
+	{ squadNumber: 4, position: [10, 10] },
+	{ squadNumber: 6, position: [10, 5] },
+	{ squadNumber: 8, position: [5, 10] },
+	{ squadNumber: 10, position: [1, 4] },
+];
 let observer = null;
 
 function emitChange() {
-	observer(piecePosition);
+	observer(players);
 }
 
 export function observe(o) {
@@ -18,15 +24,15 @@ export function observe(o) {
 	}
 }
 
-export function canMovePiece(toX, toY) {
-	const [x, y] = piecePosition;
+export function canMovePiece(num, toX, toY) {
+	const [x, y] = players.find(p => p.squadNumber == num).position;
 	const dx = toX - x;
 	const dy = toY - y;
 
 	return dx < 4 && dy < 4;
 }
 
-export function movePiece(toX, toY) {
-	piecePosition = [toX, toY];
+export function movePiece(num, toX, toY) {
+	players.find(p => p.squadNumber == num).position = [toX, toY];
 	emitChange();
 };

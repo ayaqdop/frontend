@@ -6,11 +6,11 @@ import { DropTarget } from 'react-dnd';
 import { calculatePosition, calculateColor, calculateDescription } from "./Helpers";
 
 const squareTarget = {
-  canDrop(props) {
-		return canMovePiece(props.column, props.row);
+  canDrop(props, monitor) {
+		return canMovePiece(monitor.getItem().number, props.column, props.row);
 	},
   drop(props, monitor) {
-    movePiece(props.column, props.row);
+    movePiece(monitor.getItem().number, props.column, props.row);
   }
 };
 

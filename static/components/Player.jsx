@@ -3,8 +3,8 @@ import { DragSource } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 
 const playerSource = {
-	beginDrag() {
-		return {};
+	beginDrag(props) {
+		return { number: props.number };
 	},
 }
 
@@ -18,12 +18,12 @@ function collect(connect, monitor) {
 
 class Player extends React.Component {
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource, isDragging, number } = this.props;
     return connectDragSource(
       <div
-        id={this.props.number}
+        id={number}
         className="player" >
-          {this.props.number}
+          {number}
       </div>
       );
   }
