@@ -1,4 +1,4 @@
-let piecePosition = [1, 7];
+let piecePosition = [1, 1];
 let observer = null;
 
 function emitChange() {
@@ -23,11 +23,7 @@ export function canMovePiece(toX, toY) {
 	const dx = toX - x;
 	const dy = toY - y;
 
-	return true;
-	//  (
-	// 	(Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
-	// 	(Math.abs(dx) === 1 && Math.abs(dy) === 2)
-	// );
+	return dx < 4 && dy < 4;
 }
 
 export function movePiece(toX, toY) {
