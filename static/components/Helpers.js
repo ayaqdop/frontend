@@ -5,6 +5,12 @@ function isAlphaRow(row) {
   return row  === 0 || row === 17;
 }
 
+function convertToLetter(number) {
+  const rows = " abcdefghijklmnop ";
+  return rows.charAt(number);
+}
+
+
 export function calculatePosition(row, column) {
   return row + column;
 };
@@ -13,7 +19,7 @@ export function calculateDescription(row, column) {
   if (!isNumericColumn(column) && isAlphaRow(row)){
       result = column;
     } else if (isNumericColumn(column)){
-      result = row;
+      result = convertToLetter(row);
     }
   return result;
 };

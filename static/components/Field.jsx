@@ -10,23 +10,21 @@ class Field extends React.Component {
     return shouldBeRendered ? <Player number="14" /> : null;
   }
 
-  renderRow(row, key) {
+  renderRow(row) {
     const columns = Array.from(new Array(26), (e, i) => i).map(column =>
     {
-      let newRow = row.charCodeAt(0) - "a".charCodeAt(0);
       return (
-        <BoardSquare key={row + column} row={newRow} column={column}>
-          {this.renderPiece(column, newRow)}
+        <BoardSquare key={row + column} row={row} column={column}>
+          {this.renderPiece(column, row)}
         </BoardSquare>
         );
       }
     );
     
-    return <div key={key} className="row">{columns}</div>;
+    return <div key={row} className="row">{columns}</div>;
   }
   render() {
-    let counter = 42;
-    const rows = " abcdefghijklmnop ".split("").map(row => this.renderRow(row, row + counter++));
+    const rows = Array.from(new Array(18), (e, i) => i).map(row => this.renderRow(row));
     return <div className="container">{rows}</div>;
   }
 }
