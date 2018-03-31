@@ -29,7 +29,7 @@ export function canMovePiece(num, toX, toY) {
 	const dx = toX - x;
 	const dy = toY - y;
 
-	return dx < 4 && dy < 4;
+	return Math.abs(dx) < 4 && Math.abs(dy) < 4;
 }
 
 export function movePiece(num, toX, toY) {
