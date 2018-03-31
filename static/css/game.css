@@ -9,12 +9,10 @@
 }
 
 .square {
-  line-height: 44px;
-  width: 44px;
-  height: 44px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+  width: 45px;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 2.5px;
   font-size: 20px;
   text-align: center;
   color: white;
@@ -24,7 +22,7 @@
   line-height: 40px;
   width: 40px;
   height: 40px;
-  font-size: 30px;
+  font: 30px Georgia bold;
   text-align: center;
   color: yellow;
   background: blue;
@@ -36,7 +34,7 @@
   line-height: 40px;
   width: 40px;
   height: 40px;
-  font-size: 30px;
+  font: 30px Georgia bold;
   text-align: center;
   color: white;
   background: red;
@@ -44,16 +42,28 @@
   cursor: move;
 }
 
-.pitch-green-middle {
-  background: #477A12;
+.container {
+  background-repeat: no-repeat;
+  background-image: url(field.svg);
 }
 
-.pitch-green-dark {
-  background: #3F6E11;
+@media (min-width: 576px) {
+  .container {
+      max-width: 540px;
+  }
 }
-
-.pitch-green-light {
-  background: #477A12;
+@media (min-width: 768px) {
+  .container {
+      max-width: 720px;
+  }
 }
-
-
+@media (min-width: 992px) {
+  .container {
+      max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1170px;
+  }
+}
