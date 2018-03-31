@@ -12,7 +12,7 @@ class Field extends React.Component {
 
       if (player) {
 
-        return <Player number={ player.squadNumber } />;
+        return <Player number={ player.number } />;
       }
     }
     return null;
