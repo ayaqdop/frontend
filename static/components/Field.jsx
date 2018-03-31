@@ -6,7 +6,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 
 class Field extends React.Component {
   renderPiece(x, y) {
-    const players = this.props.piecePosition;
+    const players = this.props.gamePieces;
     if (players) {
       let player = players.find(p => p.position[0] == x && p.position[1] == y);
 
