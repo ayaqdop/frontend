@@ -32,6 +32,18 @@
   cursor: move;
 }
 
+.otherPlayer {
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  background: red;
+  border-radius: 20px;
+  cursor: move;
+}
+
 .pitch-green-middle {
   background: #477A12;
 }

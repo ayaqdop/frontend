@@ -18,8 +18,8 @@ class Ayaqdop extends Component {
 		this.unobserve = observe(this.handleChange.bind(this));
 	}
 
-	handleChange(gamePieces) {
-		const nextState = { gamePieces };
+	handleChange(gameObjects) {
+		const nextState = { gameObjects };
 		if (this.state) {
 			this.setState(nextState);
 		} else {
@@ -32,9 +32,9 @@ class Ayaqdop extends Component {
 	}
 
 	render() {
-		const { gamePieces } = this.state;
+		const { gameObjects } = this.state;
 		return (
-      <Field gamePieces={gamePieces} />
+      <Field gameObjects={gameObjects} />
 		);
 	}
 }

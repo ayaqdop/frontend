@@ -4,7 +4,10 @@ import { ItemTypes } from "./ItemTypes";
 
 const playerSource = {
 	beginDrag(props) {
-		return { number: props.number };
+		return {
+      team: props.team,
+      number: props.number
+    };
 	},
 }
 
@@ -13,19 +16,19 @@ function collect(connect, monitor) {
 		connectDragSource: connect.dragSource(),
 		connectDragPreview: connect.dragPreview(),
 		isDragging: monitor.isDragging(),
-	}
+	};
 }
 
 class Player extends React.Component {
   render() {
-    const { connectDragSource, isDragging, number } = this.props;
+    const { connectDragSource, isDragging, team, number } = this.props;
     return connectDragSource(
       <div
         id={number}
-        className="player" >
+        className={team.includes("Bayern") ? "otherPlayer" : "player"} >
           {number}
       </div>
-      );
+    );
   }
 }
 

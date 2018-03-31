@@ -1,16 +1,16 @@
 import React from "react";
 import Square from "./Square.jsx";
 import { ItemTypes } from "./ItemTypes";
-import { canMovePiece, movePiece } from './Game';
+import { canMovePlayer, movePiece } from './Game';
 import { DropTarget } from 'react-dnd';
 import { calculatePosition, calculateColor, calculateDescription } from "./Helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {
-		return canMovePiece(monitor.getItem().number, props.column, props.row);
+		return canMovePlayer(monitor.getItem(), props.column, props.row);
 	},
   drop(props, monitor) {
-    movePiece(monitor.getItem().number, props.column, props.row);
+    movePiece(monitor.getItem(), props.column, props.row);
   }
 };
 

@@ -6,15 +6,16 @@ import HTML5Backend from "react-dnd-html5-backend";
 
 class Field extends React.Component {
   renderPiece(x, y) {
-    const players = this.props.gamePieces;
-    if (players) {
-      let player = players.find(p => p.position[0] == x && p.position[1] == y);
+    const teams = this.props.gameObjects.teams;
+    const players = teams.reduce((a, b) => a.players.concat(b.players));
+    let player = players.find(p => p.position[0] == x && p.position[1] == y);
 
-      if (player) {
-
-        return <Player number={ player.number } />;
-      }
+    if (player) {
+      return <Player
+        team={teams.find(t => t.players.includes(player)).name}
+        number={player.number} />;
     }
+
     return null;
   }
 
@@ -25,9 +26,8 @@ class Field extends React.Component {
         <FieldSquare key={column + row} column={column} row={row}>
           {this.renderPiece(column, row)}
         </FieldSquare>
-        );
-      }
-    );
+      );
+    });
     
     return <div key={row} className="row">{columns}</div>;
   }
