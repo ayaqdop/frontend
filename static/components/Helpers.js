@@ -19,13 +19,3 @@ export function calculateDescription(column, row) {
     }
   return result;
 };
-export function calculateColor(column, row) {
-  let result = "pitch-green-dark";
-
-  if (!isNumericColumn(column) && !isAlphaRow(row)) {
-    result = (column % 2 != row % 2)
-      ? "pitch-green-dark"
-      : "pitch-green-middle";
-  }
-  return result;
-};

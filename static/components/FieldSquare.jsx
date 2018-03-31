@@ -3,7 +3,7 @@ import Square from "./Square.jsx";
 import { ItemTypes } from "./ItemTypes";
 import { canMovePlayer, movePiece } from './Game';
 import { DropTarget } from 'react-dnd';
-import { calculatePosition, calculateColor, calculateDescription } from "./Helpers";
+import { calculatePosition, calculateDescription } from "./Helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {
@@ -42,7 +42,6 @@ class FieldSquare extends React.Component {
       <div style={style}>
         <Square
           key={column + row}
-          color={calculateColor(column, row)}
           initContent={calculateDescription(column, row)} >
           {children}
         </Square>
