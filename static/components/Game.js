@@ -26,10 +26,10 @@ export function observe(o) {
 
 export function canMovePiece(num, toX, toY) {
 	const [x, y] = players.find(p => p.squadNumber == num).position;
-	const dx = toX - x;
-	const dy = toY - y;
+	const dx = Math.abs(toX - x);
+	const dy = Math.abs(toY - y);
 
-	return Math.abs(dx) < 4 && Math.abs(dy) < 4;
+	return dx < 4 && dy < 4;
 }
 
 export function movePiece(num, toX, toY) {
