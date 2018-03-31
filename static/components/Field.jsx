@@ -1,5 +1,5 @@
 import React from "react";
-import BoardSquare from "./BoardSquare.jsx";
+import FieldSquare from "./FieldSquare.jsx";
 import Player from "./Player.jsx";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
@@ -22,9 +22,9 @@ class Field extends React.Component {
     const columns = Array.from(new Array(26), (e, i) => i).map(column =>
     {
       return (
-        <BoardSquare key={column + row} column={column} row={row}>
+        <FieldSquare key={column + row} column={column} row={row}>
           {this.renderPiece(column, row)}
-        </BoardSquare>
+        </FieldSquare>
         );
       }
     );
