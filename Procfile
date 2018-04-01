@@ -1,1 +1,1 @@
-web: python main.py
+web: webpack -d && python ./main.py
