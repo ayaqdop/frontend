@@ -26,10 +26,10 @@ let gameObjects = {
 		moves: 0,
 		players: [
 			{ number: 1,  position: [24, 9] },
-			{ number: 32, position: [19, 14] },
+			{ number: 32, position: [19, 3] },
 			{ number: 5,  position: [22, 7] },
 			{ number: 17, position: [22, 10] },
-			{ number: 27, position: [19, 3] },
+			{ number: 27, position: [19, 14] },
 			{ number: 25, position: [16, 4] },
 			{ number: 6,  position: [18, 9] },
 			{ number: 11, position: [16, 12] },
