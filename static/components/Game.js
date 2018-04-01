@@ -10,7 +10,7 @@ let gameObjects = {
 			{ number: 1,  position: [1, 8] },
 			{ number: 18, position: [6, 3] },
 			{ number: 23, position: [4, 6] },
-			{ number: 3,  position: [4, 10] },
+			{ number: 3,  position: [4, 11] },
 			{ number: 20, position: [6, 14] },
 			{ number: 8,  position: [10, 5] },
 			{ number: 5,  position: [8, 8] },

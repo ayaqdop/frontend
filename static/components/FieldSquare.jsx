@@ -28,7 +28,7 @@ class FieldSquare extends React.Component {
     if (isOver && !canDrop) {
       return { opacity: 0.5, backgroundColor: 'red', zIndex: 1 };
     } else if (isOver && canDrop) {
-      return { opacity: 0.5, backgroundColor: 'dark-green', zIndex: 1 };
+      return { opacity: 0.5, backgroundColor: 'yellow', zIndex: 1 };
     } else {
       return {};
     }
