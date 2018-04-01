@@ -70,10 +70,25 @@ export function canMovePlayer(player, toX, toY) {
 	return dx < 4 && dy < 4;
 };
 
-export function movePiece(player, toX, toY) {
+export function movePlayer(player, toX, toY) {
 	gameObjects
 		.teams.find(t => t.name == player.team)
 		.players.find(p => p.number == player.number)
+		.position = [toX, toY];
+	emitChange();
+};
+
+export function canMoveBall(ball, toX, toY) {
+	const [x, y] = gameObjects
+		.ball
+		.position;
+
+	return toX === x || toY === y;
+};
+
+export function moveBall(ball, toX, toY) {
+	gameObjects
+		.ball
 		.position = [toX, toY];
 	emitChange();
 };

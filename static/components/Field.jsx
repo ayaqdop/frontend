@@ -1,22 +1,30 @@
 import React from "react";
 import FieldSquare from "./FieldSquare.jsx";
 import Player from "./Player.jsx";
+import Ball from "./Ball.jsx";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 
 class Field extends React.Component {
   renderPiece(x, y) {
-    const teams = this.props.gameObjects.teams;
+    let result = null;
+
+    const { teams, ball } = this.props.gameObjects;
+
+    if (ball.position[0] === x && ball.position[1] === y) {
+      result = <Ball />
+    }
+
     const players = teams.reduce((a, b) => a.players.concat(b.players));
-    let player = players.find(p => p.position[0] == x && p.position[1] == y);
+    let player = players.find(p => p.position[0] === x && p.position[1] === y);
 
     if (player) {
-      return <Player
+      result = <Player
         team={teams.find(t => t.players.includes(player)).name}
         number={player.number} />;
     }
 
-    return null;
+    return result;
   }
 
   renderRow(row) {

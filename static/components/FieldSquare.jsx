@@ -1,16 +1,29 @@
 import React from "react";
 import Square from "./Square.jsx";
+import Ball from "./Ball.jsx";
 import { ItemTypes } from "./ItemTypes";
-import { canMovePlayer, movePiece } from './Game';
+import { canMovePlayer, movePlayer, canMoveBall, moveBall } from './Game';
 import { DropTarget } from 'react-dnd';
 import { calculatePosition, calculateDescription } from "./Helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {
-		return canMovePlayer(monitor.getItem(), props.column, props.row);
+    const piece = monitor.getItem();
+
+    if (piece.number) {
+      return canMovePlayer(piece, props.column, props.row);
+    } else {
+      return canMoveBall(piece, props.column, props.row);
+    }
 	},
   drop(props, monitor) {
-    movePiece(monitor.getItem(), props.column, props.row);
+    const piece = monitor.getItem();
+
+    if (piece.number) {
+      movePlayer(piece, props.column, props.row);
+    } else {
+      moveBall(piece, props.column, props.row);
+    }
   }
 };
 
@@ -50,4 +63,4 @@ class FieldSquare extends React.Component {
   }
 }
 
-export default DropTarget(ItemTypes.PLAYER, squareTarget, collect)(FieldSquare);
+export default DropTarget([ItemTypes.PLAYER, ItemTypes.BALL], squareTarget, collect)(FieldSquare);

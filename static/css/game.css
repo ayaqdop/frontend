@@ -18,14 +18,21 @@
   color: white;
 }
 
+.ball {
+  width: 40px;
+  height: 40px;
+  cursor: move;
+  background-image: url('ball.svg');
+}
+
 .player {
   line-height: 40px;
   width: 40px;
   height: 40px;
   font: 30px Georgia bold;
   text-align: center;
-  color: yellow;
-  background: blue;
+  color: #DEB500;
+  background: #004A99;
   border-radius: 20px;
   cursor: move;
 }
@@ -37,14 +44,14 @@
   font: 30px Georgia bold;
   text-align: center;
   color: white;
-  background: red;
+  background: #DC052D;
   border-radius: 20px;
   cursor: move;
 }
 
 .container {
   background-repeat: no-repeat;
-  background-image: url(field.svg);
+  background-image: url('field.svg');
 }
 
 @media (min-width: 576px) {
