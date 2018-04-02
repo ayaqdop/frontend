@@ -1,3 +1,5 @@
+import openSocket from 'socket.io-client';
+
 let gameObjects = {
 	ball: {
 		position: [12, 9]
@@ -41,9 +43,43 @@ let gameObjects = {
 };
 
 let observer = null;
+let socket = openSocket("http://" + document.domain + ":" + location.port);
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+			}
+	}
+	return "";
+}
+
+socket.emit("uuid");
+socket.on("generateUuid", (newUuid) => {
+	console.log("New ID ", newUuid);
+	if (!getCookie("uuid")) {
+		document.cookie = "uuid=" + newUuid;
+	}
+});
+
+socket.on("client", (msg) => {
+	console.log(JSON.stringify(msg.id));
+	if (msg.id !== getCookie("uuid")
+		&& JSON.stringify(gameObjects) !== JSON.stringify(msg.game)) {
+		gameObjects = msg.game;
+		emitChange();
+	}
+});
 
 function emitChange() {
 	observer(gameObjects);
+	socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
 }
 
 export function observe(o) {
@@ -83,7 +119,9 @@ export function canMoveBall(ball, toX, toY) {
 		.ball
 		.position;
 
-	return toX === x || toY === y;
+	return toX === x
+		|| toY === y
+		|| (Math.abs(toY - y) === Math.abs(toX - x));
 };
 
 export function moveBall(ball, toX, toY) {

@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+import uuid
 
 app = Flask(__name__)
 port = int(os.getenv("PORT", 8000))
@@ -22,6 +23,9 @@ def game():
 def receive_message(msg):
     socketio.emit("client", msg)
 
+@socketio.on("uuid")
+def receive_uuid():
+    socketio.emit("generateUuid", str(uuid.uuid4()))
 
 if __name__ == "__main__":
     socketio.run(app, host="0.0.0.0", port=port)
