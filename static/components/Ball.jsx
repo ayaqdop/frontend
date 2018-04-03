@@ -4,7 +4,7 @@ import { ItemTypes } from "./ItemTypes";
 
 const ballSource = {
 	beginDrag() {
-		return {};
+		return { type : ItemTypes.BALL };
 	},
 }
 

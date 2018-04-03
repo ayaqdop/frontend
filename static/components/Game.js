@@ -1,4 +1,5 @@
 import openSocket from "socket.io-client";
+import { ItemTypes } from "./ItemTypes";
 const equal = require("deep-equal");
 
 let gameObjects = {
@@ -96,7 +97,24 @@ export function observe(o) {
 	};
 };
 
-export function canMovePlayer(player, toX, toY) {
+export function canMove(piece, toX, toY) {
+  if (piece.type === ItemTypes.BALL) {
+		return canMoveBall(toX, toY);
+	}	else {
+		return canMovePlayer(piece, toX, toY);
+	}
+};
+
+export function move(piece, toX, toY) {
+	if (piece.type === ItemTypes.BALL) {
+		moveBall(toX, toY);
+	} else {
+		movePlayer(piece, toX, toY);
+	}
+	emitChange();
+};
+
+function canMovePlayer(player, toX, toY) {
 	const [x, y] = gameObjects
 		.teams.find(t => t.name == player.team)
 		.players.find(p => p.number == player.number)
@@ -106,16 +124,14 @@ export function canMovePlayer(player, toX, toY) {
 
 	return dx < 4 && dy < 4;
 };
-
-export function movePlayer(player, toX, toY) {
+function movePlayer(player, toX, toY) {
 	gameObjects
 		.teams.find(t => t.name == player.team)
 		.players.find(p => p.number == player.number)
 		.position = [toX, toY];
-	emitChange();
 };
 
-export function canMoveBall(ball, toX, toY) {
+function canMoveBall(toX, toY) {
 	const [x, y] = gameObjects
 		.ball
 		.position;
@@ -124,10 +140,8 @@ export function canMoveBall(ball, toX, toY) {
 		|| toY === y
 		|| (Math.abs(toY - y) === Math.abs(toX - x));
 };
-
-export function moveBall(ball, toX, toY) {
+function moveBall(toX, toY) {
 	gameObjects
 		.ball
 		.position = [toX, toY];
-	emitChange();
 };

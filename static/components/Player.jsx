@@ -5,6 +5,7 @@ import { ItemTypes } from "./ItemTypes";
 const playerSource = {
 	beginDrag(props) {
 		return {
+      type: ItemTypes.PLAYER,
       team: props.team,
       number: props.number
     };
