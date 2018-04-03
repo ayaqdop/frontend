@@ -17,9 +17,6 @@ var config = {
                 exclude: /node_modules/,
                 include: SRC_DIR,
                 loader: "babel-loader",
-                query: {
-                    presets: ["env", "react"]
-                }
             }
         ]
     }
