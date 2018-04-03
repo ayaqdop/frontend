@@ -18,12 +18,6 @@
     "url": "https://github.com/ayaqdop/frontend.git"
   },
   "license": "MIT",
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "moduleFileExtensions": ["js", "json", "jsx"]
-  },
   "dependencies": {
     "deep-equal": "^1.0.1",
     "react": "^15.6.1",
