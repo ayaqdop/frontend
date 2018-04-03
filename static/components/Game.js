@@ -1,4 +1,5 @@
-import openSocket from 'socket.io-client';
+import openSocket from "socket.io-client";
+const equal = require("deep-equal");
 
 let gameObjects = {
 	ball: {
@@ -71,7 +72,7 @@ socket.on("generateUuid", (newUuid) => {
 socket.on("client", (msg) => {
 	console.log(JSON.stringify(msg.id));
 	if (msg.id !== getCookie("uuid")
-		&& JSON.stringify(gameObjects) !== JSON.stringify(msg.game)) {
+		&& !equal(gameObjects, msg.game)) {
 		gameObjects = msg.game;
 		emitChange();
 	}
