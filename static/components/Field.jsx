@@ -1,9 +1,10 @@
 import React from "react";
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 import FieldSquare from "./FieldSquare.jsx";
 import Player from "./Player.jsx";
 import Ball from "./Ball.jsx";
-import { DragDropContext } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import { range } from "./Helpers";
 
 class Field extends React.Component {
   renderPiece(x, y) {
@@ -28,7 +29,7 @@ class Field extends React.Component {
   }
 
   renderRow(row) {
-    const columns = Array.from(new Array(26), (e, i) => i).map(column =>
+    const columns = range(0, 25).map(column =>
     {
       return (
         <FieldSquare key={column + row} column={column} row={row}>
@@ -40,7 +41,7 @@ class Field extends React.Component {
     return <div key={row} className="row">{columns}</div>;
   }
   render() {
-    const rows = Array.from(new Array(18), (e, i) => i).map(row => this.renderRow(row));
+    const rows = range(0, 17).map(row => this.renderRow(row));
     return <div className="container">{rows}</div>;
   }
 }

@@ -19,3 +19,12 @@ export function calculateDescription(column, row) {
     }
   return result;
 };
+
+export function range(min, max) {
+  let length = max - min + 1;
+  let result = new Array(length);
+  for (let i = 0; i < length; i++) {
+    result[i] = min + i;
+  }
+  return result;
+};
