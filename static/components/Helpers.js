@@ -20,11 +20,11 @@ export function calculateDescription(column, row) {
   return result;
 };
 
-export function range(min, max) {
-  let length = max - min + 1;
-  let result = new Array(length);
-  for (let i = 0; i < length; i++) {
-    result[i] = min + i;
+export function range(first, last) {
+  let result = [first];
+  let next = first <= last ? 1 : -1;
+  for (let i = 0; i < Math.abs(last - first); i++) {
+    result.push(result[result.length - 1] + next);
   }
   return result;
 };

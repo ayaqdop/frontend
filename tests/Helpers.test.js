@@ -1,8 +1,14 @@
 import { range, calculateDescription } from "../static/components/Helpers";
 
-test("range inclusive and positive only", () => {
+test("range inclusive positive incremental", () => {
   expect(range(3, 7)).toEqual([3, 4, 5, 6, 7]);
   expect(range(1, 2)).toEqual([1, 2]);
+  expect(range(42, 42)).toEqual([42]);
+});
+
+test("range inclusive positive decremental", () => {
+  expect(range(7, 3)).toEqual([7, 6, 5, 4, 3]);
+  expect(range(2, 1)).toEqual([2, 1]);
   expect(range(42, 42)).toEqual([42]);
 });
 
