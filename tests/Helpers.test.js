@@ -1,15 +1,29 @@
 import { range, calculateDescription } from "../static/components/Helpers";
 
+test("range same value", () => {
+  expect(range(0, 0)).toEqual([0]);
+  expect(range(42, 42)).toEqual([42]);
+  expect(range(-42, -42)).toEqual([-42]);
+});
+
 test("range inclusive positive incremental", () => {
   expect(range(3, 7)).toEqual([3, 4, 5, 6, 7]);
-  expect(range(1, 2)).toEqual([1, 2]);
-  expect(range(42, 42)).toEqual([42]);
+  expect(range(0, 2)).toEqual([0, 1, 2]);
 });
 
 test("range inclusive positive decremental", () => {
   expect(range(7, 3)).toEqual([7, 6, 5, 4, 3]);
-  expect(range(2, 1)).toEqual([2, 1]);
-  expect(range(42, 42)).toEqual([42]);
+  expect(range(2, 0)).toEqual([2, 1, 0]);
+});
+
+test("range inclusive negative incremental", () => {
+  expect(range(-7, -3)).toEqual([-7, -6, -5, -4, -3]);
+  expect(range(-2, 0)).toEqual([-2, -1, 0]);
+});
+
+test("range inclusive negative decremental", () => {
+  expect(range(-3, -7)).toEqual([-3, -4, -5, -6, -7]);
+  expect(range(0, -2)).toEqual([0, -1, -2]);
 });
 
 test("calculateDescription empty corners", () => {
