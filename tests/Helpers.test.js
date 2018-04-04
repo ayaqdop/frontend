@@ -8,9 +8,9 @@ test("range inclusive and positive only", () => {
 
 test("calculateDescription empty corners", () => {
   expect(calculateDescription(0, 0)).toBe(" ");
-  expect(calculateDescription(0, 25)).toBe("");
+  expect(calculateDescription(0, 17)).toBe(" ");
   expect(calculateDescription(25, 0)).toBe(" ");
-  expect(calculateDescription(25, 25)).toBe("");
+  expect(calculateDescription(25, 17)).toBe(" ");
 });
 
 test("calculateDescription empty field", () => {
