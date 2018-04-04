@@ -1,4 +1,5 @@
 import openSocket from "socket.io-client";
+import { range } from "./Helpers";
 import { ItemTypes } from "./ItemTypes";
 const equal = require("deep-equal");
 
@@ -136,8 +137,13 @@ function canMoveBall(toX, toY) {
 		.ball
 		.position;
 
-	return toX === x
-		|| toY === y
+	const positions = gameObjects
+		.teams
+		.reduce((a, b) => a.players.concat(b.players))
+		.map(p => p.position);
+	
+	return (toX === x && range(y, toY).every(tempY => !positions.some(p => p[0] === toX && p[1] === tempY)))
+		|| (toY === y && range(x, toX).every(tempX => !positions.some(p => p[0] === tempX && p[1] === toY)))
 		|| (Math.abs(toY - y) === Math.abs(toX - x));
 };
 function moveBall(toX, toY) {
