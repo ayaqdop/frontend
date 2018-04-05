@@ -1,6 +1,6 @@
 import openSocket from "socket.io-client";
 import { range } from "./Helpers";
-import { ItemTypes } from "./ItemTypes";
+import { ItemTypes } from "../components/ItemTypes";
 const equal = require("deep-equal");
 
 let gameObjects = {

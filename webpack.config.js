@@ -1,10 +1,10 @@
 var path = require("path");
 
 var DIST_DIR = path.resolve(__dirname, "./static/dist");
-var SRC_DIR = path.resolve(__dirname, "./static/components");
+var SRC_DIR = path.resolve(__dirname, "./static");
 
 var config = {
-    entry: SRC_DIR + "/index.js",
+    entry: SRC_DIR + "/components/index.js",
     output: {
         path: DIST_DIR,
         filename: "bundle.js",

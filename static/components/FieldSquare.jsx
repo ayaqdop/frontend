@@ -1,9 +1,9 @@
 import React from "react";
 import Square from "./Square.jsx";
 import { ItemTypes } from "./ItemTypes";
-import { canMove, move } from "./Game";
+import { canMove, move } from "../logic/Game";
 import { DropTarget } from 'react-dnd';
-import { calculatePosition, calculateDescription } from "./Helpers";
+import { calculatePosition, calculateDescription } from "../logic/Helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {

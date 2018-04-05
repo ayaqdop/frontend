@@ -1,4 +1,4 @@
-import { range, calculateDescription } from "../static/components/Helpers";
+import { range, calculateDescription } from "../../static/logic/Helpers";
 
 test("range same value", () => {
   expect(range(0, 0)).toEqual([0]);

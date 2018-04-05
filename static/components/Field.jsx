@@ -4,7 +4,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 import FieldSquare from "./FieldSquare.jsx";
 import Player from "./Player.jsx";
 import Ball from "./Ball.jsx";
-import { range } from "./Helpers";
+import { range } from "../logic/Helpers";
 
 class Field extends React.Component {
   renderPiece(x, y) {

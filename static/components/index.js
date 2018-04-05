@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Field from "./Field.jsx";
-import { observe } from "./Game";
+import { observe } from "../logic/Game";
 
 
 console.log("Start");
