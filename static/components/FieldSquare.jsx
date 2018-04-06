@@ -7,10 +7,10 @@ import { calculatePosition, calculateDescription } from "../logic/Helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {
-    return canMove(monitor.getItem(), props.column, props.row);
+    return canMove(monitor.getItem(), [props.column, props.row]);
 	},
   drop(props, monitor) {
-    move(monitor.getItem(), props.column, props.row);
+    move(monitor.getItem(), [props.column, props.row]);
   }
 };
 

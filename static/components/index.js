@@ -4,7 +4,7 @@ import Field from "./Field.jsx";
 import { observe } from "../logic/Game";
 
 
-console.log("Start");
+console.log("Started ayaqdop");
 
 class Ayaqdop extends Component {
 	constructor(props) {

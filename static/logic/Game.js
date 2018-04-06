@@ -1,5 +1,5 @@
 import openSocket from "socket.io-client";
-import { range } from "./Helpers";
+import { canMoveBall } from "./checkers"
 import { ItemTypes } from "../components/ItemTypes";
 const equal = require("deep-equal");
 
@@ -98,24 +98,31 @@ export function observe(o) {
 	};
 };
 
-export function canMove(piece, toX, toY) {
+export function canMove(piece, toPosition) {
+	const allPositions = gameObjects
+		.teams
+		.reduce((a, b) => a.players.concat(b.players))
+		.map(p => p.position)
+		.concat(gameObjects.ball.position);
+
   if (piece.type === ItemTypes.BALL) {
-		return canMoveBall(toX, toY);
+		return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
 	}	else {
-		return canMovePlayer(piece, toX, toY);
+		return canMovePlayer(piece, toPosition);
 	}
 };
 
-export function move(piece, toX, toY) {
+export function move(piece, toPosition) {
 	if (piece.type === ItemTypes.BALL) {
-		moveBall(toX, toY);
+		moveBall(toPosition);
 	} else {
-		movePlayer(piece, toX, toY);
+		movePlayer(piece, toPosition);
 	}
 	emitChange();
 };
 
-function canMovePlayer(player, toX, toY) {
+function canMovePlayer(player, toPosition) {
+	const [toX, toY] = toPosition;
 	const [x, y] = gameObjects
 		.teams.find(t => t.name == player.team)
 		.players.find(p => p.number == player.number)
@@ -125,29 +132,15 @@ function canMovePlayer(player, toX, toY) {
 
 	return dx < 4 && dy < 4;
 };
-function movePlayer(player, toX, toY) {
+function movePlayer(player, toPosition) {
 	gameObjects
 		.teams.find(t => t.name == player.team)
 		.players.find(p => p.number == player.number)
-		.position = [toX, toY];
+		.position = toPosition;
 };
 
-function canMoveBall(toX, toY) {
-	const [x, y] = gameObjects
-		.ball
-		.position;
-
-	const positions = gameObjects
-		.teams
-		.reduce((a, b) => a.players.concat(b.players))
-		.map(p => p.position);
-	
-	return (toX === x && range(y, toY).every(tempY => !positions.some(p => p[0] === toX && p[1] === tempY)))
-		|| (toY === y && range(x, toX).every(tempX => !positions.some(p => p[0] === tempX && p[1] === toY)))
-		|| (Math.abs(toY - y) === Math.abs(toX - x));
-};
-function moveBall(toX, toY) {
+function moveBall(toPosition) {
 	gameObjects
 		.ball
-		.position = [toX, toY];
+		.position = toPosition;
 };
