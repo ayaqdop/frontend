@@ -1,13 +1,18 @@
 import { range } from "./Helpers";
 
-export function canMoveBall(all, fromPosition, toPosition) {
-  const filtered = removeSelf(all, fromPosition);
+export function canMoveBall(allPositions, fromPosition, toPosition) {
+  const filtered = removeSelf(allPositions, fromPosition);
 
 	return canMoveVertically(filtered, fromPosition, toPosition)
 		|| canMoveHorizontally(filtered, fromPosition, toPosition)
 		|| canMoveDiagonally(filtered, fromPosition, toPosition);
 };
+export function canMovePlayer(allPositions, fromPosition, toPosition) {
+  const [fromX, fromY] = fromPosition;
+  const [toX, toY] = toPosition;
 
+	return Math.abs(toX - fromX) < 4 && Math.abs(toY - fromY) < 4;
+};
 
 function removeSelf(all, fromPosition) {
   return all.filter(p => (p[0] !== fromPosition[0] && p[1] !== fromPosition[1])
