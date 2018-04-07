@@ -1,7 +1,9 @@
 import { range } from "./Helpers";
+import { equal } from "assert";
 
 export function canMoveBall(allPositions, fromPosition, toPosition) {
   const filtered = removeSelf(allPositions, fromPosition);
+  equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!")
 
 	return canMoveVertically(filtered, fromPosition, toPosition)
 		|| canMoveHorizontally(filtered, fromPosition, toPosition)
@@ -38,7 +40,14 @@ function canMoveDiagonally(filteredPositions, fromPosition, toPosition) {
   const [ fromX, fromY ] = fromPosition;
   const [ toX, toY ] = toPosition;
 
-  return (Math.abs(toY - fromY) === Math.abs(toX - fromX));
+  const dx = toX - fromX;
+  const dy = toY - fromY;
+  const dirX = dx/Math.abs(dx);
+  const dirY = dy/Math.abs(dy);
+  return Math.abs(dx) === Math.abs(dy)
+    && range(0, Math.abs(dx)).every(d => !filteredPositions.some(p => {
+      return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY))
+    }));
 }
 
 exports.privateFunctions = {
