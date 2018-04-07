@@ -99,11 +99,12 @@ export function observe(o) {
 };
 
 export function canMove(piece, toPosition) {
-	const allPositions = gameObjects
+	let allPositions = gameObjects
 		.teams
 		.reduce((a, b) => a.players.concat(b.players))
-		.map(p => p.position)
-		.concat(gameObjects.ball.position);
+		.map(p => p.position);
+
+		allPositions.push(gameObjects.ball.position);
 
   if (piece.type === ItemTypes.BALL) {
 		return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
