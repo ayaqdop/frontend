@@ -1,5 +1,5 @@
 import React from "react";
-import Square from "./Square.jsx";
+import Square from "./Square";
 import { ItemTypes } from "./ItemTypes";
 import { canMove, move } from "../logic/Game";
 import { DropTarget } from 'react-dnd';

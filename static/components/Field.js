@@ -1,9 +1,9 @@
 import React from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import FieldSquare from "./FieldSquare.jsx";
-import Player from "./Player.jsx";
-import Ball from "./Ball.jsx";
+import FieldSquare from "./FieldSquare";
+import Player from "./Player";
+import Ball from "./Ball";
 import { range } from "../logic/Helpers";
 
 class Field extends React.Component {
