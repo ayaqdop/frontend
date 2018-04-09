@@ -1,4 +1,5 @@
 import React from "react";
+import { canDragBall } from "../logic/Game";
 import { DragSource } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 
@@ -6,6 +7,9 @@ const ballSource = {
 	beginDrag() {
 		return { type : ItemTypes.BALL };
 	},
+	canDrag() {
+    return canDragBall();
+  }
 }
 
 function collect(connect, monitor) {

@@ -1,4 +1,5 @@
 import React from "react";
+import { canDrag } from "../logic/Game";
 import { DragSource } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 
@@ -9,7 +10,10 @@ const playerSource = {
       team: props.team,
       number: props.number
     };
-	},
+  },
+  canDrag(props) {
+    return canDrag(props.team, props.number);
+  }
 }
 
 function collect(connect, monitor) {
