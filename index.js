@@ -13,6 +13,8 @@ app.use(morgan("dev"));
 app.use(express.static(__dirname + '/templates'));
 app.use(express.static(__dirname + '/static/images'));
 app.use(express.static(__dirname + '/static/css'));
+app.use(express.static(__dirname + '/static/dist'));
+app.use(express.static(__dirname + '/static/js'));
 
 app.use("/game", (req, res) => {
   res.sendFile(__dirname + "/templates/game.html");
