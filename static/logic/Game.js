@@ -133,12 +133,11 @@ export function canMove(piece, toPosition) {
   if (piece.type === ItemTypes.BALL) {
 		return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
 	}	else {
-		const playerPosition = gameObjects
+		const player = gameObjects
 			.teams.find(t => t.name === piece.team)
-			.players.find(p => p.number === piece.number)
-			.position;
-
-		return canMovePlayer(allPositions, playerPosition, toPosition);
+			.players.find(p => p.number === piece.number);
+			
+		return player.moves > 0 && canMovePlayer(allPositions, player.position, toPosition);
 	}
 };
 
@@ -151,19 +150,23 @@ export function move(piece, toPosition) {
 	emitChange();
 };
 
-function movePlayer(player, toPosition) {
+function movePlayer(piece, toPosition) {
 	const team = gameObjects
 		.teams
-		.find(t => t.name === player.team);
+		.find(t => t.name === piece.team);
 	
-	team
+	const player = team
 		.players
-		.find(p => p.number === player.number)
-		.position = toPosition;
+		.find(p => p.number === piece.number);
+
+	if (player.moves) {
+		player.position = toPosition;
+		player.moves--;
+		team.moves--;
+	}
 	
-	team.moves--;
 	if (!team.moves) {
-		changeTurn(gameObjects.teams.find(t => t.name !== player.team).name);
+		changeTurn(gameObjects.teams.find(t => t.name !== piece.team).name);
 	}
 };
 
