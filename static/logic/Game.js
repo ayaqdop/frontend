@@ -105,12 +105,15 @@ export function canDragBall() {
 	return true;
 };
 export function canDrag(teamName, playerNumber) {
-	return gameObjects
-		.teams
-		.find(t => t.name === teamName)
-		.players
-		.find(p => p.number === playerNumber)
-		.moves > 0;
+	const team = gameObjects
+	.teams
+	.find(t => t.name === teamName);
+
+	return team.moves > 0
+		&& team
+			.players
+			.find(p => p.number === playerNumber)
+			.moves > 0;
 };
 
 function changeTurn(teamName) {
