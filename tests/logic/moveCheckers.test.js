@@ -1,4 +1,4 @@
-import { privateFunctions } from "../../static/logic/checkers";
+import { privateFunctions } from "../../static/logic/moveCheckers";
 
 const allPositions = [
 			        [1, 8],

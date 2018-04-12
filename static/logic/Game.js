@@ -1,5 +1,5 @@
 import openSocket from "socket.io-client";
-import { canMoveBall, canMovePlayer } from "./checkers"
+import { canMoveBall, canMovePlayer } from "./moveCheckers"
 import { ItemTypes } from "../components/ItemTypes";
 import { equal } from "deep-equal";
 
