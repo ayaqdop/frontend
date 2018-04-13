@@ -10,10 +10,15 @@ export function canMoveBall(allPositions, fromPosition, toPosition) {
 		|| canMoveDiagonally(filtered, fromPosition, toPosition);
 };
 export function canMovePlayer(allPositions, fromPosition, toPosition) {
+  const filtered = removeSelf(allPositions, fromPosition);
+  equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!")
+  
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
 
-	return Math.abs(toX - fromX) < 4 && Math.abs(toY - fromY) < 4;
+  return Math.abs(toX - fromX) < 4
+    && Math.abs(toY - fromY) < 4
+    && !filtered.find(p => p[0] === toX && p[1] === toY);
 };
 
 function removeSelf(all, fromPosition) {

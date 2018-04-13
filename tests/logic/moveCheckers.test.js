@@ -63,7 +63,7 @@ test("can move diagonally", () => {
 
 test("can move player", () => {
   const playerPosition = [22, 7];
-  expect(canMovePlayer(allPositions, playerPosition, [22, 10])).toBe(true);
+  expect(canMovePlayer(allPositions, playerPosition, [21, 10])).toBe(true);
   expect(canMovePlayer(allPositions, playerPosition, [20, 5])).toBe(true);
   expect(canMovePlayer(allPositions, playerPosition, [22, 4])).toBe(true);
   expect(canMovePlayer(allPositions, playerPosition, [25, 10])).toBe(true);
