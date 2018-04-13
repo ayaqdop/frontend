@@ -1,5 +1,6 @@
 import openSocket from "socket.io-client";
 import { canMoveBall, canMovePlayer } from "./moveCheckers"
+import { canDragBall, canDragPlayer } from "./dragCheckers"
 import { ItemTypes } from "../components/ItemTypes";
 import { equal } from "deep-equal";
 
@@ -70,7 +71,6 @@ socket.on("generateUuid", (newUuid) => {
 		document.cookie = "uuid=" + newUuid;
 	}
 });
-
 socket.on("client", (msg) => {
 	console.log(JSON.stringify(msg.id));
 	if (msg.id !== getCookie("uuid")
@@ -100,29 +100,18 @@ export function observe(o) {
 	};
 };
 
-export function canDragBall() {
-	// TODO
-	return true;
-};
-export function canDrag(teamName, playerNumber) {
-	const team = gameObjects
-	.teams
-	.find(t => t.name === teamName);
-
-	return team.moves > 0
-		&& team
-			.players
-			.find(p => p.number === playerNumber)
-			.moves > 0;
-};
-
 function changeTurn(teamName) {
-	const team = gameObjects
+	const currentTeam = gameObjects
 		.teams
 		.find(t => t.name === teamName);
+	currentTeam.moves = 5;
+	currentTeam.players.forEach(p => p.moves = 3);
 
-	team.moves = 5;
-	team.players.forEach(p => p.moves = 3);	
+	const otherTeam = gameObjects
+		.teams
+		.find(t => t.name !== teamName);
+		otherTeam.moves = 0;
+		otherTeam.players.forEach(p => p.moves = 0);
 }
 
 export function canMove(piece, toPosition) {
@@ -143,6 +132,21 @@ export function canMove(piece, toPosition) {
 		return player.moves > 0 && canMovePlayer(allPositions, player.position, toPosition);
 	}
 };
+export function canDrag(teamName, playerNumber) {
+	if (teamName && playerNumber) {
+		const team = gameObjects
+			.teams
+			.find(t => t.name === teamName);
+
+		const player = team
+			.players
+			.find(p => p.number === playerNumber);
+	
+	return canDragPlayer(team, player);
+	} else {
+		return canDragBall(gameObjects);
+	}
+};
 
 export function move(piece, toPosition) {
 	if (piece.type === ItemTypes.BALL) {
@@ -152,7 +156,6 @@ export function move(piece, toPosition) {
 	}
 	emitChange();
 };
-
 function movePlayer(piece, toPosition) {
 	const team = gameObjects
 		.teams
@@ -172,7 +175,6 @@ function movePlayer(piece, toPosition) {
 		changeTurn(gameObjects.teams.find(t => t.name !== piece.team).name);
 	}
 };
-
 function moveBall(toPosition) {
 	gameObjects
 		.ball
