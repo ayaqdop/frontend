@@ -2,7 +2,7 @@ import openSocket from "socket.io-client";
 import { canMoveBall, canMovePlayer } from "./moveCheckers"
 import { canDragBall, canDragPlayer } from "./dragCheckers"
 import { ItemTypes } from "../components/ItemTypes";
-import { equal } from "deep-equal";
+import deepEqual from "deep-equal";
 
 let gameObjects = {
 	ball: {
@@ -74,7 +74,7 @@ socket.on("generateUuid", (newUuid) => {
 socket.on("client", (msg) => {
 	console.log(JSON.stringify(msg.id));
 	if (msg.id !== getCookie("uuid")
-		&& !equal(gameObjects, msg.game)) {
+		&& !deepEqual(gameObjects, msg.game)) {
 		gameObjects = msg.game;
 		emitChange();
 	}
@@ -164,8 +164,9 @@ function movePlayer(piece, toPosition) {
 	const player = team
 		.players
 		.find(p => p.number === piece.number);
-
-	if (player.moves) {
+	
+	if (player.moves > 0 && !deepEqual(player.position, toPosition)) {
+		console.log(`From: ${player.position} To:${toPosition}`);
 		player.position = toPosition;
 		player.moves--;
 		team.moves--;
