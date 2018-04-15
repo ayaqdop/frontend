@@ -1,7 +1,5 @@
 import { canDragBall, canDragPlayer } from "../../static/logic/dragCheckers";
 
-
-
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {
     name: "FC Barcelona",

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Field from "./Field";
 import { observe } from "../logic/Game";
 
-
 console.log("Started ayaqdop");
 
 class Ayaqdop extends Component {
