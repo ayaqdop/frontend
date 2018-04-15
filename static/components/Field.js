@@ -1,6 +1,7 @@
 import React from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import PropTypes from "prop-types";
 import FieldSquare from "./FieldSquare";
 import Player from "./Player";
 import Ball from "./Ball";
@@ -45,5 +46,9 @@ class Field extends React.Component {
     return <div className="container">{rows}</div>;
   }
 }
+
+Field.propTypes = {
+  gameObjects: PropTypes.object.isRequired
+};
 
 export default DragDropContext(HTML5Backend)(Field);

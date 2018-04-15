@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Square from "./Square";
 import { ItemTypes } from "./ItemTypes";
 import { canMove, move } from "../logic/Game";
@@ -13,7 +14,6 @@ const squareTarget = {
     move(monitor.getItem(), [props.column, props.row]);
   }
 };
-
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
@@ -23,7 +23,6 @@ function collect(connect, monitor) {
 }
 
 class FieldSquare extends React.Component {
-
   overlayStyle(isOver, canDrop) {
     if (isOver && !canDrop) {
       return { opacity: 0.5, backgroundColor: 'red', zIndex: 1 };
@@ -49,5 +48,10 @@ class FieldSquare extends React.Component {
     );
   }
 }
+
+FieldSquare.propTypes = {
+  column: PropTypes.number.isRequired,
+  row: PropTypes.number.isRequired
+};
 
 export default DropTarget([ItemTypes.PLAYER, ItemTypes.BALL], squareTarget, collect)(FieldSquare);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { canDrag } from "../logic/Game";
 import { DragSource } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
@@ -15,7 +16,6 @@ const playerSource = {
     return canDrag(props.team, props.number);
   }
 }
-
 function collect(connect, monitor) {
 	return {
 		connectDragSource: connect.dragSource(),
@@ -36,5 +36,10 @@ class Player extends React.Component {
     );
   }
 }
+
+Player.propTypes = {
+  team: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired
+};
 
 export default DragSource(ItemTypes.PLAYER, playerSource, collect)(Player);
