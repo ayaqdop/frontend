@@ -1,8 +1,8 @@
 import openSocket from "socket.io-client";
-import { canMoveBall, canMovePlayer } from "./moveCheckers"
-import canDragCore from "./dragCheckers"
-import { ItemTypes } from "../components/ItemTypes";
 import deepEqual from "deep-equal";
+import canDragCore from "./dragCheckers";
+import canMoveCore from "./moveCheckers";
+import { ItemTypes } from "../components/ItemTypes";
 
 let gameObjects = {
 	ball: {
@@ -117,22 +117,7 @@ function changeTurn(teamName) {
 }
 
 export function canMove(piece, toPosition) {
-	let allPositions = gameObjects
-		.teams
-		.reduce((a, b) => a.players.concat(b.players))
-		.map(p => p.position);
-
-		allPositions.push(gameObjects.ball.position);
-
-  if (piece.type === ItemTypes.BALL) {
-		return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
-	}	else {
-		const player = gameObjects
-			.teams.find(t => t.name === piece.team)
-			.players.find(p => p.number === piece.number);
-			
-		return player.moves > 0 && canMovePlayer(allPositions, player.position, toPosition);
-	}
+	return canMoveCore(gameObjects, piece, toPosition);
 };
 export function canDrag(teamName, playerNumber) {
 	return canDragCore(gameObjects, teamName, playerNumber);

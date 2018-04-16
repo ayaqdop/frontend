@@ -1,15 +1,27 @@
-import { range } from "./Helpers";
+import { range, removeSelf } from "./helpers";
 import { equal } from "assert";
+import { ItemTypes } from "../components/ItemTypes";
 
-export function canMoveBall(allPositions, fromPosition, toPosition) {
-  const filtered = removeSelf(allPositions, fromPosition);
-  equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!")
+export default function canMoveCore(gameObjects, piece, toPosition) {
+	let allPositions = gameObjects
+		.teams
+		.reduce((a, b) => a.players.concat(b.players))
+		.map(p => p.position);
 
-	return canMoveVertically(filtered, fromPosition, toPosition)
-		|| canMoveHorizontally(filtered, fromPosition, toPosition)
-		|| canMoveDiagonally(filtered, fromPosition, toPosition);
+		allPositions.push(gameObjects.ball.position);
+
+  if (piece.type === ItemTypes.BALL) {
+		return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
+	}	else {
+		const player = gameObjects
+			.teams.find(t => t.name === piece.team)
+			.players.find(p => p.number === piece.number);
+			
+		return player.moves > 0 && canMovePlayer(allPositions, player.position, toPosition);
+	}
 };
-export function canMovePlayer(allPositions, fromPosition, toPosition) {
+
+function canMovePlayer(allPositions, fromPosition, toPosition) {
   const filtered = removeSelf(allPositions, fromPosition);
   equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!")
   
@@ -20,12 +32,14 @@ export function canMovePlayer(allPositions, fromPosition, toPosition) {
     && Math.abs(toY - fromY) < 4
     && !filtered.find(p => p[0] === toX && p[1] === toY);
 };
+function canMoveBall(allPositions, fromPosition, toPosition) {
+  const filtered = removeSelf(allPositions, fromPosition);
+  equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!")
 
-function removeSelf(all, fromPosition) {
-  return all.filter(p => (p[0] !== fromPosition[0] && p[1] !== fromPosition[1])
-    || (p[0] === fromPosition[0] && p[1] !== fromPosition[1])
-    || (p[0] !== fromPosition[0] && p[1] === fromPosition[1]));
-}
+	return canMoveVertically(filtered, fromPosition, toPosition)
+		|| canMoveHorizontally(filtered, fromPosition, toPosition)
+		|| canMoveDiagonally(filtered, fromPosition, toPosition);
+};
 
 function canMoveVertically(filteredPositions, fromPosition, toPosition) {
   const [ fromX, fromY ] = fromPosition;
@@ -47,17 +61,31 @@ function canMoveDiagonally(filteredPositions, fromPosition, toPosition) {
 
   const dx = toX - fromX;
   const dy = toY - fromY;
-  const dirX = dx/Math.abs(dx);
-  const dirY = dy/Math.abs(dy);
+  const dirX = dx / Math.abs(dx);
+  const dirY = dy / Math.abs(dy);
   return Math.abs(dx) === Math.abs(dy)
     && range(0, Math.abs(dx)).every(d => !filteredPositions.some(p => {
       return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY))
     }));
 }
 
+function isInTheLeftPenaltyArea(ballPosition) {
+	const [x, y] = ballPosition;
+
+	return (0 < x && x < 7)
+		&& (2 < y && y < 15);
+}
+function isInTheRightPenaltyArea(ballPosition) {
+	const [x, y] = ballPosition;
+
+	return (18 < x && x < 25)
+		&& (2 < y && y < 15);
+}
+
 exports.privateFunctions = {
-  removeSelf,
+  canMoveBall,
   canMoveDiagonally,
   canMoveHorizontally,
-  canMoveVertically
+  canMoveVertically,
+  canMovePlayer
 };

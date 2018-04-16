@@ -23,11 +23,6 @@ const allPositions = [
 ];
 const ballPosition = [12, 9];
 
-test("remove position from an array of positions", () => {
-  expect(privateFunctions.removeSelf([ballPosition, [12, 5]], [12, 5])).toEqual([[12, 9]]);
-  expect(privateFunctions.removeSelf([ballPosition, [12, 5]], [12, 11])).toEqual([[12, 9], [12, 5]]);
-});
-
 test("can move vertically", () => {
   expect(privateFunctions.canMoveVertically(allPositions, [12, 10], [12, 9])).toBe(true);
   expect(privateFunctions.canMoveVertically(allPositions, ballPosition, [12, 11])).toBe(true);
@@ -63,16 +58,16 @@ test("can move diagonally", () => {
 
 test("can move player", () => {
   const playerPosition = [22, 7];
-  expect(canMovePlayer(allPositions, playerPosition, [21, 10])).toBe(true);
-  expect(canMovePlayer(allPositions, playerPosition, [20, 5])).toBe(true);
-  expect(canMovePlayer(allPositions, playerPosition, [22, 4])).toBe(true);
-  expect(canMovePlayer(allPositions, playerPosition, [25, 10])).toBe(true);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [21, 10])).toBe(true);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [20, 5])).toBe(true);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [22, 4])).toBe(true);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [25, 10])).toBe(true);
 });
 
 test("can not move player", () => {
   const playerPosition = [22, 7];
-  expect(canMovePlayer(allPositions, playerPosition, [18, 7])).toBe(false);
-  expect(canMovePlayer(allPositions, playerPosition, [22, 10])).toBe(false);
-  expect(canMovePlayer(allPositions, playerPosition, [24, 9])).toBe(false);
-  expect(canMovePlayer(allPositions, playerPosition, [19, 3])).toBe(false);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [18, 7])).toBe(false);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [22, 10])).toBe(false);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [24, 9])).toBe(false);
+  expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [19, 3])).toBe(false);
 });
