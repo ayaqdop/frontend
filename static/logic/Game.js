@@ -47,6 +47,7 @@ let gameObjects = {
 };
 
 let observer = null;
+// let socket = openSocket("http://localhost:4200");
 let socket = openSocket("http://" + document.domain + ":" + location.port);
 
 function getCookie(cname) {
@@ -72,7 +73,6 @@ socket.on("generateUuid", (newUuid) => {
 	}
 });
 socket.on("client", (msg) => {
-	console.log(JSON.stringify(msg.id));
 	if (msg.id !== getCookie("uuid")
 		&& !deepEqual(gameObjects, msg.game)) {
 		gameObjects = msg.game;
