@@ -29,6 +29,12 @@ export function range(first, last) {
   return result;
 };
 
+export function removeSelf(all, fromPosition) {
+  return all.filter(p => (p[0] !== fromPosition[0] && p[1] !== fromPosition[1])
+    || (p[0] === fromPosition[0] && p[1] !== fromPosition[1])
+    || (p[0] !== fromPosition[0] && p[1] === fromPosition[1]));
+}
+
 export const MIN_COLUMN = 0;
 export const MAX_COLUMN = 25;
 export const MIN_ROW = 0;
