@@ -46,6 +46,8 @@ let gameObjects = {
 	}]
 };
 
+const initialObjects = JSON.parse(JSON.stringify(gameObjects));
+
 let observer = null;
 // let socket = openSocket("http://localhost:4200");
 let socket = openSocket("http://" + document.domain + ":" + location.port);
@@ -142,7 +144,7 @@ export function canDrag(teamName, playerNumber) {
 			.players
 			.find(p => p.number === playerNumber);
 	
-	return canDragPlayer(team, player);
+		return canDragPlayer(team, player);
 	} else {
 		return canDragBall(gameObjects);
 	}
@@ -180,4 +182,16 @@ function moveBall(toPosition) {
 	gameObjects
 		.ball
 		.position = toPosition;
+
+	if (isAGoal(toPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+	}
 };
+
+function isAGoal(toPosition) {
+	const [toX, toY] = toPosition;
+
+	return (5 < toY && toY < 12)
+		&& (toX === 0 || toX === 25);
+}

@@ -1,8 +1,8 @@
 function isNumericColumn(column) {
-  return column === 0 || column === 25;
+  return column === MIN_COLUMN || column === MAX_COLUMN;
 }
 function isAlphaRow(row) {
-  return row  === 0 || row === 17;
+  return row  === MIN_ROW || row === MAX_ROW;
 }
 
 function convertToLetter(number) {
@@ -28,3 +28,8 @@ export function range(first, last) {
   }
   return result;
 };
+
+export const MIN_COLUMN = 0;
+export const MAX_COLUMN = 25;
+export const MIN_ROW = 0;
+export const MAX_ROW = 17;
