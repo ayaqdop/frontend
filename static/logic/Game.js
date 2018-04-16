@@ -20,10 +20,10 @@ let gameObjects = {
 			{ number: 20, moves: 0, position: [6, 14] },
 			{ number: 8,  moves: 0, position: [10, 5] },
 			{ number: 5,  moves: 0, position: [8, 8] },
-			{ number: 4,  moves: 0, position: [10, 11] },
+			{ number: 4,  moves: 0, position: [10, 12] },
 			{ number: 14, moves: 0, position: [12, 4] },
 			{ number: 9,  moves: 0, position: [12, 8] },
-			{ number: 10, moves: 0, position: [12, 12] },
+			{ number: 10, moves: 0, position: [12, 13] },
 		]
 	},
 	{
@@ -38,8 +38,8 @@ let gameObjects = {
 			{ number: 27,  moves: 0, position: [19, 14] },
 			{ number: 25,  moves: 0, position: [16, 4] },
 			{ number: 6,   moves: 0, position: [18, 9] },
-			{ number: 11,  moves: 0, position: [16, 12] },
-			{ number: 10,  moves: 0, position: [13, 13] },
+			{ number: 11,  moves: 0, position: [16, 13] },
+			{ number: 10,  moves: 0, position: [13, 14] },
 			{ number: 9,   moves: 0, position: [15, 8] },
 			{ number: 7,   moves: 0, position: [13, 3] },
 		]
