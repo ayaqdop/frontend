@@ -1,4 +1,4 @@
-import { range, removeSelf } from "./helpers";
+import { range, removeSelf, MIN_COLUMN, MIN_ROW, MAX_COLUMN, MAX_ROW } from "./helpers";
 import { equal } from "assert";
 import { ItemTypes } from "../components/ItemTypes";
 
@@ -81,11 +81,20 @@ function isInTheRightPenaltyArea(ballPosition) {
 	return (18 < x && x < 25)
 		&& (2 < y && y < 15);
 }
+function isOutsideOfTheField(toPosition) {
+  const [toX, toY] = toPosition;
+
+  return (toX === MIN_COLUMN || toX === MAX_COLUMN)
+    || (toY === MIN_ROW || toY === MAX_ROW);
+}
 
 exports.privateFunctions = {
   canMoveBall,
   canMoveDiagonally,
   canMoveHorizontally,
   canMoveVertically,
-  canMovePlayer
+  canMovePlayer,
+  isInTheLeftPenaltyArea,
+  isInTheRightPenaltyArea,
+  isOutsideOfTheField,
 };

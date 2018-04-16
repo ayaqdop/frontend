@@ -1,4 +1,5 @@
 import { privateFunctions, canMovePlayer } from "../../static/logic/moveCheckers";
+import * as helpers from "../../static/logic/helpers";
 
 const allPositions = [
 			        [1, 8],
@@ -70,4 +71,24 @@ test("can not move player", () => {
   expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [22, 10])).toBe(false);
   expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [24, 9])).toBe(false);
   expect(privateFunctions.canMovePlayer(allPositions, playerPosition, [19, 3])).toBe(false);
+});
+
+test("is outside of the field", () => {
+  for (let row of helpers.range(helpers.MIN_ROW, helpers.MAX_ROW)) {
+    expect(privateFunctions.isOutsideOfTheField([helpers.MIN_COLUMN, row])).toBe(true);
+    expect(privateFunctions.isOutsideOfTheField([helpers.MAX_COLUMN, row])).toBe(true);
+  }
+  for (let column of helpers.range(helpers.MIN_COLUMN, helpers.MAX_COLUMN)) {
+    expect(privateFunctions.isOutsideOfTheField([column, helpers.MIN_ROW])).toBe(true);
+    expect(privateFunctions.isOutsideOfTheField([column, helpers.MAX_ROW])).toBe(true);
+  }
+});
+
+test("is inside of the field", () => {
+  for (let column of helpers.range(1, 24)) {
+    for (let row of helpers.range(1, 16)) {
+      expect(privateFunctions.isOutsideOfTheField([column, row])).toBe(false);
+      expect(privateFunctions.isOutsideOfTheField([column, row])).toBe(false);
+    }
+  }
 });
