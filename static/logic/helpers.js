@@ -35,6 +35,26 @@ export function removeSelf(all, fromPosition) {
     || (p[0] !== fromPosition[0] && p[1] === fromPosition[1]));
 }
 
+export function difference(fromPosition, toPosition) {
+  let result = 0;
+  
+  const [fromX, fromY] = fromPosition;
+  const [toX, toY] = toPosition;
+
+  if (fromX === toX) {
+    result = Math.abs(fromY - toY);
+  } else if (fromY === toY) {
+    result = Math.abs(fromX - toX);
+  } else {
+    const dx = Math.abs(fromX - toX);
+    const dy = Math.abs(fromY - toY);
+
+    result = Math.max(dx, dy);
+  }
+
+	return result;
+}
+
 export const MIN_COLUMN = 0;
 export const MAX_COLUMN = 25;
 export const MIN_ROW = 0;

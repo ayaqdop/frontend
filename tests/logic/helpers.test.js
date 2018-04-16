@@ -63,6 +63,14 @@ test("remove position from an array of positions", () => {
   expect(helpers.removeSelf([ballPosition, [12, 5]], [12, 11])).toEqual([[12, 9], [12, 5]]);
 });
 
+test("difference", () => {
+  const fromPosition = [12, 9];
+
+  expect(helpers.difference(fromPosition, [10, 7])).toEqual(2);
+  expect(helpers.difference(fromPosition, [11, 9])).toEqual(1);
+  expect(helpers.difference(fromPosition, [12, 6])).toEqual(3);
+});
+
 test("constants", () => {
   expect(helpers.MIN_COLUMN).toBe(0);
   expect(helpers.MIN_ROW).toBe(0);
