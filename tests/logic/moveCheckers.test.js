@@ -92,3 +92,9 @@ test("is inside of the field", () => {
     }
   }
 });
+});
+
+test("are same position", () => {
+  expect(privateFunctions.areTheSamePosition([5, 7], [5, 7])).toBe(true);
+  expect(privateFunctions.areTheSamePosition([5, 7], [7, 5])).toBe(false);
+});

@@ -1,5 +1,6 @@
 import { range, removeSelf, MIN_COLUMN, MIN_ROW, MAX_COLUMN, MAX_ROW } from "./helpers";
 import { equal } from "assert";
+import deepEqual from "deep-equal";
 import { ItemTypes } from "../components/ItemTypes";
 
 export default function canMoveCore(gameObjects, piece, toPosition) {
@@ -87,6 +88,9 @@ function isOutsideOfTheField(toPosition) {
   return (toX === MIN_COLUMN || toX === MAX_COLUMN)
     || (toY === MIN_ROW || toY === MAX_ROW);
 }
+function areTheSamePosition(fromPosition, toPosition) {
+  return deepEqual(fromPosition, toPosition);
+}
 
 exports.privateFunctions = {
   canMoveBall,
@@ -97,4 +101,5 @@ exports.privateFunctions = {
   isInTheLeftPenaltyArea,
   isInTheRightPenaltyArea,
   isOutsideOfTheField,
+  areTheSamePosition
 };
