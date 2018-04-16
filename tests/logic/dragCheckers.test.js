@@ -1,4 +1,4 @@
-import { canDrag, privateFunctions } from "../../static/logic/dragCheckers";
+import canDragCore, { privateFunctions } from "../../static/logic/dragCheckers";
 
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {

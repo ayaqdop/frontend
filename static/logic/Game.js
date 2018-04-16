@@ -1,6 +1,6 @@
 import openSocket from "socket.io-client";
 import { canMoveBall, canMovePlayer } from "./moveCheckers"
-import { canDragCore } from "./dragCheckers"
+import canDragCore from "./dragCheckers"
 import { ItemTypes } from "../components/ItemTypes";
 import deepEqual from "deep-equal";
 

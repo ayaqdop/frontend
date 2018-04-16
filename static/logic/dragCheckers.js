@@ -1,5 +1,4 @@
-
-export function canDragCore(gameObjects, teamName, playerNumber) {
+export default function canDragCore(gameObjects, teamName, playerNumber) {
 	if (teamName && playerNumber) {
 		const team = gameObjects
 			.teams
