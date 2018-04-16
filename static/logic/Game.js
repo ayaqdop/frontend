@@ -2,6 +2,7 @@ import openSocket from "socket.io-client";
 import deepEqual from "deep-equal";
 import canDragCore from "./dragCheckers";
 import canMoveCore from "./moveCheckers";
+import { difference } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
 let gameObjects = {
@@ -140,14 +141,16 @@ function movePlayer(piece, toPosition) {
 		.players
 		.find(p => p.number === piece.number);
 	
-	if (player.moves > 0 && !deepEqual(player.position, toPosition)) {
+	const diff = difference(player.position, toPosition);
+		
+	if (player.moves >= diff && team.moves >= diff && !deepEqual(player.position, toPosition)) {
 		console.log(`From: ${player.position} To:${toPosition}`);
 		player.position = toPosition;
-		player.moves--;
-		team.moves--;
+		player.moves -= diff;
+		team.moves -= diff;
 	}
 	
-	if (!team.moves) {
+	if (team.moves === 0) {
 		changeTurn(gameObjects.teams.find(t => t.name !== piece.team).name);
 	}
 };
@@ -159,6 +162,7 @@ function moveBall(toPosition) {
 	if (isAGoal(toPosition)) {
 		console.log("Gooooooooaaaal!");
 		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		changeTurn(gameObjects.teams.find(t => t.moves === 0).name);
 	}
 };
 

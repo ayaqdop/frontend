@@ -1,4 +1,4 @@
-import { range, removeSelf, MIN_COLUMN, MIN_ROW, MAX_COLUMN, MAX_ROW } from "./helpers";
+import { range, removeSelf, difference, MIN_COLUMN, MIN_ROW, MAX_COLUMN, MAX_ROW } from "./helpers";
 import { equal } from "assert";
 import deepEqual from "deep-equal";
 import { ItemTypes } from "../components/ItemTypes";
@@ -9,20 +9,19 @@ export default function canMoveCore(gameObjects, piece, toPosition) {
 		.reduce((a, b) => a.players.concat(b.players))
 		.map(p => p.position);
     
-    if (piece.type === ItemTypes.BALL) {
-      return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
-    }	else {
+  if (piece.type === ItemTypes.BALL) {
+    return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
+  }	else {
+    const team = gameObjects.teams.find(t => t.name === piece.team);
+    const player = team.players.find(p => p.number === piece.number);
+    allPositions.push(gameObjects.ball.position);
     
-      const player = gameObjects
-        .teams.find(t => t.name === piece.team)
-        .players.find(p => p.number === piece.number);
-      allPositions.push(gameObjects.ball.position);
-      
-      const filtered = removeSelf(allPositions, player.position);
-      equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
-    
-    return player.moves > 0 && canMovePlayer(filtered, player.position, toPosition);
-	}
+    const filtered = removeSelf(allPositions, player.position);
+    equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
+  
+    const diff = difference(player.position, toPosition);
+    return player.moves >= diff && team.moves >= diff && canMovePlayer(filtered, player.position, toPosition);
+  }
 };
 
 function canMovePlayer(allPositions, fromPosition, toPosition) {
