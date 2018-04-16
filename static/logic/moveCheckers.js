@@ -8,20 +8,18 @@ export default function canMoveCore(gameObjects, piece, toPosition) {
 		.teams
 		.reduce((a, b) => a.players.concat(b.players))
 		.map(p => p.position);
-
-    allPositions.push(gameObjects.ball.position);
     
-  if (piece.type === ItemTypes.BALL) {
-    const filtered = removeSelf(allPositions, gameObjects.ball.position);
-    equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
-
-		return canMoveBall(filtered, gameObjects.ball.position, toPosition);
-	}	else {
-		const player = gameObjects
-			.teams.find(t => t.name === piece.team)
-			.players.find(p => p.number === piece.number);
-    const filtered = removeSelf(allPositions, player.position);
-    equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
+    if (piece.type === ItemTypes.BALL) {
+      return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
+    }	else {
+    
+      const player = gameObjects
+        .teams.find(t => t.name === piece.team)
+        .players.find(p => p.number === piece.number);
+      allPositions.push(gameObjects.ball.position);
+      
+      const filtered = removeSelf(allPositions, player.position);
+      equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
     
     return player.moves > 0 && canMovePlayer(filtered, player.position, toPosition);
 	}
