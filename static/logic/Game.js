@@ -1,6 +1,6 @@
 import openSocket from "socket.io-client";
 import { canMoveBall, canMovePlayer } from "./moveCheckers"
-import { canDragBall, canDragPlayer } from "./dragCheckers"
+import { canDragCore } from "./dragCheckers"
 import { ItemTypes } from "../components/ItemTypes";
 import deepEqual from "deep-equal";
 
@@ -135,19 +135,7 @@ export function canMove(piece, toPosition) {
 	}
 };
 export function canDrag(teamName, playerNumber) {
-	if (teamName && playerNumber) {
-		const team = gameObjects
-			.teams
-			.find(t => t.name === teamName);
-
-		const player = team
-			.players
-			.find(p => p.number === playerNumber);
-	
-		return canDragPlayer(team, player);
-	} else {
-		return canDragBall(gameObjects);
-	}
+	return canDragCore(gameObjects, teamName, playerNumber);
 };
 
 export function move(piece, toPosition) {
@@ -195,3 +183,4 @@ function isAGoal(toPosition) {
 	return (5 < toY && toY < 12)
 		&& (toX === 0 || toX === 25);
 }
+

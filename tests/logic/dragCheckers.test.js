@@ -1,4 +1,4 @@
-import { canDragBall, canDragPlayer } from "../../static/logic/dragCheckers";
+import { canDrag, privateFunctions } from "../../static/logic/dragCheckers";
 
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {
@@ -13,7 +13,7 @@ test("can not drag player, team has moves but he doesn't", () => {
     ]
   };
   const player = team.players[0];
-  expect(canDragPlayer(team, player)).toBe(false);
+  expect(privateFunctions.canDragPlayer(team, player)).toBe(false);
 });
 
 test("can not drag player, he has moves but his team doesn't", () => {
@@ -29,7 +29,7 @@ test("can not drag player, he has moves but his team doesn't", () => {
     ]
   };
   const player = team.players[1];
-  expect(canDragPlayer(team, player)).toBe(false);
+  expect(privateFunctions.canDragPlayer(team, player)).toBe(false);
 });
 
 test("can drag player", () => {
@@ -45,5 +45,5 @@ test("can drag player", () => {
     ]
   };
   const player = team.players[2];
-  expect(canDragPlayer(team, player)).toBe(true);
+  expect(privateFunctions.canDragPlayer(team, player)).toBe(true);
 });
