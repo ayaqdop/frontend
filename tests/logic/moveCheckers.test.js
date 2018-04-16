@@ -1,4 +1,4 @@
-import { privateFunctions, canMovePlayer } from "../../static/logic/moveCheckers";
+import { privateFunctions } from "../../static/logic/moveCheckers";
 import * as helpers from "../../static/logic/helpers";
 
 const allPositions = [
@@ -85,6 +85,22 @@ describe("move player", () => {
   });
 });
 
+describe("move ball", () => {
+  test("can move", () => {
+    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [12, 11])).toBe(true);
+    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [1, 9])).toBe(true);
+  });
+  test("can not move", () => {
+    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [19, 9])).toBe(false);
+  });
+  test("can only score from the correct penalty area", () => {
+    expect(privateFunctions.canMoveBall(allPositions, [6, 9], [0, 9])).toBe(true);
+    expect(privateFunctions.canMoveBall(allPositions, [19, 6], [25, 6])).toBe(true);
+    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [0, 9])).toBe(false);
+    expect(privateFunctions.canMoveBall(allPositions, [13, 6], [25, 6])).toBe(false);
+  });
+});
+
 describe("somewhere on the field", () => {
   test("outside", () => {
     for (let row of helpers.range(helpers.MIN_ROW, helpers.MAX_ROW)) {
@@ -102,6 +118,25 @@ describe("somewhere on the field", () => {
         expect(privateFunctions.isOutsideOfTheField([column, row])).toBe(false);
         expect(privateFunctions.isOutsideOfTheField([column, row])).toBe(false);
       }
+    }
+  });
+});
+
+describe("goal", () => {
+  test("goals", () => {
+    for (let row of helpers.range(6, 11)) {
+      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(true);
+      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(true);
+    }
+  });
+  test("misses", () => {
+    for (let row of helpers.range(0, 5)) {
+      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
+      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
+    }
+    for (let row of helpers.range(12, 16)) {
+      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
+      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
     }
   });
 });
