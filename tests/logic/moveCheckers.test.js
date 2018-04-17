@@ -1,5 +1,5 @@
-import { privateFunctions } from "../../static/logic/moveCheckers";
-import * as helpers from "../../static/logic/helpers";
+import { privateFunctions } from "../../static/actions/moveCheckers";
+import * as helpers from "../../static/actions/helpers";
 
 const allPositions = [
 			        [1, 8],

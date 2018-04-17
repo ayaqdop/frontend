@@ -1,4 +1,4 @@
-import * as helpers from "../../static/logic/helpers";
+import * as helpers from "../../static/actions/helpers";
 
 describe("range", () => {
   test("same value", () => {

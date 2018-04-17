@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Field from "./Field/Field";
-import { observe } from "../logic/Game";
+import { observe } from "../actions/Game";
 
 console.log("Started ayaqdop");
 
