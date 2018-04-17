@@ -1,13 +1,18 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require("webpack");
 
 const DIST_DIR = path.resolve(__dirname, "./build");
 const SRC_DIR = path.resolve(__dirname, "./static");
 
 const config = {
+  mode: "development",
   devServer: {
     contentBase: DIST_DIR,
     compress: true,
+    hot: true,
     port: 8000
   },
   entry: SRC_DIR + "/components/index.js",
@@ -39,11 +44,14 @@ const config = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(["build"]),
     new HtmlWebpackPlugin({
         hash: true,
         filename: "index.html",
-        template: "./templates/index.html"
-    })
+        template: "./public/index.html"
+    }),
+    new FaviconsWebpackPlugin("./public/dop.png"),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 
