@@ -1,0 +1,23 @@
+.player {
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  font: 30px Overpass bold;
+  text-align: center;
+  color: #DEB500;
+  background: #004A99;
+  border-radius: 20px;
+  cursor: move;
+}
+
+.otherPlayer {
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  font: 30px Overpass bold;
+  text-align: center;
+  color: white;
+  background: #DC052D;
+  border-radius: 20px;
+  cursor: move;
+}
