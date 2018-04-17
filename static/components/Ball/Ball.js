@@ -25,7 +25,7 @@ class Ball extends React.Component {
   render() {
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
-      <div className="ball" >.</div>
+      <div className="ball"></div>
     );
   }
 }

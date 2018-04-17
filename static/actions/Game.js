@@ -51,7 +51,7 @@ const initialObjects = JSON.parse(JSON.stringify(gameObjects));
 
 let observer = null;
 // let socket = openSocket("http://localhost:4200");
-let socket = openSocket("http://" + document.domain + ":" + location.port);
+let socket = openSocket("http://ayaqdop-backend.herokuapp.com");
 
 function getCookie(cname) {
 	var name = cname + "=";
