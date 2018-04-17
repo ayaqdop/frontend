@@ -2,10 +2,11 @@ import React from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import PropTypes from "prop-types";
-import FieldSquare from "./FieldSquare";
-import Player from "./Player";
-import Ball from "./Ball";
-import { range } from "../logic/helpers";
+import FieldSquare from "../FieldSquare/FieldSquare";
+import Player from "../Player/Player";
+import Ball from "../Ball/Ball";
+import { range } from "../../logic/helpers";
+import "./Field.css";
 
 class Field extends React.Component {
   renderPiece(x, y) {
