@@ -1,1 +1,1 @@
-web: webpack -d && python ./main.py
+web: npm run build
