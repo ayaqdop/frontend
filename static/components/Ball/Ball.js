@@ -1,7 +1,8 @@
 import React from "react";
-import { canDrag } from "../logic/Game";
+import { canDrag } from "../../logic/Game";
 import { DragSource } from "react-dnd";
-import { ItemTypes } from "./ItemTypes";
+import { ItemTypes } from "../ItemTypes";
+import "./Ball.css";
 
 const ballSource = {
 	beginDrag() {

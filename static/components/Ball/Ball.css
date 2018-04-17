@@ -1,0 +1,7 @@
+.ball {
+  width: 40px;
+  height: 40px;
+  cursor: move;
+  background-image: url('Ball.svg');
+  background-size: 40px 40px;
+}
