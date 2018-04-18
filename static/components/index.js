@@ -8,6 +8,9 @@ console.log("Started ayaqdop");
 class Ayaqdop extends Component {
 	constructor(props) {
 		super(props);
+	}
+
+	componentWillMount() {
 		this.unobserve = observe(this.handleChange.bind(this));
 	}
 
