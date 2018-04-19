@@ -1,4 +1,4 @@
-import { privateFunctions } from "../../static/actions/moveCheckers";
+import { privateFunctions, isALeftGoal, isARightGoal } from "../../static/actions/moveCheckers";
 import * as helpers from "../../static/actions/helpers";
 
 const allPositions = [
@@ -125,18 +125,18 @@ describe("somewhere on the field", () => {
 describe("goal", () => {
   test("goals", () => {
     for (let row of helpers.range(6, 11)) {
-      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(true);
-      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(true);
+      expect(isALeftGoal([helpers.MIN_COLUMN, row])).toBe(true);
+      expect(isARightGoal([helpers.MAX_COLUMN, row])).toBe(true);
     }
   });
   test("misses", () => {
     for (let row of helpers.range(0, 5)) {
-      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
-      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
+      expect(isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
+      expect(isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
     }
     for (let row of helpers.range(12, 16)) {
-      expect(privateFunctions.isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
-      expect(privateFunctions.isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
+      expect(isALeftGoal([helpers.MIN_COLUMN, row])).toBe(false);
+      expect(isARightGoal([helpers.MAX_COLUMN, row])).toBe(false);
     }
   });
 });

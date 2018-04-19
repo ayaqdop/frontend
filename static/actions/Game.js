@@ -1,7 +1,7 @@
 import openSocket from "socket.io-client";
 import deepEqual from "deep-equal";
 import canDragCore from "./dragCheckers";
-import canMoveCore from "./moveCheckers";
+import canMoveCore, { isALeftGoal, isARightGoal } from "./moveCheckers";
 import { difference } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
@@ -116,6 +116,7 @@ export function observe(o) {
 };
 
 function changeTurn(teamName) {
+	console.log(`Now it is the turn of ${teamName}`);
 	const currentTeam = gameObjects
 		.teams
 		.find(t => t.name === teamName);
@@ -160,6 +161,7 @@ function movePlayer(piece, toPosition) {
 		player.position = toPosition;
 		player.moves -= diff;
 		team.moves -= diff;
+		console.log(`Team moves left: ${team.moves}   Player moves left: ${player.moves}`);
 	}
 	
 	if (team.moves === 0) {
@@ -171,17 +173,14 @@ function moveBall(toPosition) {
 		.ball
 		.position = toPosition;
 
-	if (isAGoal(toPosition)) {
+	if (isALeftGoal(toPosition)) {
 		console.log("Gooooooooaaaal!");
 		gameObjects = JSON.parse(JSON.stringify(initialObjects));
-		changeTurn(gameObjects.teams.find(t => t.moves === 0).name);
+		changeTurn(gameObjects.teams[0].name);
+	} else if (isARightGoal(toPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		gameObjects.ball.position = [13, 8];
+		changeTurn(gameObjects.teams[1].name);
 	}
 };
-
-function isAGoal(toPosition) {
-	const [toX, toY] = toPosition;
-
-	return (5 < toY && toY < 12)
-		&& (toX === 0 || toX === 25);
-}
-

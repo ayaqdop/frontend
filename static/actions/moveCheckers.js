@@ -81,12 +81,12 @@ function isInTheRightPenaltyArea(ballPosition) {
 	return (18 < x && x < 25)
 		&& (2 < y && y < 15);
 }
-function isALeftGoal(toPosition) {
+export function isALeftGoal(toPosition) {
   const [toX, toY] = toPosition;
   
   return toX === MIN_COLUMN && 5 < toY && toY < 12; 
 }
-function isARightGoal(toPosition) {
+export function isARightGoal(toPosition) {
   const [toX, toY] = toPosition;
   
   return toX === MAX_COLUMN && 5 < toY && toY < 12; 
@@ -110,7 +110,5 @@ exports.privateFunctions = {
   isInTheLeftPenaltyArea,
   isInTheRightPenaltyArea,
   isOutsideOfTheField,
-  isALeftGoal,
-  isARightGoal,
   areTheSamePosition
 };
