@@ -47,10 +47,22 @@ let gameObjects = {
 	}]
 };
 
+// let gameObjects = null;
+
+// fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
+// .then(response => response.json())
+// .then(data =>
+// 	{
+// 		gameObjects = data;
+// 		console.log(gameObjects);
+// 		changeTurn(gameObjects.teams[0].name);
+// 		emitChange();
+// 	}
+// );
+
 const initialObjects = JSON.parse(JSON.stringify(gameObjects));
 
 let observer = null;
-// let socket = openSocket("http://localhost:4200");
 let socket = openSocket("http://ayaqdop-backend.herokuapp.com");
 
 function getCookie(cname) {
