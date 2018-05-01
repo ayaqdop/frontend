@@ -5,64 +5,10 @@ import canMoveCore, { isALeftGoal, isARightGoal } from "./moveCheckers";
 import { difference } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
-let gameObjects = {
-	ball: {
-		position: [12, 9]
-	},
-	teams: [{
-		name: "FC Barcelona",
-		score: 0,
-		moves: 0,
-		players: [
-			{ number: 1,  moves: 0, position: [1, 8] },
-			{ number: 18, moves: 0, position: [6, 3] },
-			{ number: 23, moves: 0, position: [4, 6] },
-			{ number: 3,  moves: 0, position: [4, 11] },
-			{ number: 20, moves: 0, position: [6, 14] },
-			{ number: 8,  moves: 0, position: [10, 5] },
-			{ number: 5,  moves: 0, position: [8, 8] },
-			{ number: 4,  moves: 0, position: [10, 12] },
-			{ number: 14, moves: 0, position: [12, 4] },
-			{ number: 9,  moves: 0, position: [12, 8] },
-			{ number: 10, moves: 0, position: [12, 13] },
-		]
-	},
-	{
-		name: "FC Bayern",
-		score: 0,
-		moves: 0,
-		players: [
-			{ number: 1,   moves: 0, position: [24, 9] },
-			{ number: 32,  moves: 0, position: [19, 3] },
-			{ number: 5,   moves: 0, position: [22, 7] },
-			{ number: 17,  moves: 0, position: [22, 10] },
-			{ number: 27,  moves: 0, position: [19, 14] },
-			{ number: 25,  moves: 0, position: [16, 4] },
-			{ number: 6,   moves: 0, position: [18, 9] },
-			{ number: 11,  moves: 0, position: [16, 13] },
-			{ number: 10,  moves: 0, position: [13, 14] },
-			{ number: 9,   moves: 0, position: [15, 8] },
-			{ number: 7,   moves: 0, position: [13, 3] },
-		]
-	}]
-};
-
-// let gameObjects = null;
-
-// fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
-// .then(response => response.json())
-// .then(data =>
-// 	{
-// 		gameObjects = data;
-// 		console.log(gameObjects);
-// 		changeTurn(gameObjects.teams[0].name);
-// 		emitChange();
-// 	}
-// );
-
-const initialObjects = JSON.parse(JSON.stringify(gameObjects));
-
+let gameObjects = null;
+let initialObjects = null;
 let observer = null;
+
 let socket = openSocket("http://ayaqdop-backend.herokuapp.com");
 
 function getCookie(cname) {
@@ -100,15 +46,17 @@ function emitChange() {
 	socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
 }
 
-export function observe(o) {
+export function observe(o, objects) {
 	if (observer) {
 		throw new Error('Multiple observers not implemented.');
 	}
 
 	observer = o;
-	emitChange();
-
+	gameObjects = objects;
+	initialObjects = JSON.parse(JSON.stringify(gameObjects));
 	changeTurn(gameObjects.teams[0].name);
+	
+	emitChange();
 
 	return () => {
 		observer = null;

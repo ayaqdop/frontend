@@ -8,11 +8,33 @@ console.log("Started ayaqdop");
 class Ayaqdop extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+      error: null,
+      isLoaded: false,
+      gameObjects: {}
+    };
 	}
 
-	componentWillMount() {
-		this.unobserve = observe(this.handleChange.bind(this));
-	}
+	componentDidMount() {
+    fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            gameObjects: result
+					});
+					console.log(result);
+					this.unobserve = observe(this.handleChange.bind(this), result);
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+	}		
 
 	handleChange(gameObjects) {
 		const nextState = { gameObjects };
@@ -28,10 +50,16 @@ class Ayaqdop extends Component {
 	}
 
 	render() {
-		const { gameObjects } = this.state;
-		return (
-      <Field gameObjects={gameObjects} />
-		);
+		const { error, isLoaded, gameObjects } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+			return (
+				<Field gameObjects={gameObjects} />
+			);
+		}
 	}
 }
 
