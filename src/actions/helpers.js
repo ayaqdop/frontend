@@ -55,6 +55,21 @@ export function difference(fromPosition, toPosition) {
 	return result;
 }
 
+export function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+			}
+	}
+	return "";
+}
+
 export const MIN_COLUMN = 0;
 export const MAX_COLUMN = 25;
 export const MIN_ROW = 0;

@@ -2,7 +2,7 @@ import openSocket from "socket.io-client";
 import deepEqual from "deep-equal";
 import canDragCore from "./dragCheckers";
 import canMoveCore, { isALeftGoal, isARightGoal } from "./moveCheckers";
-import { difference } from "./helpers";
+import { difference, getCookie } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
 let gameObjects = null;
@@ -10,21 +10,6 @@ let initialObjects = null;
 let observer = null;
 
 let socket = openSocket("http://ayaqdop-backend.herokuapp.com");
-
-function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-			}
-	}
-	return "";
-}
 
 socket.emit("uuid");
 socket.on("generateUuid", (newUuid) => {
