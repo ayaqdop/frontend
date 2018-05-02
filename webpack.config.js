@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require("webpack");
 
 const DIST_DIR = path.resolve(__dirname, "./build");
-const SRC_DIR = path.resolve(__dirname, "./static");
+const SRC_DIR = path.resolve(__dirname, "./src");
 
 const config = {
   mode: "development",

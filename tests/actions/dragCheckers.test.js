@@ -1,4 +1,4 @@
-import canDragCore, { privateFunctions } from "../../static/actions/dragCheckers";
+import canDragCore, { privateFunctions } from "../../src/actions/dragCheckers";
 
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {

@@ -1,5 +1,5 @@
-import { privateFunctions, isALeftGoal, isARightGoal } from "../../static/actions/moveCheckers";
-import * as helpers from "../../static/actions/helpers";
+import { privateFunctions, isALeftGoal, isARightGoal } from "../../src/actions/moveCheckers";
+import * as helpers from "../../src/actions/helpers";
 
 const allPositions = [
 			        [1, 8],
