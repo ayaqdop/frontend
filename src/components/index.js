@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import deepEqual from "deep-equal";
 import ReactDOM from "react-dom";
 import Field from "./Field/Field";
-import { observe } from "../actions/Game";
+import { observe, Game } from "../actions/Game";
 import openSocket from "socket.io-client";
 import { getCookie } from "../actions/helpers";
 
@@ -38,12 +38,13 @@ class Ayaqdop extends Component {
 					gameObjects: data
 				});
 				console.log(data);
-				this.unobserve = observe(this.handleChange.bind(this), data);
+				this.game = new Game(this.handleChange.bind(this), data);
 
 				this.socket.on("client", (msg) => {
 					if (msg.id !== getCookie("uuid")
 						&& !deepEqual(this.state.gameObjects, msg.game)) {
-						this.handleChange(msg.game);
+							this.game.gameObjects = msg.game;
+							this.handleChange(msg.game);
 					}
 				});
 			},
@@ -67,7 +68,7 @@ class Ayaqdop extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unobserve();
+		this.game = null;
 	}
 
 	render() {

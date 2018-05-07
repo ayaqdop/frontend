@@ -1,51 +1,25 @@
-import openSocket from "socket.io-client";
 import deepEqual from "deep-equal";
 import canDragCore from "./dragCheckers";
 import canMoveCore, { isALeftGoal, isARightGoal } from "./moveCheckers";
-import { difference, getCookie } from "./helpers";
+import { difference } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
 let gameObjects = null;
-let initialObjects = null;
 let observer = null;
+let currentPlayer = null;
 
-let socket = openSocket("http://ayaqdop-backend.herokuapp.com");
-
-socket.emit("uuid");
-socket.on("generateUuid", (newUuid) => {
-	console.log("New ID ", newUuid);
-	if (!getCookie("uuid")) {
-		document.cookie = "uuid=" + newUuid;
-	}
-});
-socket.on("client", (msg) => {
-	if (msg.id !== getCookie("uuid")
-		&& !deepEqual(gameObjects, msg.game)) {
-		gameObjects = msg.game;
+export class Game {
+	constructor(handler, objects) {
+		observer = handler;
+		gameObjects = objects;
+		this.initialObjects = JSON.parse(JSON.stringify(gameObjects));
+		changeTurn(gameObjects.teams[0].name);
+	
 		emitChange();
 	}
-});
-
-function emitChange() {
-	observer(gameObjects);
-	socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
-}
-
-export function observe(o, objects) {
-	if (observer) {
-		throw new Error('Multiple observers not implemented.');
+	set gameObjects(newObjects) {
+		gameObjects = newObjects;
 	}
-
-	observer = o;
-	gameObjects = objects;
-	initialObjects = JSON.parse(JSON.stringify(gameObjects));
-	changeTurn(gameObjects.teams[0].name);
-	
-	emitChange();
-
-	return () => {
-		observer = null;
-	};
 };
 
 function changeTurn(teamName) {
@@ -55,12 +29,36 @@ function changeTurn(teamName) {
 		.find(t => t.name === teamName);
 	currentTeam.moves = 5;
 	currentTeam.players.forEach(p => p.moves = 3);
+	currentPlayer = currentTeam.name; 
 
 	const otherTeam = gameObjects
 		.teams
 		.find(t => t.name !== teamName);
 		otherTeam.moves = 0;
 		otherTeam.players.forEach(p => p.moves = 0);
+}
+
+function emitChange() {
+	const ballPosition = gameObjects
+		.ball
+		.position;
+	if (isALeftGoal(ballPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(this.initialObjects));
+		changeTurn(gameObjects.teams[0].name);
+	} else if (isARightGoal(ballPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(this.initialObjects));
+		gameObjects.ball.position = [13, 8];
+		changeTurn(gameObjects.teams[1].name);
+	}
+
+	const currentTeam = gameObjects.teams.find(team => team.name === currentPlayer);
+	if (currentTeam && currentTeam.moves === 0) {
+		changeTurn(gameObjects.teams.find(t => t.name !== currentTeam.name).name);
+	}
+
+	observer(gameObjects);
 }
 
 export function canMove(piece, toPosition) {
@@ -96,24 +94,9 @@ function movePlayer(piece, toPosition) {
 		team.moves -= diff;
 		console.log(`Team moves left: ${team.moves}   Player moves left: ${player.moves}`);
 	}
-	
-	if (team.moves === 0) {
-		changeTurn(gameObjects.teams.find(t => t.name !== piece.team).name);
-	}
 };
 function moveBall(toPosition) {
 	gameObjects
 		.ball
 		.position = toPosition;
-
-	if (isALeftGoal(toPosition)) {
-		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(initialObjects));
-		changeTurn(gameObjects.teams[0].name);
-	} else if (isARightGoal(toPosition)) {
-		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(initialObjects));
-		gameObjects.ball.position = [13, 8];
-		changeTurn(gameObjects.teams[1].name);
-	}
 };
