@@ -15,8 +15,15 @@ export default function canDragCore(gameObjects, teamName, playerNumber) {
 };
 
 function canDragBall(gameObjects) {
-	// TODO
-	return true;
+	const [x, y] = gameObjects.ball.position;
+
+	return gameObjects
+		.teams
+		.find(team => team
+			.players
+			.some(player => 
+				Math.abs(player.position[1] - y) === 1
+				|| Math.abs(player.position[0] - x) === 1)) != null;
 };
 function canDragPlayer(team, player) {
 	return team.moves > 0

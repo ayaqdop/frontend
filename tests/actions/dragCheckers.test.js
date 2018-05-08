@@ -47,3 +47,40 @@ test("can drag player", () => {
   const player = team.players[2];
   expect(privateFunctions.canDragPlayer(team, player)).toBe(true);
 });
+
+test("can drag ball", () => {
+  const gameObjects = {
+    "ball": {
+      position: [12, 9]
+    },
+    teams: [{
+      name: "FC Barcelona",
+      score: 0,
+      moves: 3,
+      players: [
+        { number: 1,  moves: 0, position: [1, 8] },
+        { number: 18, moves: 3, position: [12, 10] },
+        { number: 23, moves: 2, position: [4, 6] },
+        { number: 3,  moves: 1, position: [4, 11] },
+      ]}]
+  };
+  expect(privateFunctions.canDragBall(gameObjects)).toBe(true);
+});
+
+test("can not drag ball", () => {
+  const gameObjects = {
+    "ball": {
+      position: [12, 9]
+    },
+    teams: [{
+      name: "FC Barcelona",
+      score: 0,
+      moves: 3,
+      players: [
+        { number: 1,  moves: 0, position: [1, 8] },
+        { number: 23, moves: 2, position: [4, 6] },
+        { number: 3,  moves: 1, position: [4, 11] },
+      ]}]
+  };
+  expect(privateFunctions.canDragBall(gameObjects)).toBe(false);
+});
