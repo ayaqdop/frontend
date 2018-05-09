@@ -5,6 +5,7 @@ import { difference } from "./helpers";
 import { ItemTypes } from "../components/ItemTypes";
 
 let gameObjects = null;
+let initialObjects = null;
 let observer = null;
 let currentPlayer = null;
 
@@ -12,7 +13,7 @@ export class Game {
 	constructor(handler, objects) {
 		observer = handler;
 		gameObjects = objects;
-		this.initialObjects = JSON.parse(JSON.stringify(gameObjects));
+		initialObjects = JSON.parse(JSON.stringify(gameObjects));
 		changeTurn(gameObjects.teams[0].name);
 	
 		emitChange();
@@ -44,11 +45,11 @@ function emitChange() {
 		.position;
 	if (isALeftGoal(ballPosition)) {
 		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(this.initialObjects));
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
 		changeTurn(gameObjects.teams[0].name);
 	} else if (isARightGoal(ballPosition)) {
 		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(this.initialObjects));
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
 		gameObjects.ball.position = [13, 8];
 		changeTurn(gameObjects.teams[1].name);
 	}
