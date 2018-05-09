@@ -51,8 +51,10 @@ function canMoveVertically(gameObjects, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
 
-  return fromX === toX
-    && range(fromY, toY).every(y => !allPositions.some(p => p[0] === toX && p[1] === y));
+  return gameObjects.teams.find(team => team.moves > 0)
+    .players.some(player => player.position[0] === toX && player.position[1] === fromY - (toY > fromY ? 1 : -1))
+      && fromX === toX
+      && range(fromY, toY).every(y => !allPositions.some(p => p[0] === toX && p[1] === y));
 }
 function canMoveHorizontally(gameObjects, fromPosition, toPosition) {
   const allPositions = gameObjects
