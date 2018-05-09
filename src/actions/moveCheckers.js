@@ -4,14 +4,13 @@ import deepEqual from "deep-equal";
 import { ItemTypes } from "../components/ItemTypes";
 
 export default function canMoveCore(gameObjects, piece, toPosition) {
-	let allPositions = gameObjects
-		.teams
-		.reduce((a, b) => a.players.concat(b.players))
-		.map(p => p.position);
-    
   if (piece.type === ItemTypes.BALL) {
-    return canMoveBall(allPositions, gameObjects.ball.position, toPosition);
+    return canMoveBall(gameObjects, toPosition);
   }	else {
+    let allPositions = gameObjects
+      .teams
+      .reduce((a, b) => a.players.concat(b.players))
+      .map(p => p.position);
     const team = gameObjects.teams.find(t => t.name === piece.team);
     const player = team.players.find(p => p.number === piece.number);
     allPositions.push(gameObjects.ball.position);
@@ -32,39 +31,56 @@ function canMovePlayer(allPositions, fromPosition, toPosition) {
     && Math.abs(toY - fromY) < 4
     && !allPositions.find(p => p[0] === toX && p[1] === toY);
 };
-function canMoveBall(allPositions, fromPosition, toPosition) {
+function canMoveBall(gameObjects, toPosition) {
+  const fromPosition = gameObjects.ball.position;
+
   return (!isOutsideOfTheField(toPosition)
       || (isInTheLeftPenaltyArea(fromPosition) && isALeftGoal(toPosition))
       || (isInTheRightPenaltyArea(fromPosition) && isARightGoal(toPosition)))
-    && (canMoveVertically(allPositions, fromPosition, toPosition)
-		  || canMoveHorizontally(allPositions, fromPosition, toPosition)
-      || canMoveDiagonally(allPositions, fromPosition, toPosition));
+    && (canMoveVertically(gameObjects, fromPosition, toPosition)
+		  || canMoveHorizontally(gameObjects, fromPosition, toPosition)
+      || canMoveDiagonally(gameObjects, fromPosition, toPosition));
 };
 
-function canMoveVertically(filteredPositions, fromPosition, toPosition) {
-  const [ fromX, fromY ] = fromPosition;
-  const [ toX, toY ] = toPosition;
+function canMoveVertically(gameObjects, fromPosition, toPosition) {
+  const allPositions = gameObjects
+    .teams
+    .reduce((a, b) => a.players.concat(b.players))
+    .map(p => p.position);
+
+  const [fromX, fromY] = fromPosition;
+  const [toX, toY] = toPosition;
 
   return fromX === toX
-    && range(fromY, toY).every(y => !filteredPositions.some(p => p[0] === toX && p[1] === y));
+    && range(fromY, toY).every(y => !allPositions.some(p => p[0] === toX && p[1] === y));
 }
-function canMoveHorizontally(filteredPositions, fromPosition, toPosition) {
-  const [ fromX, fromY ] = fromPosition;
-  const [ toX, toY ] = toPosition;
+function canMoveHorizontally(gameObjects, fromPosition, toPosition) {
+  const allPositions = gameObjects
+    .teams
+    .reduce((a, b) => a.players.concat(b.players))
+    .map(p => p.position);
+
+  const [fromX, fromY] = fromPosition;
+  const [toX, toY] = toPosition;
 
   return fromY === toY
-    && range(fromX, toX).every(x => !filteredPositions.some(p => p[0] === x && p[1] === toY));
+    && range(fromX, toX).every(x => !allPositions.some(p => p[0] === x && p[1] === toY));
 }
-function canMoveDiagonally(filteredPositions, fromPosition, toPosition) {
-  const [ fromX, fromY ] = fromPosition;
-  const [ toX, toY ] = toPosition;
+function canMoveDiagonally(gameObjects, fromPosition, toPosition) {
+  const allPositions = gameObjects
+    .teams
+    .reduce((a, b) => a.players.concat(b.players))
+    .map(p => p.position);
+  
+  const [fromX, fromY] = fromPosition;
+  const [toX, toY] = toPosition;
 
   const dx = toX - fromX;
   const dy = toY - fromY;
   const dirX = dx / Math.abs(dx);
   const dirY = dy / Math.abs(dy);
   return Math.abs(dx) === Math.abs(dy)
-    && range(0, Math.abs(dx)).every(d => !filteredPositions.some(p => {
+    && range(0, Math.abs(dx)).every(d => !allPositions.some(p => {
       return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY))
     }));
 }

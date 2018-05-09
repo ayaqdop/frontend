@@ -1,21 +1,58 @@
 import { privateFunctions, isALeftGoal, isARightGoal } from "../../src/actions/moveCheckers";
 import * as helpers from "../../src/actions/helpers";
 
+const gameObjects = {
+  ball: {
+    position: [12, 9]
+  },
+  teams: [{
+    name: "Barcelona",
+    players: [
+      { number: 1,  position: [1, 8] },
+      { number: 18, position: [6, 3] },
+      { number: 23, position: [4, 6] },
+      { number: 3,  position: [4, 11] },
+      { number: 20, position: [6, 14] },
+      { number: 8,  position: [10, 5] },
+      { number: 5,  position: [8, 8] },
+      { number: 4,  position: [10, 12] },
+      { number: 14, position: [12, 4] },
+      { number: 9,  position: [12, 8] },
+      { number: 10, position: [12, 13] },
+    ]
+  },
+  {
+    name: "Bayern",
+    players: [
+      { number: 1,   position: [24, 9] },
+      { number: 32,  position: [19, 3] },
+      { number: 5,   position: [22, 7] },
+      { number: 17,  position: [22, 10] },
+      { number: 27,  position: [19, 14] },
+      { number: 25,  position: [16, 4] },
+      { number: 6,   position: [18, 9] },
+      { number: 11,  position: [16, 13] },
+      { number: 10,  position: [13, 14] },
+      { number: 9,   position: [15, 8] },
+      { number: 7,   position: [13, 3] },
+    ]
+  }]
+};
 const allPositions = [
 			        [1, 8],
 			    [4, 6], [4, 11],
     [6, 3],             [6, 14],
               
               [8, 8],
-    [10, 5],            [10, 11],
+    [10, 5],            [10, 12],
               
-    [12, 4],  [12, 8], [12, 12],
+    [12, 4],  [12, 8], [12, 13],
 
 
-    [13, 3],            [13, 13],
+    [13, 3],            [13, 14],
               [15, 8],
 
-    [16, 4],            [16, 12],
+    [16, 4],            [16, 13],
               [18, 9],
 
     [19, 3],            [19, 14],
@@ -26,46 +63,46 @@ const ballPosition = [12, 9];
 
 describe("move vertically", () => {
   test("can move", () => {
-    expect(privateFunctions.canMoveVertically(allPositions, [12, 10], [12, 9])).toBe(true);
-    expect(privateFunctions.canMoveVertically(allPositions, ballPosition, [12, 11])).toBe(true);
+    expect(privateFunctions.canMoveVertically(gameObjects, [12, 10], [12, 9])).toBe(true);
+    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 11])).toBe(true);
   });
   test("can not move past other objects", () => {
-    expect(privateFunctions.canMoveVertically(allPositions, ballPosition, [12, 2])).toBe(false);
-    expect(privateFunctions.canMoveVertically(allPositions, ballPosition, [12, 13])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 2])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 13])).toBe(false);
   });
   test("can not move if the horizontal axes differ", () => {
-    expect(privateFunctions.canMoveVertically(allPositions, ballPosition, [10, 2])).toBe(false);
-    expect(privateFunctions.canMoveVertically(allPositions, [10, 9], [12, 13])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [10, 2])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects, [10, 9], [12, 13])).toBe(false);
   });
 });
 describe("move horizontally", () => {
   test("can move", () => {
-    expect(privateFunctions.canMoveHorizontally(allPositions, [7, 8], [2, 8])).toBe(true);
-    expect(privateFunctions.canMoveHorizontally(allPositions, [9, 8], [11, 8])).toBe(true);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, [7, 8], [2, 8])).toBe(true);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, [9, 8], [11, 8])).toBe(true);
   });
   test("can not move past other objects", () => {
-    expect(privateFunctions.canMoveHorizontally(allPositions, ballPosition, [1, 8])).toBe(false);
-    expect(privateFunctions.canMoveHorizontally(allPositions, [1, 8], [10, 8])).toBe(false);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, ballPosition, [1, 8])).toBe(false);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, [1, 8], [10, 8])).toBe(false);
   });
   test("can not move if the vertical axes differ", () => {
-    expect(privateFunctions.canMoveHorizontally(allPositions, ballPosition, [10, 2])).toBe(false);
-    expect(privateFunctions.canMoveHorizontally(allPositions, [10, 9], [12, 13])).toBe(false);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, ballPosition, [10, 2])).toBe(false);
+    expect(privateFunctions.canMoveHorizontally(gameObjects, [10, 9], [12, 13])).toBe(false);
   });
 });
 describe("move diagonally", () => {
   test("can move diagonally", () => {
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [8, 5])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [20, 1])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [19, 16])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [11, 10])).toBe(true);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [8, 5])).toBe(true);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [20, 1])).toBe(true);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [15, 12])).toBe(true);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [11, 10])).toBe(true);
   });
   test("can not move past other objects", () => {
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [5, 2])).toBe(false);
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [9, 12])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [5, 2])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [17, 14])).toBe(false);
   });
   test("can not move", () => {
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [13, 5])).toBe(false);
-    expect(privateFunctions.canMoveDiagonally(allPositions, ballPosition, [12, 1])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [13, 5])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [12, 1])).toBe(false);
   });
 });
 
@@ -87,17 +124,24 @@ describe("move player", () => {
 
 describe("move ball", () => {
   test("can move", () => {
-    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [12, 11])).toBe(true);
-    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [1, 9])).toBe(true);
+    expect(privateFunctions.canMoveBall(gameObjects, [12, 11])).toBe(true);
+    expect(privateFunctions.canMoveBall(gameObjects, [1, 9])).toBe(true);
   });
   test("can not move", () => {
-    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [19, 9])).toBe(false);
+    expect(privateFunctions.canMoveBall(gameObjects, [19, 9])).toBe(false);
   });
   test("can only score from the correct penalty area", () => {
-    expect(privateFunctions.canMoveBall(allPositions, [6, 9], [0, 9])).toBe(true);
-    expect(privateFunctions.canMoveBall(allPositions, [19, 6], [25, 6])).toBe(true);
-    expect(privateFunctions.canMoveBall(allPositions, ballPosition, [0, 9])).toBe(false);
-    expect(privateFunctions.canMoveBall(allPositions, [13, 6], [25, 6])).toBe(false);
+    const testObjects = JSON.parse(JSON.stringify(gameObjects));
+    expect(privateFunctions.canMoveBall(testObjects, [0, 9])).toBe(false);
+    
+    testObjects.ball.position = [13, 6];
+    expect(privateFunctions.canMoveBall(testObjects, [25, 6])).toBe(false);
+    
+    testObjects.ball.position = [6, 9];
+    expect(privateFunctions.canMoveBall(testObjects, [0, 9])).toBe(true);
+    
+    testObjects.ball.position = [19, 6];
+    expect(privateFunctions.canMoveBall(testObjects, [25, 6])).toBe(true);
   });
 });
 
