@@ -65,23 +65,16 @@ const ballPosition = [12, 9];
 
 describe("move vertically", () => {
   test("can move", () => {
-    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 10])).toBe(true);
-    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 11])).toBe(true);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, ballPosition, [12, 10])).toBe(true);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, ballPosition, [12, 11])).toBe(true);
   });
   test("can not move past other objects", () => {
-    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 2])).toBe(false);
-    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [12, 13])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, ballPosition, [12, 2])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, ballPosition, [12, 13])).toBe(false);
   });
   test("can not move if the horizontal axes differ", () => {
-    expect(privateFunctions.canMoveVertically(gameObjects, ballPosition, [10, 2])).toBe(false);
-    expect(privateFunctions.canMoveVertically(gameObjects, [10, 9], [12, 13])).toBe(false);
-  });
-  test("can not move if team has no moves", () => {
-    const testObjects = JSON.parse(JSON.stringify(gameObjects));
-    testObjects.teams[0].moves = 0;
-    testObjects.teams[1].moves = 5;
-    expect(privateFunctions.canMoveVertically(testObjects, ballPosition, [12, 11])).toBe(false);
-    expect(privateFunctions.canMoveVertically(testObjects, ballPosition, [12, 12])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, ballPosition, [10, 2])).toBe(false);
+    expect(privateFunctions.canMoveVertically(gameObjects.teams[0], allPositions, [10, 9], [12, 13])).toBe(false);
   });
 });
 describe("move horizontally", () => {
@@ -197,4 +190,24 @@ describe("goal", () => {
 test("are same position", () => {
   expect(privateFunctions.areTheSamePosition([5, 7], [5, 7])).toBe(true);
   expect(privateFunctions.areTheSamePosition([5, 7], [7, 5])).toBe(false);
+});
+
+test("all player positions", () => {
+  const testObjects = {
+    ball: {
+      position: [12, 9]
+    },
+    teams: [{
+      players: [
+        { number: 10, position: [12, 13] },
+      ]
+    },
+    {
+      players: [
+        { number: 1,   position: [24, 9] },
+        { number: 32,  position: [19, 3] },
+      ]
+    }]
+  };
+  expect(privateFunctions.allPlayerPositions(testObjects)).toEqual([[12, 13], [24, 9], [19, 3]]);
 });
