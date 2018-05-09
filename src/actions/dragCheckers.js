@@ -19,11 +19,15 @@ function canDragBall(gameObjects) {
 
 	return gameObjects
 		.teams
-		.find(team => team
+		.some(team => team
 			.players
 			.some(player => 
-				Math.abs(player.position[1] - y) === 1
-				|| Math.abs(player.position[0] - x) === 1)) != null;
+				{
+					const dX = Math.abs(player.position[0] - x);
+					const dY = Math.abs(player.position[1] - y);
+					return 0 <= dX && dX <= 1
+						&& 0 <= dY && dY <= 1;
+				}));
 };
 function canDragPlayer(team, player) {
 	return team.moves > 0
