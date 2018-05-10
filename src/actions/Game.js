@@ -100,4 +100,7 @@ function moveBall(toPosition) {
 	gameObjects
 		.ball
 		.position = toPosition;
+	const team = gameObjects.teams.find(team => team.moves > 0);
+	team.moves--;
+	console.log(`Team moves left: ${team.moves}`);
 };
