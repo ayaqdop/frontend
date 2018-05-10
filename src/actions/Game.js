@@ -1,15 +1,13 @@
-import deepEqual from "deep-equal";
 import canDragCore from "./dragCheckers";
 import canMoveCore, { isALeftGoal, isARightGoal } from "./moveCheckers";
-import { difference } from "./helpers";
-import { ItemTypes } from "../components/ItemTypes";
+import moveCore from "./movers";
 
 let gameObjects = null;
 let initialObjects = null;
 let observer = null;
 let currentPlayer = null;
 
-export class Game {
+export default class Game {
 	constructor(handler, objects) {
 		observer = handler;
 		gameObjects = objects;
@@ -38,7 +36,6 @@ function changeTurn(teamName) {
 		otherTeam.moves = 0;
 		otherTeam.players.forEach(p => p.moves = 0);
 }
-
 function emitChange() {
 	const ballPosition = gameObjects.ball.position;
 
@@ -70,39 +67,7 @@ export function canMove(piece, toPosition) {
 export function canDrag(teamName, playerNumber) {
 	return canDragCore(gameObjects, teamName, playerNumber);
 };
-
 export function move(piece, toPosition) {
-	if (piece.type === ItemTypes.BALL) {
-		moveBall(toPosition);
-	} else {
-		movePlayer(piece, toPosition);
-	}
+	moveCore(gameObjects, piece, toPosition);
 	emitChange();
-};
-function movePlayer(piece, toPosition) {
-	const team = gameObjects
-		.teams
-		.find(t => t.name === piece.team);
-	
-	const player = team
-		.players
-		.find(p => p.number === piece.number);
-	
-	const diff = difference(player.position, toPosition);
-		
-	if (player.moves >= diff && team.moves >= diff && !deepEqual(player.position, toPosition)) {
-		console.log(`From: ${player.position} To:${toPosition}`);
-		player.position = toPosition;
-		player.moves -= diff;
-		team.moves -= diff;
-		console.log(`Team moves left: ${team.moves}   Player moves left: ${player.moves}`);
-	}
-};
-function moveBall(toPosition) {
-	gameObjects
-		.ball
-		.position = toPosition;
-	const team = gameObjects.teams.find(team => team.moves > 0);
-	team.moves--;
-	console.log(`Team moves left: ${team.moves}`);
 };

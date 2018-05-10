@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import deepEqual from "deep-equal";
 import ReactDOM from "react-dom";
 import Field from "./Field/Field";
-import { observe, Game } from "../actions/Game";
+import Game from "../actions/Game";
 import openSocket from "socket.io-client";
 import { getCookie } from "../actions/helpers";
 
