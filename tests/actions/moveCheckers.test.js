@@ -93,18 +93,25 @@ describe("move horizontally", () => {
 });
 describe("move diagonally", () => {
   test("can move diagonally", () => {
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [8, 5])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [20, 1])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [15, 12])).toBe(true);
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [11, 10])).toBe(true);
+    let testBall = [11, 7];
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [8, 4])).toBe(true);
+    
+    testBall = [13, 7];
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [15, 5])).toBe(true);
+    
+    testBall = [13, 9];
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [16, 12])).toBe(true);
+    
+    testBall = [11, 9];
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [7, 13])).toBe(true);
   });
   test("can not move past other objects", () => {
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [5, 2])).toBe(false);
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [17, 14])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, ballPosition, [5, 2])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, ballPosition, [17, 14])).toBe(false);
   });
   test("can not move", () => {
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [13, 5])).toBe(false);
-    expect(privateFunctions.canMoveDiagonally(gameObjects, ballPosition, [12, 1])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, ballPosition, [13, 5])).toBe(false);
+    expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, ballPosition, [12, 1])).toBe(false);
   });
 });
 

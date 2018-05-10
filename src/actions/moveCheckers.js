@@ -41,32 +41,32 @@ function canMoveBall(gameObjects, toPosition) {
       || (isInTheRightPenaltyArea(fromPosition) && isARightGoal(toPosition)))
     && (canMoveVertically(currentTeam, playerPositions, fromPosition, toPosition)
 		  || canMoveHorizontally(currentTeam, playerPositions, fromPosition, toPosition)
-      || canMoveDiagonally(gameObjects, fromPosition, toPosition));
+      || canMoveDiagonally(currentTeam, playerPositions, fromPosition, toPosition));
 };
 
 function canMoveVertically(team, playerPositions, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
+  const dirY = (toY - fromY) / Math.abs(toY - fromY);
 
   return team
     .players
-    .some(player => player.position[0] === toX && player.position[1] === fromY - (toY > fromY ? 1 : -1))
+    .some(player => player.position[0] === toX && player.position[1] === fromY - dirY)
     && fromX === toX
     && range(fromY, toY).every(y => !playerPositions.some(p => p[0] === toX && p[1] === y));
 }
 function canMoveHorizontally(team, playerPositions, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
+  const dirX = (toX - fromX) / Math.abs(toX - fromX);
 
   return team
     .players
-    .some(player => player.position[0] === fromX - (toX > fromX ? 1 : -1) && player.position[1] === toY)
+    .some(player => player.position[0] === fromX - dirX && player.position[1] === toY)
     && fromY === toY
     && range(fromX, toX).every(x => !playerPositions.some(p => p[0] === x && p[1] === toY));
 }
-function canMoveDiagonally(gameObjects, fromPosition, toPosition) {
-  const allPositions = allPlayerPositions(gameObjects);
-  
+function canMoveDiagonally(team, playerPositions, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
 
@@ -74,8 +74,11 @@ function canMoveDiagonally(gameObjects, fromPosition, toPosition) {
   const dy = toY - fromY;
   const dirX = dx / Math.abs(dx);
   const dirY = dy / Math.abs(dy);
-  return Math.abs(dx) === Math.abs(dy)
-    && range(0, Math.abs(dx)).every(d => !allPositions.some(p => {
+  return team
+    .players
+    .some(player => player.position[0] === fromX - dirX && player.position[1] === fromY - dirY)
+    && Math.abs(dx) === Math.abs(dy)
+    && range(0, Math.abs(dx)).every(d => !playerPositions.some(p => {
       return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY))
     }));
 }
