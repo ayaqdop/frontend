@@ -40,6 +40,22 @@ function changeTurn(teamName) {
 }
 
 function emitChange() {
+	const ballPosition = gameObjects.ball.position;
+
+	if (isALeftGoal(ballPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		changeTurn(gameObjects.teams[0].name);
+	} else if (isARightGoal(ballPosition)) {
+		console.log("Gooooooooaaaal!");
+		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		gameObjects.teams[0].players[10].position[0] -= 2;
+		gameObjects.teams[1].players[10].position[0] -= 2;
+		gameObjects.teams[1].players[10].position[1]++;
+		gameObjects.ball.position = [13, 8];
+		changeTurn(gameObjects.teams[1].name);
+	}
+
 	const currentTeam = gameObjects.teams.find(team => team.name === currentPlayer);
 	if (currentTeam && currentTeam.moves === 0) {
 		changeTurn(gameObjects.teams.find(t => t.name !== currentTeam.name).name);
@@ -89,18 +105,4 @@ function moveBall(toPosition) {
 	const team = gameObjects.teams.find(team => team.moves > 0);
 	team.moves--;
 	console.log(`Team moves left: ${team.moves}`);
-
-	if (isALeftGoal(toPosition)) {
-		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(initialObjects));
-		changeTurn(gameObjects.teams[0].name);
-	} else if (isARightGoal(toPosition)) {
-		console.log("Gooooooooaaaal!");
-		gameObjects = JSON.parse(JSON.stringify(initialObjects));
-		gameObjects.teams[0].players[10].position[0] -= 2;
-		gameObjects.teams[1].players[10].position[0] -= 2;
-		gameObjects.teams[1].players[10].position[1]++;
-		gameObjects.ball.position = [13, 8];
-		changeTurn(gameObjects.teams[1].name);
-	}
 };

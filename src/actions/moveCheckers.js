@@ -7,13 +7,11 @@ export default function canMoveCore(gameObjects, piece, toPosition) {
   if (piece.type === ItemTypes.BALL) {
     return canMoveBall(gameObjects, toPosition);
   }	else {
-    let allPositions = gameObjects
-      .teams
-      .reduce((a, b) => a.players.concat(b.players))
-      .map(p => p.position);
+    let allPositions = allPlayerPositions(gameObjects);
+    allPositions.push(gameObjects.ball.position);
+    
     const team = gameObjects.teams.find(t => t.name === piece.team);
     const player = team.players.find(p => p.number === piece.number);
-    allPositions.push(gameObjects.ball.position);
     
     const filtered = removeSelf(allPositions, player.position);
     equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
