@@ -40,16 +40,22 @@ function emitChange() {
 	const ballPosition = gameObjects.ball.position;
 
 	if (isALeftGoal(ballPosition)) {
-		console.log("Gooooooooaaaal!");
 		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		gameObjects.teams[1].score++;
+		initialObjects = JSON.parse(JSON.stringify(gameObjects));
+		console.log("Gooooooooaaaal!");
+		console.log(`The score is ${gameObjects.teams[0].name}: ${gameObjects.teams[0].score}, ${gameObjects.teams[1].name}: ${gameObjects.teams[1].score}`);
 		changeTurn(gameObjects.teams[0].name);
 	} else if (isARightGoal(ballPosition)) {
-		console.log("Gooooooooaaaal!");
 		gameObjects = JSON.parse(JSON.stringify(initialObjects));
+		gameObjects.teams[0].score++;
+		initialObjects = JSON.parse(JSON.stringify(gameObjects));
 		gameObjects.teams[0].players[10].position[0] -= 2;
 		gameObjects.teams[1].players[10].position[0] -= 2;
 		gameObjects.teams[1].players[10].position[1]++;
 		gameObjects.ball.position = [13, 8];
+		console.log("Gooooooooaaaal!");
+		console.log(`The score is ${gameObjects.teams[0].name}: ${gameObjects.teams[0].score}, ${gameObjects.teams[1].name}: ${gameObjects.teams[1].score}`);
 		changeTurn(gameObjects.teams[1].name);
 	}
 
