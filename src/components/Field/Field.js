@@ -11,7 +11,6 @@ import "./Field.css";
 class Field extends React.Component {
   renderPiece(x, y) {
     let result = null;
-
     const { teams, ball } = this.props.gameObjects;
 
     if (ball.position[0] === x && ball.position[1] === y) {
@@ -30,21 +29,19 @@ class Field extends React.Component {
     return result;
   }
 
-  renderRow(row) {
-    const columns = range(0, 25).map(column =>
-    {
-      return (
-        <FieldSquare key={column + row} column={column} row={row}>
-          {this.renderPiece(column, row)}
-        </FieldSquare>
-      );
-    });
-    
-    return columns;
-  }
   render() {
-    const rows = range(0, 17).map(row => this.renderRow(row));
-    return <div className="gamefield">{rows}</div>;
+    const fieldSquares = range(0, 17)
+      .map(row => 
+        range(0, 25)
+          .map(column =>
+          {
+            return (
+              <FieldSquare key={column + row} column={column} row={row}>
+                {this.renderPiece(column, row)}
+              </FieldSquare>
+            );
+          }));
+    return <div className="gamefield">{fieldSquares}</div>;
   }
 }
 
