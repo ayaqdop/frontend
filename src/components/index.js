@@ -5,6 +5,7 @@ import Field from "./Field/Field";
 import Game from "../actions/Game";
 import openSocket from "socket.io-client";
 import { getCookie } from "../actions/helpers";
+import "./index.css";
 
 console.log("Started ayaqdop");
 
@@ -79,7 +80,11 @@ class Ayaqdop extends Component {
       return <div>Loading...</div>;
     } else {
 			return (
-				<Field gameObjects={gameObjects} />
+				<main>
+					<Field gameObjects={gameObjects} />
+					<aside>Chat</aside>
+					<footer>Foot</footer>
+				</main>
 			);
 		}
 	}

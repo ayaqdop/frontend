@@ -40,11 +40,11 @@ class Field extends React.Component {
       );
     });
     
-    return <div key={row} className="row">{columns}</div>;
+    return columns;
   }
   render() {
     const rows = range(0, 17).map(row => this.renderRow(row));
-    return <div className="container">{rows}</div>;
+    return <div className="gamefield">{rows}</div>;
   }
 }
 

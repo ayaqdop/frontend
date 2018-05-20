@@ -1,25 +1,9 @@
-.container {
+.gamefield {
   background-repeat: no-repeat;
   background-image: url('Field.svg');
-}
-
-@media (min-width: 576px) {
-  .container {
-      max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-      max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-      max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-      max-width: 1170px;
-  }
+  background-size: contain;
+  display: grid;
+  grid-template-rows: repeat(18, 1fr);
+  grid-template-columns: repeat(26, 1fr);
+  margin: auto;
 }
