@@ -7,7 +7,7 @@ main.game {
   display: grid;
   width: 100vw;
   height: 100vh;
-  background-color: green;
+  background-color: #003300;
   grid-template: 9fr 1fr / 8fr 2fr;
 }
 aside {
