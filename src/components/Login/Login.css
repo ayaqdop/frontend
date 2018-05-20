@@ -1,0 +1,57 @@
+main.login {
+  background-image: url("./pexels-pitch.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+}
+
+form {
+  z-index: 1;
+  max-width: 360px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+form input {
+  font-family: "Overpass";
+  background: #A8A790;
+  color: #05548A;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px bold;
+}
+form button {
+  font-family: "Overpass";
+  text-transform: uppercase;
+  outline: 0;
+  background: #9A1E36;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+form button:hover, form button:active, form button:focus {
+  background: #A8A790;
+  color: #9A1E36;
+}
+form .message {
+  margin: 15px 0 0;
+  color: #A8A790;
+  font-size: 12px;
+}
+form .message a {
+  color: #9A1E36;
+  text-decoration: none;
+}
