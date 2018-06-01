@@ -13,12 +13,12 @@ function convertToLetter(number) {
 export function calculateDescription(column, row) {
   let result = "";
   if (!isNumericColumn(column) && isAlphaRow(row)){
-      result = column;
-    } else if (isNumericColumn(column)){
-      result = convertToLetter(row);
-    }
+    result = column;
+  } else if (isNumericColumn(column)){
+    result = convertToLetter(row);
+  }
   return result;
-};
+}
 
 export function range(first, last) {
   let result = [first];
@@ -27,7 +27,7 @@ export function range(first, last) {
     result.push(result[result.length - 1] + next);
   }
   return result;
-};
+}
 
 export function removeSelf(all, fromPosition) {
   return all.filter(p => (p[0] !== fromPosition[0] && p[1] !== fromPosition[1])
@@ -52,22 +52,22 @@ export function difference(fromPosition, toPosition) {
     result = Math.max(dx, dy);
   }
 
-	return result;
+  return result;
 }
 
 export function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-			}
-	}
-	return "";
+  var name = cname + "=";
+  var ca = document.cookie.split(";");
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
 
 export const MIN_COLUMN = 0;

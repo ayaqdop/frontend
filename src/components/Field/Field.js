@@ -14,7 +14,7 @@ class Field extends React.Component {
     const { teams, ball } = this.props.gameObjects;
 
     if (ball.position[0] === x && ball.position[1] === y) {
-      result = <Ball />
+      result = <Ball />;
     }
 
     const players = teams.reduce((a, b) => a.players.concat(b.players));

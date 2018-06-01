@@ -6,20 +6,20 @@ import { ItemTypes } from "../components/ItemTypes";
 export default function canMoveCore(gameObjects, piece, toPosition) {
   if (piece.type === ItemTypes.BALL) {
     return canMoveBall(gameObjects, toPosition);
-  }	else {
+  } else {
     let allPositions = allPlayerPositions(gameObjects);
     allPositions.push(gameObjects.ball.position);
-    
+
     const team = gameObjects.teams.find(t => t.name === piece.team);
     const player = team.players.find(p => p.number === piece.number);
-    
+
     const filtered = removeSelf(allPositions, player.position);
     equal(allPositions.length - filtered.length, 1, "Only fromPosition should be filtered out!");
-  
+
     const diff = difference(player.position, toPosition);
     return player.moves >= diff && team.moves >= diff && canMovePlayer(filtered, player.position, toPosition);
   }
-};
+}
 
 function canMovePlayer(allPositions, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
@@ -28,7 +28,7 @@ function canMovePlayer(allPositions, fromPosition, toPosition) {
   return Math.abs(toX - fromX) < 4
     && Math.abs(toY - fromY) < 4
     && !allPositions.find(p => p[0] === toX && p[1] === toY);
-};
+}
 function canMoveBall(gameObjects, toPosition) {
   const currentTeam = gameObjects.teams.find(team => team.moves > 0);
   const playerPositions = allPlayerPositions(gameObjects);
@@ -38,9 +38,9 @@ function canMoveBall(gameObjects, toPosition) {
       || (isInTheLeftPenaltyArea(fromPosition) && isALeftGoal(toPosition))
       || (isInTheRightPenaltyArea(fromPosition) && isARightGoal(toPosition)))
     && (canMoveVertically(currentTeam, playerPositions, fromPosition, toPosition)
-		  || canMoveHorizontally(currentTeam, playerPositions, fromPosition, toPosition)
+      || canMoveHorizontally(currentTeam, playerPositions, fromPosition, toPosition)
       || canMoveDiagonally(currentTeam, playerPositions, fromPosition, toPosition));
-};
+}
 
 function canMoveVertically(team, playerPositions, fromPosition, toPosition) {
   const [fromX, fromY] = fromPosition;
@@ -77,20 +77,20 @@ function canMoveDiagonally(team, playerPositions, fromPosition, toPosition) {
     .some(player => player.position[0] === fromX - dirX && player.position[1] === fromY - dirY)
     && Math.abs(dx) === Math.abs(dy)
     && range(0, Math.abs(dx)).every(d => !playerPositions.some(p => {
-      return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY))
+      return ((p[0] === fromX + d*dirX && p[1] === fromY + d*dirY));
     }));
 }
 
 function isInTheLeftPenaltyArea(ballPosition) {
-	const [x, y] = ballPosition;
+  const [x, y] = ballPosition;
 
-	return (0 < x && x < 7)
-		&& (2 < y && y < 15);
+  return (0 < x && x < 7)
+    && (2 < y && y < 15);
 }
 function isInTheRightPenaltyArea(ballPosition) {
-	const [x, y] = ballPosition;
+  const [x, y] = ballPosition;
 
-	return (18 < x && x < 25)
+  return (18 < x && x < 25)
 		&& (2 < y && y < 15);
 }
 export function isALeftGoal(toPosition) {
@@ -119,7 +119,7 @@ function allPlayerPositions(gameObjects) {
     .map(player => player.position); 
 }
 
-exports.privateFunctions = {
+export const privateFunctions = {
   canMoveBall,
   canMoveDiagonally,
   canMoveHorizontally,

@@ -5,25 +5,25 @@ import { ItemTypes } from "../ItemTypes";
 import "./Ball.css";
 
 const ballSource = {
-	beginDrag() {
-		return { type : ItemTypes.BALL };
-	},
-	canDrag() {
+  beginDrag() {
+    return { type : ItemTypes.BALL };
+  },
+  canDrag() {
     return canDrag(null, null);
   }
-}
+};
 
 function collect(connect, monitor) {
-	return {
-		connectDragSource: connect.dragSource(),
-		connectDragPreview: connect.dragPreview(),
-		isDragging: monitor.isDragging(),
-	};
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging(),
+  };
 }
 
 class Ball extends React.Component {
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource } = this.props;
     return connectDragSource(
       <div className="ball"></div>
     );
