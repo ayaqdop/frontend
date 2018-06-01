@@ -6,8 +6,8 @@ import { ItemTypes } from "../ItemTypes";
 import "./Player.css";
 
 const playerSource = {
-	beginDrag(props) {
-		return {
+  beginDrag(props) {
+    return {
       type: ItemTypes.PLAYER,
       team: props.team,
       number: props.number
@@ -16,23 +16,23 @@ const playerSource = {
   canDrag(props) {
     return canDrag(props.team, props.number);
   }
-}
+};
 function collect(connect, monitor) {
-	return {
-		connectDragSource: connect.dragSource(),
-		connectDragPreview: connect.dragPreview(),
-		isDragging: monitor.isDragging(),
-	};
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging(),
+  };
 }
 
 class Player extends React.Component {
   render() {
-    const { connectDragSource, isDragging, team, number } = this.props;
+    const { connectDragSource, team, number } = this.props;
     return connectDragSource(
       <div
         id={number}
         className={team.includes("Bayern") ? "otherPlayer" : "player"} >
-          {number}
+        {number}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Square from "../Square/Square";
 import { ItemTypes } from "../ItemTypes";
 import { canMove, move } from "../../actions/Game";
-import { DropTarget } from 'react-dnd';
+import { DropTarget } from "react-dnd";
 import { calculatePosition, calculateDescription } from "../../actions/helpers";
 
 const squareTarget = {
@@ -25,9 +25,9 @@ function collect(connect, monitor) {
 class FieldSquare extends React.Component {
   overlayStyle(isOver, canDrop) {
     if (isOver && !canDrop) {
-      return { opacity: 0.5, backgroundColor: 'red', zIndex: 1 };
+      return { opacity: 0.5, backgroundColor: "red", zIndex: 1 };
     } else if (isOver && canDrop) {
-      return { opacity: 0.5, backgroundColor: 'yellow', zIndex: 1 };
+      return { opacity: 0.5, backgroundColor: "yellow", zIndex: 1 };
     } else {
       return {};
     }

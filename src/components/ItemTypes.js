@@ -1,4 +1,4 @@
 export const ItemTypes = {
-  PLAYER: 'player',
-  BALL: 'ball'
+  PLAYER: "player",
+  BALL: "ball"
 };

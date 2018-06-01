@@ -25,4 +25,4 @@ export default class Score extends React.Component {
       </footer>
     );
   }
-};
+}

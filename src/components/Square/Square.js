@@ -8,8 +8,8 @@ export default class Square extends React.Component {
     return (
       <div
         className="square unselectable">
-          {show}
+        {show}
       </div>
     );
   }
-};
+}
