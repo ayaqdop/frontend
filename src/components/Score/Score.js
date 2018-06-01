@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Score.css";
 
-export default class Score extends React.Component {
+class Score extends React.Component {
   render() {
     const { gameObjects } = this.props;
     const currentTeam = gameObjects.teams[0].moves > 0
@@ -26,3 +27,9 @@ export default class Score extends React.Component {
     );
   }
 }
+
+Score.propTypes = {
+  gameObjects: PropTypes.object.isRequired
+};
+
+export default Score;

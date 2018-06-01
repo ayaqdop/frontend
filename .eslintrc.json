@@ -4,7 +4,10 @@
         "es6": true,
         "jest": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -16,6 +19,9 @@
         "react"
     ],
     "rules": {
+        "no-console": "off",
+        "no-var": "error",
+        "eqeqeq": "error",
         "indent": [
             "error",
             2

@@ -3,7 +3,6 @@ import deepEqual from "deep-equal";
 import ReactDOM from "react-dom";
 import Field from "./Field/Field";
 import Score from "./Score/Score";
-import Login from "./Login/Login";
 import Game from "../actions/Game";
 import openSocket from "socket.io-client";
 import { getCookie } from "../actions/helpers";
@@ -22,7 +21,7 @@ class Ayaqdop extends Component {
     this.socket = openSocket("http://ayaqdop-backend.herokuapp.com");
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch("http://ayaqdop-backend.herokuapp.com/uuid", { method: "POST" })
       .then(response => response.json())
       .then(data => {
@@ -31,8 +30,7 @@ class Ayaqdop extends Component {
           document.cookie = "uuid=" + data.uuid;
         }
       });
-  }
-  componentDidMount() {
+
     fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
       .then(response => response.json())
       .then(data => {
@@ -46,8 +44,8 @@ class Ayaqdop extends Component {
         this.socket.on("client", (msg) => {
           if (msg.id !== getCookie("uuid")
             && !deepEqual(this.state.gameObjects, msg.game)) {
-              this.game.gameObjects = msg.game;
-              this.handleChange(msg.game);
+            this.game.gameObjects = msg.game;
+            this.handleChange(msg.game);
           }
         });
       },
@@ -57,17 +55,13 @@ class Ayaqdop extends Component {
           error
         });
       }
-    );
+      );
   }
 
   handleChange(gameObjects) {
     const nextState = { gameObjects };
-    if (this.state) {
-      this.setState(nextState);
-      this.socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
-    } else {
-      this.state = nextState;
-    }
+    this.setState(nextState);
+    this.socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
   }
 
   componentWillUnmount() {

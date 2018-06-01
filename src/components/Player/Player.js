@@ -40,7 +40,8 @@ class Player extends React.Component {
 
 Player.propTypes = {
   team: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired
+  number: PropTypes.number.isRequired,
+  connectDragSource: PropTypes.func.isRequired
 };
 
 export default DragSource(ItemTypes.PLAYER, playerSource, collect)(Player);

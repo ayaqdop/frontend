@@ -51,7 +51,11 @@ class FieldSquare extends React.Component {
 
 FieldSquare.propTypes = {
   column: PropTypes.number.isRequired,
-  row: PropTypes.number.isRequired
+  row: PropTypes.number.isRequired,
+  connectDropTarget: PropTypes.func.isRequired,
+  isOver: PropTypes.func,
+  canDrop: PropTypes.func,
+  children: PropTypes.any
 };
 
 export default DropTarget([ItemTypes.PLAYER, ItemTypes.BALL], squareTarget, collect)(FieldSquare);

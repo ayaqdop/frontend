@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Square.css";
 
-export default class Square extends React.Component {
+class Square extends React.Component {
   render() {
     const { initContent, children } = this.props;
     const show = children ? children : initContent;
@@ -13,3 +14,10 @@ export default class Square extends React.Component {
     );
   }
 }
+
+Square.propTypes = {
+  initContent: PropTypes.any,
+  children: PropTypes.any
+};
+
+export default Square;

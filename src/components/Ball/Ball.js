@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { canDrag } from "../../actions/Game";
 import { DragSource } from "react-dnd";
 import { ItemTypes } from "../ItemTypes";
@@ -29,5 +30,9 @@ class Ball extends React.Component {
     );
   }
 }
+
+Ball.propTypes = {
+  connectDragSource: PropTypes.func.isRequired
+};
 
 export default DragSource(ItemTypes.BALL, ballSource, collect)(Ball);
