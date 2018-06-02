@@ -30,7 +30,6 @@ class Player extends React.Component {
     const { connectDragSource, team, number } = this.props;
     return connectDragSource(
       <div
-        id={number}
         className={team.includes("Bayern") ? "otherPlayer" : "player"} >
         {number}
       </div>
