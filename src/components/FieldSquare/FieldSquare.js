@@ -53,8 +53,8 @@ FieldSquare.propTypes = {
   column: PropTypes.number.isRequired,
   row: PropTypes.number.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
-  isOver: PropTypes.func,
-  canDrop: PropTypes.func,
+  isOver: PropTypes.bool,
+  canDrop: PropTypes.bool,
   children: PropTypes.any
 };
 
