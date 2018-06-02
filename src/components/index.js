@@ -18,7 +18,7 @@ class Ayaqdop extends Component {
       isLoaded: false,
       gameObjects: {}
     };
-    this.socket = openSocket("http://ayaqdop-backend.herokuapp.com");
+    this.socket = openSocket("https://ayaqdop-backend.herokuapp.com");
   }
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class Ayaqdop extends Component {
       method: "POST",
       credentials: "include" });
 
-    fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
+    fetch("https://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
       .then(response => response.json())
       .then(data => {
         this.setState({
