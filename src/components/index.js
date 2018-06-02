@@ -22,14 +22,9 @@ class Ayaqdop extends Component {
   }
 
   componentDidMount() {
-    fetch("http://ayaqdop-backend.herokuapp.com/uuid", { method: "POST" })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        if (!getCookie("uuid")) {
-          document.cookie = "uuid=" + data.uuid;
-        }
-      });
+    fetch("https://ayaqdop-backend.herokuapp.com/uuid", {
+      method: "POST",
+      credentials: "include" });
 
     fetch("http://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
       .then(response => response.json())

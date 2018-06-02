@@ -24,7 +24,8 @@
         "eqeqeq": "error",
         "indent": [
             "error",
-            2
+            2,
+            { "ignoreComments": true }
         ],
         "linebreak-style": [
             "error",
