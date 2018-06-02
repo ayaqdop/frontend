@@ -31,6 +31,7 @@
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2",
     "serve": "^6.5.5",
     "socket.io-client": "^2.1.0"
   },
