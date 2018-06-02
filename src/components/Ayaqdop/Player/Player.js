@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { canDrag } from "../../actions/Game";
+import { canDrag } from "../actions/Game";
 import { DragSource } from "react-dnd";
 import { ItemTypes } from "../ItemTypes";
 import "./Player.css";

@@ -1,4 +1,4 @@
-import canDragCore, { privateFunctions } from "../../src/actions/dragCheckers";
+import { privateFunctions } from "../../../../src/components/Ayaqdop/actions/dragCheckers";
 
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {
@@ -151,22 +151,22 @@ describe("can drag ball", () => {
     expect(privateFunctions.canDragBall(gameObjects)).toBe(false);
   });
   test("can not drag ball when every direction is blocked", () => {
-    const gameObjects = {
-      "ball": {
-        position: [12, 9]
-      },
-      teams: [{
-        players: [
-          { number: 1,  moves: 0, position: [11, 8] },
-          { number: 23, moves: 2, position: [11, 9] },
-          { number: 3,  moves: 1, position: [11, 10] },
-          { number: 12, moves: 0, position: [12, 8] },
-          { number: 2,  moves: 2, position: [12, 10] },
-          { number: 31, moves: 1, position: [13, 8] },
-          { number: 11, moves: 0, position: [13, 9] },
-          { number: 22, moves: 2, position: [13, 10] },
-        ]}]
-    };
+    // const gameObjects = {
+    //   "ball": {
+    //     position: [12, 9]
+    //   },
+    //   teams: [{
+    //     players: [
+    //       { number: 1,  moves: 0, position: [11, 8] },
+    //       { number: 23, moves: 2, position: [11, 9] },
+    //       { number: 3,  moves: 1, position: [11, 10] },
+    //       { number: 12, moves: 0, position: [12, 8] },
+    //       { number: 2,  moves: 2, position: [12, 10] },
+    //       { number: 31, moves: 1, position: [13, 8] },
+    //       { number: 11, moves: 0, position: [13, 9] },
+    //       { number: 22, moves: 2, position: [13, 10] },
+    //     ]}]
+    // };
     // TODO
     //expect(privateFunctions.canDragBall(gameObjects)).toBe(false);
   });

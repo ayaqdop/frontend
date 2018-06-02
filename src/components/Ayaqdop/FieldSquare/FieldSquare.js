@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Square from "../Square/Square";
 import { ItemTypes } from "../ItemTypes";
-import { canMove, move } from "../../actions/Game";
+import { canMove, move } from "../actions/Game";
 import { DropTarget } from "react-dnd";
-import { calculateDescription } from "../../actions/helpers";
+import { calculateDescription } from "../actions/helpers";
 
 const squareTarget = {
   canDrop(props, monitor) {

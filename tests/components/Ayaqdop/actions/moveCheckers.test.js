@@ -1,5 +1,5 @@
-import { privateFunctions, isALeftGoal, isARightGoal } from "../../src/actions/moveCheckers";
-import * as helpers from "../../src/actions/helpers";
+import { privateFunctions, isALeftGoal, isARightGoal } from "../../../../src/components/Ayaqdop/actions/moveCheckers";
+import * as helpers from "../../../../src/components/Ayaqdop/actions/helpers";
 
 const gameObjects = {
   ball: {
@@ -40,9 +40,11 @@ const gameObjects = {
     ]
   }]
 };
+
+/* eslint-disable */
 const allPositions = [
-			        [1, 8],
-			    [4, 6], [4, 11],
+             [1, 8],
+         [4, 6], [4, 11],
     [6, 3],             [6, 14],
               
               [8, 8],
@@ -61,6 +63,7 @@ const allPositions = [
         [22, 7],    [22, 10],
               [24, 9],
 ];
+/* eslint-disable */
 const ballPosition = [12, 9];
 
 describe("move vertically", () => {

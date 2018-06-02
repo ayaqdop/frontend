@@ -1,16 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import deepEqual from "deep-equal";
-import ReactDOM from "react-dom";
 import Field from "./Field/Field";
 import Score from "./Score/Score";
-import Game from "../actions/Game";
+import Game from "./actions/Game";
 import openSocket from "socket.io-client";
-import { getCookie } from "../actions/helpers";
+import { getCookie } from "./actions/helpers";
 import "./index.css";
 
-console.log("Started ayaqdop");
-
-class Ayaqdop extends Component {
+export default class Ayaqdop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,7 +78,3 @@ class Ayaqdop extends Component {
   }
 }
 
-ReactDOM.render(
-  <Ayaqdop />,
-  document.getElementById("app")
-);

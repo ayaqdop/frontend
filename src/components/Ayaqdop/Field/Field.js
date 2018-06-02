@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import FieldSquare from "../FieldSquare/FieldSquare";
 import Player from "../Player/Player";
 import Ball from "../Ball/Ball";
-import { range } from "../../actions/helpers";
+import { range } from "../actions/helpers";
 import "./Field.css";
 
 class Field extends React.Component {

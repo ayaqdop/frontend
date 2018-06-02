@@ -1,7 +1,7 @@
 import { range, removeSelf, difference, MIN_COLUMN, MIN_ROW, MAX_COLUMN, MAX_ROW } from "./helpers";
 import { equal } from "assert";
 import deepEqual from "deep-equal";
-import { ItemTypes } from "../components/ItemTypes";
+import { ItemTypes } from "../ItemTypes";
 
 export default function canMoveCore(gameObjects, piece, toPosition) {
   if (piece.type === ItemTypes.BALL) {
