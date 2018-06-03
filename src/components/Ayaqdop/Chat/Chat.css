@@ -1,0 +1,4 @@
+aside.chat {
+  background-color: yellow;
+  grid-row: span 2;
+}

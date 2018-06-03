@@ -10,10 +10,6 @@ main.game {
   background-color: #003300;
   grid-template: 9fr 1fr / 8fr 2fr;
 }
-aside {
-  background-color: yellow;
-  grid-row: span 2;
-}
 .centered {
   display: block;
   margin: 0 auto;

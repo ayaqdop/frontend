@@ -3,6 +3,7 @@ import deepEqual from "deep-equal";
 import Field from "./Field/Field";
 import Score from "./Score/Score";
 import Game from "./actions/Game";
+import Chat from "./Chat/Chat";
 import openSocket from "socket.io-client";
 import { getCookie } from "./actions/helpers";
 import "./index.css";
@@ -65,7 +66,7 @@ export default class Ayaqdop extends React.Component {
       return (
         <main className="game">
           <Field gameObjects={gameObjects} />
-          <aside>Chat</aside>
+          <Chat />
           <Score gameObjects={gameObjects} />
         </main>
       );
