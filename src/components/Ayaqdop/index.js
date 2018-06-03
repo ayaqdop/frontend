@@ -60,7 +60,7 @@ export default class Ayaqdop extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <img src={img} />;
+      return <img src={img} className="centered" />;
     } else {
       return (
         <main className="game">
