@@ -30,7 +30,6 @@ export default class Ayaqdop extends React.Component {
           isLoaded: true,
           gameObjects: data
         });
-        console.log(data);
         this.game = new Game(this.handleChange.bind(this), data);
 
         this.socket.on("client", (msg) => {
@@ -46,8 +45,7 @@ export default class Ayaqdop extends React.Component {
           isLoaded: true,
           error
         });
-      }
-      );
+      });
   }
 
   handleChange(gameObjects) {

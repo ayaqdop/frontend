@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Ayaqdop from "./components/Ayaqdop/index.js";
+import App from "./components/App";
 
 ReactDOM.render(
-  <Ayaqdop />,
+  <App />,
   document.getElementById("app")
 );
