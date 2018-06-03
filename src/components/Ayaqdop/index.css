@@ -14,3 +14,11 @@ aside {
   background-color: yellow;
   grid-row: span 2;
 }
+
+.loading { 
+  background-image: url("loading.gif");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

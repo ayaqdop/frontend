@@ -6,6 +6,7 @@ import Game from "./actions/Game";
 import openSocket from "socket.io-client";
 import { getCookie } from "./actions/helpers";
 import "./index.css";
+import img from "./loading.gif";
 
 export default class Ayaqdop extends React.Component {
   constructor(props) {
@@ -19,10 +20,6 @@ export default class Ayaqdop extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://ayaqdop-backend.herokuapp.com/uuid", {
-      method: "POST",
-      credentials: "include" });
-
     fetch("https://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
       .then(response => response.json())
       .then(data => {
@@ -63,7 +60,7 @@ export default class Ayaqdop extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <img src={img} />;
     } else {
       return (
         <main className="game">
