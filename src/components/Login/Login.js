@@ -7,18 +7,30 @@ export default class Login extends React.Component {
     super(props);
 
     this.state = {
-      authenticated: false
+      authenticated: false,
+      username: "",
+      password: ""
     };
     this.login = this.login.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
+
+  onChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(`OnChange ${name} ${value}`);
+    this.setState({[name]: value});
+  }
+
   login(e) {
     e.preventDefault();
     fetch("https://ayaqdop-backend.herokuapp.com/uuid", {
       method: "POST",
-      credentials: "include" })
-      .then(() => {
-        this.setState({ authenticated: true });
-      });
+      credentials: "include"
+    }).then(() => {
+      this.setState({ authenticated: true });
+      console.log(this.state);
+    });
   }
 
   render() {
@@ -29,8 +41,8 @@ export default class Login extends React.Component {
     return (
       <main className="login">
         <form>
-          <input type="text" placeholder="username" />
-          <input type="password" placeholder="password" />
+          <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.onChange} />
+          <input type="password" placeholder="password" name="password" value={this.state.password} onChange={this.onChange} />
           <button onClick={this.login}>login</button>
           <p className="message">Not registered? <a href="#">Create an account</a></p>
         </form>
