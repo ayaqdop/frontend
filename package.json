@@ -7,7 +7,7 @@
     "build": "webpack",
     "lint": "eslint src",
     "start": "webpack-dev-server --open",
-    "test": "jest --config config/jest.json"
+    "test": "jest --config config/jest/jest.json"
   },
   "keywords": [
     "ayaqdop",
