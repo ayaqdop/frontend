@@ -1,4 +1,4 @@
-import { privateFunctions } from "../../../../src/components/Ayaqdop/actions/dragCheckers";
+import { privateFunctions } from "../dragCheckers";
 
 test("can not drag player, team has moves but he doesn't", () => {
   const team = {

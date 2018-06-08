@@ -1,4 +1,4 @@
-import * as helpers from "../../../../src/components/Ayaqdop/actions/helpers";
+import * as helpers from "../helpers";
 
 describe("range", () => {
   test("same value", () => {

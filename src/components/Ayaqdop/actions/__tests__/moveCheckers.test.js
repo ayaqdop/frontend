@@ -1,5 +1,5 @@
-import { privateFunctions, isALeftGoal, isARightGoal } from "../../../../src/components/Ayaqdop/actions/moveCheckers";
-import * as helpers from "../../../../src/components/Ayaqdop/actions/helpers";
+import { privateFunctions, isALeftGoal, isARightGoal } from "../moveCheckers";
+import * as helpers from "../helpers";
 
 const gameObjects = {
   ball: {

@@ -1,4 +1,4 @@
-import moveCore, { privateFunctions } from "../../../../src/components/Ayaqdop/actions/movers";
+import moveCore, { privateFunctions } from "../movers";
 
 const gameObjects = {
   ball: {
