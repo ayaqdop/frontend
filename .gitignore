@@ -19,3 +19,4 @@ coverage.xml
 vcap-local.json
 
 node_modules/
+.vscode/
