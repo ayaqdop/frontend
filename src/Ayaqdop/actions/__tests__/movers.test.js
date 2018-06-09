@@ -1,4 +1,4 @@
-import moveCore, { privateFunctions } from "../movers";
+import { privateFunctions } from "../movers";
 
 const gameObjects = {
   ball: {
