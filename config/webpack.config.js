@@ -1,11 +1,14 @@
 const path = require("path");
+const fs = require("fs");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
-const DIST_DIR = path.resolve(__dirname, "./build");
-const SRC_DIR = path.resolve(__dirname, "./src");
+const appDirectory = fs.realpathSync(process.cwd());
+const DIST_DIR = path.resolve(appDirectory, "./build");
+const SRC_DIR = path.resolve(appDirectory, "./src");
 
 const config = {
   mode: "development",

@@ -4,9 +4,9 @@
   "description": "Football chess game Ayaqdop",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config config/webpack.config.js",
     "lint": "eslint src -c config/.eslintrc.json",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server  --config config/webpack.config.js --open",
     "test": "jest --config config/jest/jest.json"
   },
   "keywords": [
