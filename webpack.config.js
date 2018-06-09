@@ -15,7 +15,10 @@ const config = {
     hot: true,
     port: 8000
   },
-  entry: SRC_DIR + "/index.js",
+  entry: [
+    "react-hot-loader/patch",
+    SRC_DIR + "/index.js"
+  ],
   output: {
     path: DIST_DIR,
     filename: "bundle.js",
