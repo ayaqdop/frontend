@@ -24,6 +24,9 @@
     "url": "https://github.com/ayaqdop/frontend.git"
   },
   "license": "MIT",
+  "babel": {
+    "extends": "./config/.babelrc"
+  },
   "dependencies": {
     "deep-equal": "^1.0.1",
     "prop-types": ">=15.6.1",
