@@ -16,20 +16,17 @@ describe("<Score />", () => {
     }]
   };
   const wrapper = shallow(<Score gameObjects={gameObjects} />);
-  test("html elements", () => {
+  test("html and css", () => {
     expect(wrapper.find("footer").exists()).toBe(true);
     expect(wrapper.find("div")).toHaveLength(3);
-  });
-
-  test("score data", () => {
-    const divs = wrapper.find("div");
-    expect(divs.at(0).text()).toEqual("7   :   1");
-    expect(divs.at(1).text()).toEqual("Germany      Brazil");
-    expect(divs.at(2).text()).toEqual("2 moves left");
-  });
-
-  test("css classes", () => {
     expect(wrapper.find(".moves-left").exists()).toBe(true);
     expect(wrapper.find(".moves-right").exists()).toBe(false);
+  });
+
+  test("state", () => {
+    const divs = wrapper.find("div");
+    expect(divs.at(0).text()).toBe("7   :   1");
+    expect(divs.at(1).text()).toBe("Germany      Brazil");
+    expect(divs.at(2).text()).toBe("2 moves left");
   });
 });
