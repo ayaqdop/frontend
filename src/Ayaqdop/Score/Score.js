@@ -14,14 +14,12 @@ class Score extends React.Component {
 
     return (
       <footer>
+        <div>{gameObjects.teams[0].score}   :   {gameObjects.teams[1].score}</div>
         <div>
-          <span>{gameObjects.teams[0].score}  :   {gameObjects.teams[1].score}</span>
-        </div>
-        <div>
-          <span>{gameObjects.teams[0].name}      {gameObjects.teams[1].name}</span>
+          {gameObjects.teams[0].name}      {gameObjects.teams[1].name}
         </div>
         <div className={side}>
-          <span>{currentTeam.moves} moves left</span>
+          {currentTeam.moves} moves left
         </div>
       </footer>
     );
