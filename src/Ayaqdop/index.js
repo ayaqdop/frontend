@@ -17,7 +17,8 @@ export default class Ayaqdop extends React.Component {
       isLoaded: false,
       gameObjects: {}
     };
-    this.socket = openSocket("https://ayaqdop-backend.herokuapp.com");
+    //this.socket = openSocket("https://ayaqdop-backend.herokuapp.com");
+    this.socket = openSocket("http://localhost:8080");
   }
 
   componentDidMount() {
@@ -37,6 +38,8 @@ export default class Ayaqdop extends React.Component {
             this.handleChange(msg.game);
           }
         });
+
+        this.socket.emit("new gamer", getCookie("uuid"));
       },
       error => {
         this.setState({
