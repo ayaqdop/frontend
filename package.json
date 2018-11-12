@@ -7,7 +7,7 @@
     "build": "webpack --config config/webpack.config.js",
     "lint": "eslint src -c config/.eslintrc.json",
     "start": "npm run build && serve --single ./build",
-    "dev": "webpack-dev-server  --config config/webpack.config.js --open",
+    "dev": "webpack-dev-server  --config config/webpack.config.js",
     "test": "jest --config config/jest/jest.json"
   },
   "keywords": [

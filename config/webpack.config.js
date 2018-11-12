@@ -15,6 +15,8 @@ const config = {
   devServer: {
     contentBase: DIST_DIR,
     compress: true,
+    https: true,
+    open: true,
     hot: true,
     port: 8000
   },
