@@ -17,7 +17,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      API: JSON.stringify("https://ayaqdop-backend.herokuapp.com")
+      API: JSON.stringify("http://ayaqdop-backend.herokuapp.com")
     })
   ]
 });
