@@ -17,36 +17,40 @@ export default class Ayaqdop extends React.Component {
       isLoaded: false,
       gameObjects: {}
     };
-    //this.socket = openSocket("https://ayaqdop-backend.herokuapp.com");
-    this.socket = openSocket("http://localhost:8080");
+    this.socket = openSocket("https://ayaqdop-backend.herokuapp.com");
+    // this.socket = openSocket("http://localhost:8080");
   }
 
   componentDidMount() {
     fetch("https://ayaqdop-backend.herokuapp.com/init", { method: "POST" })
       .then(response => response.json())
-      .then(data => {
-        this.setState({
-          isLoaded: true,
-          gameObjects: data
-        });
-        this.game = new Game(this.handleChange.bind(this), data);
+      .then(
+        data => {
+          this.setState({
+            isLoaded: true,
+            gameObjects: data
+          });
+          this.game = new Game(this.handleChange.bind(this), data);
 
-        this.socket.on("client", (msg) => {
-          if (msg.id !== getCookie("uuid")
-            && !deepEqual(this.state.gameObjects, msg.game)) {
-            this.game.gameObjects = msg.game;
-            this.handleChange(msg.game);
-          }
-        });
+          this.socket.on("client", msg => {
+            if (
+              msg.id !== getCookie("uuid") &&
+              !deepEqual(this.state.gameObjects, msg.game)
+            ) {
+              this.game.gameObjects = msg.game;
+              this.handleChange(msg.game);
+            }
+          });
 
-        this.socket.emit("new gamer", getCookie("uuid"));
-      },
-      error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      });
+          this.socket.emit("new gamer", getCookie("uuid"));
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
 
   handleChange(gameObjects) {
@@ -76,4 +80,3 @@ export default class Ayaqdop extends React.Component {
     }
   }
 }
-
