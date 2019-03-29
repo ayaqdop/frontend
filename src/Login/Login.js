@@ -23,7 +23,7 @@ export default class Login extends React.Component {
 
   login(e) {
     e.preventDefault();
-    fetch("https://ayaqdop-backend.herokuapp.com/uuid", {
+    fetch(`${API}/uuid`, {
       method: "POST",
       credentials: "include",
       headers: {
