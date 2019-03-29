@@ -18,8 +18,7 @@ export default class Login extends React.Component {
   onChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(`OnChange ${name} ${value}`);
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   login(e) {
@@ -30,7 +29,7 @@ export default class Login extends React.Component {
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(this.state)
     }).then(() => {
       this.setState({ authenticated: true });
       console.log(this.state);
@@ -45,10 +44,24 @@ export default class Login extends React.Component {
     return (
       <main className="login">
         <form>
-          <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.onChange} />
-          <input type="password" placeholder="password" name="password" value={this.state.password} onChange={this.onChange} />
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={this.state.username}
+            onChange={this.onChange}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
           <button onClick={this.login}>login</button>
-          <p className="message">Not registered? <a href="#">Create an account</a></p>
+          <p className="message">
+            Not registered? <a href="#">Create an account</a>
+          </p>
         </form>
       </main>
     );
