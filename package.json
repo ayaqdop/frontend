@@ -59,9 +59,9 @@
     "react-hot-loader": "^4.9.0",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^2.1.3",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.5.1",
-    "webpack-merge": "^4.2.1"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   }
 }
