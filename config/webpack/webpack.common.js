@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const appDirectory = fs.realpathSync(process.cwd());
 const DIST_DIR = path.resolve(appDirectory, "./build");
@@ -34,7 +34,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(["build"]),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
       filename: "index.html",
