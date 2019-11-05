@@ -1,5 +1,5 @@
 import React from "react";
-import { DragDropContext } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import PropTypes from "prop-types";
 import FieldSquare from "../FieldSquare/FieldSquare";
@@ -21,26 +21,29 @@ class Field extends React.Component {
     let player = players.find(p => p.position[0] === x && p.position[1] === y);
 
     if (player) {
-      result = <Player
-        team={teams.find(t => t.players.includes(player)).name}
-        number={player.number} />;
+      result = (
+        <Player
+          team={teams.find(t => t.players.includes(player)).name}
+          number={player.number}
+        />
+      );
     }
 
     return result;
   }
 
   render() {
-    const fieldSquares = range(0, 17)
-      .map(row => 
-        range(0, 25)
-          .map(column =>
-          {
-            return (
-              <FieldSquare key={column + row} column={column} row={row}>
-                {this.renderPiece(column, row)}
-              </FieldSquare>
-            );
-          }));
+    const fieldSquares = range(0, 17).map(row =>
+      range(0, 25).map(column => {
+        return (
+          <DndProvider key={column + row} backend={HTML5Backend}>
+            <FieldSquare column={column} row={row}>
+              {this.renderPiece(column, row)}
+            </FieldSquare>
+          </DndProvider>
+        );
+      })
+    );
     return <div className="gamefield">{fieldSquares}</div>;
   }
 }
@@ -49,4 +52,4 @@ Field.propTypes = {
   gameObjects: PropTypes.object.isRequired
 };
 
-export default DragDropContext(HTML5Backend)(Field);
+export default Field;
