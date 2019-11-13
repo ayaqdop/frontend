@@ -28,8 +28,7 @@ export default class Login extends React.Component {
       credentials: "include",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify(this.state)
+      }
     }).then(() => {
       this.setState({ authenticated: true });
       console.log(this.state);
