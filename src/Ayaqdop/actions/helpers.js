@@ -2,7 +2,7 @@ function isNumericColumn(column) {
   return column === MIN_COLUMN || column === MAX_COLUMN;
 }
 function isAlphaRow(row) {
-  return row  === MIN_ROW || row === MAX_ROW;
+  return row === MIN_ROW || row === MAX_ROW;
 }
 
 function convertToLetter(number) {
@@ -12,9 +12,9 @@ function convertToLetter(number) {
 
 export function calculateDescription(column, row) {
   let result = "";
-  if (!isNumericColumn(column) && isAlphaRow(row)){
+  if (!isNumericColumn(column) && isAlphaRow(row)) {
     result = column;
-  } else if (isNumericColumn(column)){
+  } else if (isNumericColumn(column)) {
     result = convertToLetter(row);
   }
   return result;
@@ -30,14 +30,17 @@ export function range(first, last) {
 }
 
 export function removeSelf(all, fromPosition) {
-  return all.filter(p => (p[0] !== fromPosition[0] && p[1] !== fromPosition[1])
-    || (p[0] === fromPosition[0] && p[1] !== fromPosition[1])
-    || (p[0] !== fromPosition[0] && p[1] === fromPosition[1]));
+  return all.filter(
+    p =>
+      (p[0] !== fromPosition[0] && p[1] !== fromPosition[1]) ||
+      (p[0] === fromPosition[0] && p[1] !== fromPosition[1]) ||
+      (p[0] !== fromPosition[0] && p[1] === fromPosition[1])
+  );
 }
 
 export function difference(fromPosition, toPosition) {
   let result = 0;
-  
+
   const [fromX, fromY] = fromPosition;
   const [toX, toY] = toPosition;
 
@@ -58,7 +61,7 @@ export function difference(fromPosition, toPosition) {
 export function getCookie(cname) {
   const name = cname + "=";
   const ca = document.cookie.split(";");
-  for(let i = 0; i < ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) === " ") {
       c = c.substring(1);
@@ -68,6 +71,13 @@ export function getCookie(cname) {
     }
   }
   return "";
+}
+
+export function getUuid() {
+  const user = localStorage.getItem("user");
+  const json = JSON.parse(user);
+
+  return json.uuid;
 }
 
 export const MIN_COLUMN = 0;

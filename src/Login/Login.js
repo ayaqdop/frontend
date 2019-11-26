@@ -29,10 +29,13 @@ export default class Login extends React.Component {
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       }
-    }).then(() => {
-      this.setState({ authenticated: true });
-      console.log(this.state);
-    });
+    })
+      .then(response => response.json())
+      .then(uuid => {
+        this.setState({ authenticated: true });
+        console.log(this.state);
+        localStorage.setItem("user", JSON.stringify(uuid));
+      });
   }
 
   render() {

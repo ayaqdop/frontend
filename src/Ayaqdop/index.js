@@ -5,7 +5,7 @@ import Score from "./Score/Score";
 import Game from "./actions/Game";
 import Chat from "./Chat/Chat";
 import openSocket from "socket.io-client";
-import { getCookie } from "./actions/helpers";
+import { getUuid } from "./actions/helpers";
 import "./index.css";
 import img from "./loading.gif";
 
@@ -33,7 +33,7 @@ export default class Ayaqdop extends React.Component {
 
           this.socket.on("client", msg => {
             if (
-              msg.id !== getCookie("uuid") &&
+              msg.id !== getUuid() &&
               !deepEqual(this.state.gameObjects, msg.game)
             ) {
               this.game.gameObjects = msg.game;
@@ -41,7 +41,7 @@ export default class Ayaqdop extends React.Component {
             }
           });
 
-          this.socket.emit("new gamer", getCookie("uuid"));
+          this.socket.emit("new gamer", getUuid());
         },
         error => {
           this.setState({
@@ -55,7 +55,7 @@ export default class Ayaqdop extends React.Component {
   handleChange(gameObjects) {
     const nextState = { gameObjects };
     this.setState(nextState);
-    this.socket.emit("server", { id: getCookie("uuid"), game: gameObjects });
+    this.socket.emit("server", { id: getUuid(), game: gameObjects });
   }
 
   componentWillUnmount() {
