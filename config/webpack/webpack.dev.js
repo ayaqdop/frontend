@@ -20,7 +20,8 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      API: JSON.stringify("http://localhost:5000")
+      API: JSON.stringify("https://ayaqdop.herokuapp.com")
+            // API: JSON.stringify("http://localhost:5000")
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
