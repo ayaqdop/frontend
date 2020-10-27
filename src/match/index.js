@@ -11,5 +11,5 @@ export const Match = () => {
       console.log('snapshot: ', snapshot.val())
     })
   }, [])
-  return <h1>MATCH</h1>
+  return <h1>MATCH {matchId}</h1>
 }
