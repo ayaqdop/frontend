@@ -15,7 +15,8 @@ module.exports = merge(baseConfig, {
     https: false,
     open: true,
     hot: true,
-    port: 8000
+    port: 8000,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.DefinePlugin({

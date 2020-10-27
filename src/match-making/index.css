@@ -1,5 +1,5 @@
-main.login {
-  background-image: url("./pexels-pitch.jpg");
+main.match-making {
+  background-image: url("./the-ball-488710.jpg");
   background-position: center;
   background-size: cover;
   position: relative;
@@ -55,11 +55,14 @@ form button:focus {
 
 form .message {
   margin: 15px 0 0;
-  color: #a8a790;
+  color: #9a1e36;
+  font-weight: bold;
   font-size: 12px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
-form .message a {
-  color: #9a1e36;
-  text-decoration: none;
+form hr {
+  margin: 20px 0;
 }
