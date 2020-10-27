@@ -21,5 +21,9 @@
     "indent": ["error", 2, { "ignoreComments": true }],
     "quotes": ["error", "double"],
     "semi": ["error", "always"]
+  },
+  "globals": {
+    "process": true,
+    "__dirname": true
   }
 }
