@@ -1,0 +1,41 @@
+{
+  "teams": [
+    {
+      "name": "Barcelona",
+      "players": [
+        { "number": 1, "position": [1, 8], "moves": 0 },
+        { "number": 18, "position": [6, 3], "moves": 0 },
+        { "number": 23, "position": [4, 6], "moves": 0 },
+        { "number": 3, "position": [4, 11], "moves": 0 },
+        { "number": 20, "position": [6, 14], "moves": 0 },
+        { "number": 8, "position": [10, 5], "moves": 0 },
+        { "number": 5, "position": [8, 8], "moves": 0 },
+        { "number": 4, "position": [10, 12], "moves": 0 },
+        { "number": 14, "position": [12, 4], "moves": 0 },
+        { "number": 10, "position": [12, 13], "moves": 0 },
+        { "number": 9, "position": [12, 8], "moves": 0 }
+      ],
+      "score": 0,
+      "moves": 0
+    },
+    {
+      "name": "Bayern",
+      "players": [
+        { "number": 1, "position": [24, 9], "moves": 0 },
+        { "number": 32, "position": [19, 3], "moves": 0 },
+        { "number": 5, "position": [22, 7], "moves": 0 },
+        { "number": 17, "position": [22, 10], "moves": 0 },
+        { "number": 27, "position": [19, 14], "moves": 0 },
+        { "number": 25, "position": [16, 4], "moves": 0 },
+        { "number": 6, "position": [18, 9], "moves": 0 },
+        { "number": 11, "position": [16, 13], "moves": 0 },
+        { "number": 10, "position": [13, 14], "moves": 0 },
+        { "number": 7, "position": [13, 3], "moves": 0 },
+        { "number": 9, "position": [15, 8], "moves": 0 }
+      ],
+      "score": 0,
+      "moves": 0
+    }
+  ],
+  "ball": { "position": [12, 9] }
+}

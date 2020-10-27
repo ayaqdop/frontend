@@ -18,9 +18,7 @@
     "no-console": "off",
     "no-var": "error",
     "eqeqeq": "error",
-    "indent": ["error", 2, { "ignoreComments": true }],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "indent": ["error", 2, { "ignoreComments": true }]
   },
   "globals": {
     "process": true,
