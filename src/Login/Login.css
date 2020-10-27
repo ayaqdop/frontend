@@ -18,6 +18,7 @@ form {
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 form input {
   font-family: "Overpass";
   background: #a8a790;
@@ -29,6 +30,7 @@ form input {
   box-sizing: border-box;
   font-size: 14px bold;
 }
+
 form button {
   font-family: "Overpass";
   text-transform: uppercase;
@@ -43,17 +45,20 @@ form button {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 form button:hover,
 form button:active,
 form button:focus {
   background: #a8a790;
   color: #9a1e36;
 }
+
 form .message {
   margin: 15px 0 0;
   color: #a8a790;
   font-size: 12px;
 }
+
 form .message a {
   color: #9a1e36;
   text-decoration: none;

@@ -1,3 +1,68 @@
 main.match-making {
-  background-image: url("/the-ball-488710.jpg");
+  background-image: url("./the-ball-488710.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+form {
+  z-index: 1;
+  max-width: 360px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+form input {
+  font-family: "Overpass";
+  background: #a8a790;
+  color: #05548a;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px bold;
+}
+
+form button {
+  font-family: "Overpass";
+  text-transform: uppercase;
+  outline: 0;
+  background: #9a1e36;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+form button:hover,
+form button:active,
+form button:focus {
+  background: #a8a790;
+  color: #9a1e36;
+}
+
+form .message {
+  margin: 15px 0 0;
+  color: #9a1e36;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+form hr {
+  margin: 20px 0;
 }
