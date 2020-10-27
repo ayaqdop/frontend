@@ -1,5 +1,5 @@
 main.login {
-  background-image: url("./pexels-pitch.jpg");
+  background-image: url('./pexels-pitch.jpg');
   background-position: center;
   background-size: cover;
   position: relative;
@@ -7,7 +7,7 @@ main.login {
   height: 100vh;
 }
 
-form {
+.login form {
   z-index: 1;
   max-width: 360px;
   position: absolute;
@@ -17,10 +17,13 @@ form {
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 2px;
 }
 
-form input {
-  font-family: "Overpass";
+.login form input {
+  font-family: 'Overpass';
   background: #a8a790;
   color: #05548a;
   width: 100%;
@@ -29,10 +32,11 @@ form input {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px bold;
+  border-radius: 2px;
 }
 
-form button {
-  font-family: "Overpass";
+.login form button {
+  font-family: 'Overpass';
   text-transform: uppercase;
   outline: 0;
   background: #9a1e36;
@@ -44,22 +48,26 @@ form button {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 2px;
 }
 
-form button:hover,
-form button:active,
-form button:focus {
+.login form button:hover,
+.login form button:active,
+.login form button:focus {
   background: #a8a790;
   color: #9a1e36;
 }
 
-form .message {
+.login form .message {
   margin: 15px 0 0;
-  color: #a8a790;
+  color: #9a1e36;
   font-size: 12px;
+  padding: 5px 5px 1px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
-form .message a {
+.login form .error {
   color: #9a1e36;
-  text-decoration: none;
+  margin-bottom: 15px;
+  font-size: 0.8em;
 }
