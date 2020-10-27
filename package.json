@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config config/webpack/webpack.prod.js",
     "lint": "eslint src -c config/.eslintrc.json",
-    "start": "source .env && webpack-dev-server  --config config/webpack/webpack.dev.js",
+    "start": "webpack-dev-server  --config config/webpack/webpack.dev.js",
     "test": "jest --config config/jest/jest.json"
   },
   "keywords": [
