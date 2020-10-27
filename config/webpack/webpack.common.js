@@ -1,39 +1,39 @@
-const fs = require("fs");
-const dotenv = require("dotenv");
-const webpack = require("webpack");
-const path = require("path");
+const fs = require('fs')
+const dotenv = require('dotenv')
+const webpack = require('webpack')
+const path = require('path')
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-dotenv.config();
+dotenv.config()
 
-const appDirectory = fs.realpathSync(process.cwd());
-const DIST_DIR = path.resolve(appDirectory, "./build");
-const SRC_DIR = path.resolve(appDirectory, "./src");
+const appDirectory = fs.realpathSync(process.cwd())
+const DIST_DIR = path.resolve(appDirectory, './build')
+const SRC_DIR = path.resolve(appDirectory, './src')
 
 module.exports = {
-  entry: ["react-hot-loader/patch", SRC_DIR + "/index.js"],
+  entry: ['react-hot-loader/patch', SRC_DIR + '/index.js'],
   output: {
     path: DIST_DIR,
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.js?/,
+        test: /\.js?$/,
         exclude: /node_modules/,
         include: SRC_DIR,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
+        use: ['file-loader']
       }
     ]
   },
@@ -50,9 +50,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       hash: true,
-      filename: "index.html",
-      template: "./public/index.html"
+      filename: 'index.html',
+      template: './public/index.html'
     }),
-    new FaviconsWebpackPlugin("./public/dop.png")
+    new FaviconsWebpackPlugin('./public/dop.png')
   ]
-};
+}
