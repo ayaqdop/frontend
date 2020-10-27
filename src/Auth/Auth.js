@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { auth } from '../firebase'
 import './Auth.css'
 
 const Auth = () => {
-  const [authenticated, setAuthenticated] = useState(false)
+  const history = useHistory()
+  const [state, setState] = useState('LOGIN')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [state, setState] = useState('LOGIN')
   const [error, setError] = useState(null)
 
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       if (user) {
-        setAuthenticated(true)
-      } else {
-        setAuthenticated(false)
+        history.push('/matchmaking')
       }
     })
   }, [])
@@ -43,10 +41,6 @@ const Auth = () => {
         break
       }
     }
-  }
-
-  if (authenticated) {
-    return <Redirect to='/matchmaking' />
   }
 
   return (
