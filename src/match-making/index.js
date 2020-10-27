@@ -13,7 +13,7 @@ export const MatchMaking = () => {
   const [matches, setMatches] = useState([])
   const history = useHistory()
 
-  React.useEffect(() => {
+  useEffect(() => {
     auth().onAuthStateChanged(fUser => {
       if (fUser) {
         setUser(fUser)
