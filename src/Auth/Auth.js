@@ -14,15 +14,11 @@ const Auth = () => {
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       if (user) {
-        window.localStorage.setItem('user', JSON.stringify(user))
         setAuthenticated(true)
       } else {
         setAuthenticated(false)
       }
     })
-    if (window.localStorage.getItem('user')) {
-      setAuthenticated(true)
-    }
   }, [])
 
   const submitForm = event => {
