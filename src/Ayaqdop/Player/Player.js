@@ -1,46 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { canDrag } from "../actions/Game";
-import { DragSource } from "react-dnd";
-import { ItemTypes } from "../ItemTypes";
-import "./Player.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { DragSource } from 'react-dnd'
+import { ItemTypes } from '../ItemTypes'
 
-const playerSource = {
-  beginDrag(props) {
-    return {
-      type: ItemTypes.PLAYER,
-      team: props.team,
-      number: props.number
-    };
-  },
-  canDrag(props) {
-    return canDrag(props.team, props.number);
-  }
-};
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging(),
-  };
-}
+import './Player.css'
+import { useParams } from 'react-router-dom'
 
-class Player extends React.Component {
-  render() {
-    const { connectDragSource, team, number } = this.props;
-    return connectDragSource(
-      <div
-        className={team.includes("Bayern") ? "otherPlayer" : "player"} >
-        {number}
-      </div>
-    );
-  }
+const Player = ({ connectDragSource, uid, number }) => {
+  const { matchId } = useParams()
+  return connectDragSource(
+    <div className={uid !== matchId ? 'otherPlayer' : 'player'}>{number}</div>
+  )
 }
 
 Player.propTypes = {
-  team: PropTypes.string.isRequired,
+  uid: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
   connectDragSource: PropTypes.func.isRequired
-};
+}
 
-export default DragSource(ItemTypes.PLAYER, playerSource, collect)(Player);
+const PlayerComponent = ({ playerSource, collect }) => {
+  const DraggablePlayer = DragSource(
+    ItemTypes.PLAYER,
+    playerSource,
+    collect
+  )(Player)
+  return <DraggablePlayer />
+}
+
+export default PlayerComponent

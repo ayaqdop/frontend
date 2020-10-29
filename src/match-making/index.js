@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import initialState from './game.json'
+import initialState from '../utils/game.json'
 import { auth } from '../firebase'
 import { db } from '../firebase'
 

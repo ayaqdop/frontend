@@ -1,15 +1,29 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 
-import { db } from '../firebase'
+import Field from '../Ayaqdop/Field/Field'
+
+import './index.css'
+import img from './loading.gif'
+import { useMatchState } from '../utils/useMatchState'
 
 export const Match = () => {
-  const { matchId } = useParams()
+  const { matchState, initiateMatch, emitChange } = useMatchState()
+  const [initMatch, setInitMatch] = useState(true)
 
   React.useEffect(() => {
-    db.ref(`match/${matchId}`).on('value', snapshot => {
-      console.log('snapshot: ', snapshot.val())
-    })
-  }, [])
-  return <h1>MATCH {matchId}</h1>
+    if (initMatch && matchState?.teams[0]?.uid && matchState?.teams[1]?.uid) {
+      setInitMatch(false)
+      initiateMatch()
+    }
+  }, [matchState])
+
+  if (!matchState || !matchState.teams[0].uid || !matchState.teams[1].uid) {
+    return <img src={img} className='centered' />
+  } else {
+    return (
+      <main className='game'>
+        <Field matchState={matchState} emitChange={emitChange} />
+      </main>
+    )
+  }
 }
