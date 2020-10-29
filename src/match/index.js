@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
 import Field from '../Ayaqdop/Field/Field'
+import Score from '../Ayaqdop/Score/Score'
+import Chat from '../Ayaqdop/Chat/Chat'
 
 import './index.css'
 import img from './loading.gif'
@@ -23,6 +25,8 @@ export const Match = () => {
     return (
       <main className='game'>
         <Field matchState={matchState} emitChange={emitChange} />
+        <Chat />
+        <Score matchState={matchState} />
       </main>
     )
   }
