@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import initialState from './game.json'
-import { db } from '../firebase'
+import { db, auth } from '../firebase'
 import { isALeftGoal, isARightGoal } from '../Ayaqdop/actions/moveCheckers'
 
 export const useMatchState = initialPlayer => {
   const [matchState, setMatchState] = useState(initialState)
   const [currentPlayer, setCurrentPLayer] = useState(initialPlayer)
   const { matchId } = useParams()
+  const currentUserId = auth().currentUser.uid
 
   const changeTurn = (userId, otherMatchState = matchState) => {
     const newMatchState = JSON.parse(JSON.stringify(otherMatchState))
@@ -25,6 +26,7 @@ export const useMatchState = initialPlayer => {
   }
 
   const handleStateChange = newState => {
+    if (currentUserId !== currentPlayer) return
     db.ref(`match/${matchId}`).update(newState)
   }
 

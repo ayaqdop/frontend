@@ -1,5 +1,11 @@
-export default function canDragCore(gameObjects, currentPlayer, playerNumber) {
+export default function canDragCore(
+  gameObjects,
+  currentUserId,
+  currentPlayer,
+  playerNumber
+) {
   if (currentPlayer && playerNumber) {
+    if (currentUserId !== currentPlayer) return false
     const team = gameObjects.teams.find(t => t.uid === currentPlayer)
     const player = team.players.find(p => p.number === playerNumber)
     return canDragPlayer(team, player)

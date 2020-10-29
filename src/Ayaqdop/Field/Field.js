@@ -6,19 +6,24 @@ import FieldSquare from '../FieldSquare/FieldSquare'
 import Player from '../Player/Player'
 import Ball from '../Ball/Ball'
 import { range } from '../actions/helpers'
-import './Field.css'
 import canDragCore from '../actions/dragCheckers'
 import { ItemTypes } from '../ItemTypes'
 import canMoveCore from '../actions/moveCheckers'
 import moveCore from '../actions/movers'
 
+import { auth } from '../../firebase'
+
+import './Field.css'
+
 const Field = ({ matchState, emitChange }) => {
+  const currentUserId = auth().currentUser.uid
+
   const ballSource = {
     beginDrag() {
       return { type: ItemTypes.BALL }
     },
     canDrag() {
-      return canDragCore(matchState, null, null)
+      return canDragCore(matchState, currentUserId, null, null)
     }
   }
 
@@ -31,7 +36,7 @@ const Field = ({ matchState, emitChange }) => {
       }
     },
     canDrag() {
-      return canDragCore(matchState, uid, number)
+      return canDragCore(matchState, currentUserId, uid, number)
     }
   })
 
