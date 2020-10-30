@@ -54,6 +54,7 @@ export const MatchMaking = () => {
     initialState.teams[0].uid = user.uid
     try {
       db.ref(`match/${user.uid}`).set(initialState)
+      db.ref(`chat/${user.uid}`).set([])
       history.push(`/match/${user.uid}`)
     } catch (error) {
       console.log('error: ', error)
