@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ayaqdop/frontend.svg?branch=master)](https://travis-ci.org/ayaqdop/frontend)
+![Test Runner](https://github.com/ayaqdop/frontend/workflows/Test%20Runner/badge.svg)
 
 # ayaqdop frontend
 Chess-like football board game

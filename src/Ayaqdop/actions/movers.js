@@ -36,7 +36,7 @@ function movePlayer(gameObjects, piece, toPosition) {
     team.moves >= diff &&
     !deepEqual(player.position, toPosition)
   ) {
-    console.log(`From: ${player.position} To:${toPosition}`)
+    console.log(`From: ${player.position} To: ${toPosition}`)
     player.position = toPosition
     player.moves -= diff
     team.moves -= diff
