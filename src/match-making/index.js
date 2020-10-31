@@ -7,6 +7,8 @@ import { db } from '../firebase'
 
 import './index.css'
 
+import { Button } from '../components/button'
+
 export const MatchMaking = () => {
   const [showError, setShowError] = useState(null)
   const [user, setUser] = useState(null)
@@ -64,16 +66,12 @@ export const MatchMaking = () => {
   return (
     <main className='match-making'>
       <form>
-        <button type='button' onClick={createMatch}>
-          Create Match
-        </button>
+        <Button onClick={createMatch}>Create Match</Button>
         <hr />
         <ul>
           {matches.map(m => (
             <li key={m}>
-              <button type='button' onClick={() => joinMatch(m)}>
-                Join {m}
-              </button>
+              <Button onClick={() => joinMatch(m)}>Join {m}</Button>
             </li>
           ))}
         </ul>

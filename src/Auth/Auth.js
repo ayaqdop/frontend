@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { auth } from '../firebase'
 import './Auth.css'
 
+import { Button } from '../components/button'
+
 const Auth = () => {
   const history = useHistory()
   const [state, setState] = useState('LOGIN')
@@ -61,28 +63,20 @@ const Auth = () => {
           onChange={event => setPassword(event.target.value)}
         />
         {error && <p class='error'>{error}</p>}
-        <button type='submit' onClick={submitForm}>
+        <Button type='submit' onClick={submitForm}>
           {state}
-        </button>
+        </Button>
 
         {state === 'LOGIN' && (
-          <button
-            type='button'
-            className='message'
-            onClick={() => setState('REGISTER')}
-          >
+          <Button onClick={() => setState('REGISTER')}>
             Not registered? Create an account
-          </button>
+          </Button>
         )}
 
         {state === 'REGISTER' && (
-          <button
-            type='button'
-            className='message'
-            onClick={() => setState('LOGIN')}
-          >
+          <Button onClick={() => setState('LOGIN')}>
             Already registered? Log in
-          </button>
+          </Button>
         )}
       </form>
     </main>
