@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { DragSource } from '../field/node_modules/react-dnd'
+import { DragSource } from 'react-dnd'
 import { ItemTypes } from '../item-type'
 
 import './player.css'
