@@ -1,5 +1,5 @@
 import deepEqual from 'deep-equal'
-import { ItemTypes } from '../ItemTypes'
+import { ItemTypes } from '../item-type'
 import { difference } from './helpers'
 
 export default function moveCore(gameObjects, piece, toPosition) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Score.css'
+import './score.css'
 
 const Score = ({ matchState }) => {
   const currentTeam =

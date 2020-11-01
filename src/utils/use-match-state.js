@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import initialState from './game.json'
 import { db, auth } from '../firebase'
-import { isALeftGoal, isARightGoal } from '../Ayaqdop/actions/moveCheckers'
+import { isALeftGoal, isARightGoal } from '../ayaqdop/actions/move-checkers'
 
 export const useMatchState = initialPlayer => {
   const [matchState, setMatchState] = useState(initialState)

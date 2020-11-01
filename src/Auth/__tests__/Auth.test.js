@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { shallow } from 'enzyme'
 
-import Auth from '../Auth'
+import Auth from '../auth'
 
 jest.mock('../../firebase', () => ({ auth: () => ({}) }))
 

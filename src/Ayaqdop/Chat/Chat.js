@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { db, auth } from '../../firebase'
-import { useMatchState } from '../../utils/useMatchState'
+import { useMatchState } from '../../utils/use-match-state'
 
-import './Chat.css'
+import './chat.css'
 
 const Chat = () => {
   const [messageText, setMessageText] = useState('')

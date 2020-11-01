@@ -9,7 +9,7 @@ import {
 } from './helpers'
 import { equal } from 'assert'
 import deepEqual from 'deep-equal'
-import { ItemTypes } from '../ItemTypes'
+import { ItemTypes } from '../item-type'
 
 export default function canMoveCore(gameObjects, piece, toPosition) {
   if (piece.type === ItemTypes.BALL) {

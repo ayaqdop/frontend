@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Square from '../Square/Square'
-import { ItemTypes } from '../ItemTypes'
+import Square from '../square/square'
+import { ItemTypes } from '../item-type'
 import { DropTarget } from 'react-dnd'
 import { calculateDescription } from '../actions/helpers'
 

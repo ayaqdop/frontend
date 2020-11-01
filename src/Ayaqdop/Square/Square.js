@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Square.css";
+import "./square.css";
 
 class Square extends React.Component {
   render() {

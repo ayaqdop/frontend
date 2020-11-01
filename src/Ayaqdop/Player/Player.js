@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { DragSource } from 'react-dnd'
-import { ItemTypes } from '../ItemTypes'
+import { DragSource } from '../field/node_modules/react-dnd'
+import { ItemTypes } from '../item-type'
 
-import './Player.css'
+import './player.css'
 import { useParams } from 'react-router-dom'
 
 const Player = ({ connectDragSource, uid, number }) => {

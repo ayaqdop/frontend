@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Score from '../Score'
+import Score from '../score'
 
 describe('<Score />', () => {
   const gameObjects = {

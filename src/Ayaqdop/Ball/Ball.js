@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { DragSource } from 'react-dnd'
-import { ItemTypes } from '../ItemTypes'
-import './Ball.css'
+import { ItemTypes } from '../item-type'
+import './ball.css'
 
 const Ball = ({ connectDragSource }) => {
   return connectDragSource(<div className='ball'></div>)

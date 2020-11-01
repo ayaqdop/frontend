@@ -1,4 +1,4 @@
-import { privateFunctions, isALeftGoal, isARightGoal } from "../moveCheckers";
+import { privateFunctions, isALeftGoal, isARightGoal } from "../move-checkers";
 import * as helpers from "../helpers";
 
 const gameObjects = {
@@ -46,10 +46,10 @@ const allPositions = [
              [1, 8],
          [4, 6], [4, 11],
     [6, 3],             [6, 14],
-              
+
               [8, 8],
     [10, 5],            [10, 12],
-              
+
     [12, 4],  [12, 8], [12, 13],
 
 
@@ -98,13 +98,13 @@ describe("move diagonally", () => {
   test("can move diagonally", () => {
     let testBall = [11, 7];
     expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [8, 4])).toBe(true);
-    
+
     testBall = [13, 7];
     expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [15, 5])).toBe(true);
-    
+
     testBall = [13, 9];
     expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [16, 12])).toBe(true);
-    
+
     testBall = [11, 9];
     expect(privateFunctions.canMoveDiagonally(gameObjects.teams[0], allPositions, testBall, [7, 13])).toBe(true);
   });
@@ -145,7 +145,7 @@ describe("move ball", () => {
   test("can only score from the correct penalty area", () => {
     const testObjects = JSON.parse(JSON.stringify(gameObjects));
     expect(privateFunctions.canMoveBall(testObjects, [0, 9])).toBe(false);
-    
+
     testObjects.ball.position = [3, 6];
     expect(privateFunctions.canMoveBall(testObjects, [0, 6])).toBe(true);
 
@@ -153,16 +153,16 @@ describe("move ball", () => {
     testObjects.teams[1].moves = 5;
     testObjects.ball.position = [13, 6];
     expect(privateFunctions.canMoveBall(testObjects, [25, 6])).toBe(false);
-    
+
     testObjects.ball.position = [23, 7];
     expect(privateFunctions.canMoveBall(testObjects, [25, 7])).toBe(true);
   });
   test("can not score if there are no moves left", () => {
     const testObjects = JSON.parse(JSON.stringify(gameObjects));
-    
+
     testObjects.ball.position = [23, 7];
     expect(privateFunctions.canMoveBall(testObjects, [25, 7])).toBe(false);
-    
+
     testObjects.ball.position = [23, 10];
     expect(privateFunctions.canMoveBall(testObjects, [25, 10])).toBe(false);
   });

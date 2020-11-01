@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import Auth from '../Auth/Auth'
+import Auth from '../auth/auth'
 import { MatchMaking } from '../match-making'
 import { Match } from '../match'
 

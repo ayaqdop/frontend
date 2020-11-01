@@ -2,18 +2,18 @@ import React from 'react'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import PropTypes from 'prop-types'
-import FieldSquare from '../FieldSquare/FieldSquare'
-import Player from '../Player/Player'
-import Ball from '../Ball/Ball'
+import FieldSquare from '../field-square/field-square'
+import Player from '../player/player'
+import Ball from '../ball/ball'
 import { range } from '../actions/helpers'
-import canDragCore from '../actions/dragCheckers'
-import { ItemTypes } from '../ItemTypes'
-import canMoveCore from '../actions/moveCheckers'
+import canDragCore from '../actions/drag-checkers'
+import { ItemTypes } from '../item-type'
+import canMoveCore from '../actions/move-checkers'
 import moveCore from '../actions/movers'
 
 import { auth } from '../../firebase'
 
-import './Field.css'
+import './field.css'
 
 const Field = ({ matchState, emitChange }) => {
   const currentUserId = auth().currentUser.uid
