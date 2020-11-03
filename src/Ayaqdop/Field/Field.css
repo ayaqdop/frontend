@@ -1,9 +1,0 @@
-.gamefield {
-  background-repeat: no-repeat;
-  background-image: url('Field.svg');
-  background-size: contain;
-  display: grid;
-  grid-template-rows: repeat(18, 1fr);
-  grid-template-columns: repeat(26, 1fr);
-  margin: auto;
-}

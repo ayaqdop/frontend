@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-import Field from '../Ayaqdop/Field/Field'
-import Score from '../Ayaqdop/Score/Score'
-import Chat from '../Ayaqdop/Chat/Chat'
+import Field from '../ayaqdop/field/field'
+import Score from '../ayaqdop/score/score'
+import Chat from '../ayaqdop/chat/chat'
 
 import './index.css'
 import img from './loading.gif'
-import { useMatchState } from '../utils/useMatchState'
+import { useMatchState } from '../utils/use-match-state'
 
 export const Match = () => {
   const { matchState, initiateMatch, emitChange } = useMatchState()
