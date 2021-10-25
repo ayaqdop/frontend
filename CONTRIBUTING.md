@@ -2,17 +2,14 @@
 
 Thank you for taking the time to contribute here! We appreciate your contributions here.
 
-**Working on your first Pull Request?** You can learn how from this _free_
-series [How to Contribute to an Open Source Project on GitHub][egghead]
-
 
 ### How to setup the project
 
 1. Fork and clone the repo
 2. Run npm install to install dependencies
-3. For dev testing, use start to run the server and lint to setup eslint
-4. Create a PR branch with `git checkout -b pr/your-branch-name`
-
+3. Create a Firebase project and fill in `.env` with its details
+4. For dev testing, use start to run the server and lint to setup eslint
+5. Create a PR branch with `git checkout -b pr/your-branch-name`
 
 
 ### Pull Request Review Process
