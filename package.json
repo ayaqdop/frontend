@@ -30,15 +30,12 @@
   "dependencies": {
     "deep-equal": "^1.1.0",
     "firebase": "^7.23.0",
-    "minipass": "2.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "sharp": "^0.22.1",
-    "socket.io-client": "^2.3.0"
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
